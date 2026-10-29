@@ -1,0 +1,21 @@
+{
+  "name": "youthcoop-static-tests",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Pruebas de la copia estática: Apps Script (Node), visual contra la plantilla, subruta, fotos y formulario (Playwright)",
+  "scripts": {
+    "test": "npm run test:script && npm run test:e2e",
+    "test:script": "node --test apps-script.test.mjs",
+    "test:e2e": "playwright test",
+    "test:visual": "playwright test visual.spec.ts",
+    "test:subruta": "playwright test subruta.spec.ts",
+    "test:formulario": "playwright test formulario.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "^22.10.0",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0"
+  }
+}

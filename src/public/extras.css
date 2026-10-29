@@ -1,0 +1,20 @@
+/* Agregados a la plantilla (template.css es copia literal y no se edita).
+   Solo afectan clases/estados NUEVOS: fotos reales, video, iframe de LinkedIn, logos de sello y botón deshabilitado. */
+
+/* Foto real asignada a un hueco: cubre el hueco con las mismas proporciones (aspect-ratio del contenedor) */
+.foto.con-foto{display:block;border:0;background:none;min-height:0}
+.foto-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.foto.con-foto video.foto-img{background:#000}
+/* Foto opcional dentro de una línea de café (no existe en la plantilla) */
+.linea>.foto.con-foto{aspect-ratio:4/3;margin:-1.6rem -1.6rem 0;width:calc(100% + 3.2rem);border-radius:0;max-width:none}
+
+/* Publicación incrustada de LinkedIn */
+.post-li iframe{display:block;min-height:320px}
+
+/* Logo oficial de una certificación (sustituye al círculo "LOGO oficial") */
+.cert .sello.con-logo{border:0;overflow:hidden;background:none}
+.cert .sello.con-logo img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* Botón de envío mientras la solicitud viaja al servidor */
+.boton:disabled{opacity:.6;cursor:progress;transform:none}
+.boton:disabled:hover{background:var(--naranja);transform:none}

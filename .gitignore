@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dist-*/
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+# resultados de las pruebas
+tests/node_modules/
+tests/.tmp/
+tests/test-results/
+tests/visual-diff/
+tests/playwright-report/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,63 @@
+name: Publicar en GitHub Pages
+
+# Compila el sitio (React + Vite + TypeScript) y lo publica en GitHub Pages.
+# Antes de usarlo: Settings > Pages > Build and deployment > Source: "GitHub Actions".
+# La URL del formulario (Google Apps Script) se lee del secreto o de la variable VITE_FORM_ENDPOINT del repositorio.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un solo despliegue a la vez; si llega otro push, se cancela el que estaba en curso
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Avisar si falta la URL del formulario
+        env:
+          ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT || vars.VITE_FORM_ENDPOINT }}
+        run: |
+          if [ -z "$ENDPOINT" ]; then
+            echo "::warning title=Formulario sin conectar::VITE_FORM_ENDPOINT no esta configurado (Settings > Secrets and variables > Actions). El sitio se publica, pero el formulario mostrara un error al enviar."
+          fi
+
+      - name: Compilar (tsc + vite build)
+        env:
+          VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT || vars.VITE_FORM_ENDPOINT }}
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

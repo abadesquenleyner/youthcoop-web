@@ -1,0 +1,2792 @@
+{
+  "settings": {
+    "site": {
+      "title": "YOUTH COOP v5 · Café y cacao peruano trazable | Peruvian traceable coffee & cocoa (Copy)",
+      "description": "Café verde, cacao en grano y derivados de cacao de organizaciones de pequeños productores del Perú. Orgánico UE, NOP, RTPO, COR, Fairtrade y cumplimiento EUDR.",
+      "lang_default": "es",
+      "html_lang": "es",
+      "ocultar_pendientes": true
+    },
+    "seo": {
+      "es": {
+        "title": "YOUTH COOP v5 · Café y cacao peruano trazable | Peruvian traceable coffee & cocoa (Copy)",
+        "description": "Café verde, cacao en grano y derivados de cacao de organizaciones de pequeños productores del Perú. Orgánico UE, NOP, RTPO, COR, Fairtrade y cumplimiento EUDR.",
+        "canonical": "",
+        "og_title": "",
+        "og_description": "",
+        "og_image": null
+      },
+      "en": {
+        "title": "YOUTH COOP v5 · Café y cacao peruano trazable | Peruvian traceable coffee & cocoa (Copy)",
+        "description": "",
+        "canonical": "",
+        "og_title": "",
+        "og_description": "",
+        "og_image": null
+      }
+    },
+    "tema": {
+      "--marron": "",
+      "--marron-os": "",
+      "--naranja": "",
+      "--naranja-texto": "",
+      "--oro": "",
+      "--arena": "",
+      "--fondo": "",
+      "--tarjeta": "",
+      "--suave": "",
+      "--tinta": "",
+      "--tinta-2": "",
+      "--linea": ""
+    },
+    "contacto": {
+      "email_comercial": "gerencia@youthcoop.pe",
+      "email_logistica": "traffic@youthcoop.pe",
+      "whatsapp_numero": "51974289199",
+      "whatsapp_texto": "WhatsApp +51 974 289 199",
+      "whatsapp_pie": "+51 974 289 199",
+      "sitio_web": "youthcoop.pe",
+      "direcciones": [
+        {
+          "id": "50202fb7-3500-53cf-97cc-6fa6168beda1",
+          "visible": true,
+          "titulo": {
+            "es": "Sede y almacén · Lima",
+            "en": "Office & warehouse · Lima"
+          },
+          "texto": "Los Castillos Mz. C Lt. 11, Parque Industrial San Pedrito<br>Santiago de Surco, Lima, Perú"
+        },
+        {
+          "id": "e6b949c9-5477-5dfa-bd4e-534754fb3381",
+          "visible": true,
+          "titulo": {
+            "es": "Origen · Junín",
+            "en": "Origin · Junín"
+          },
+          "texto": "Av. Río Ene Mz. I Lt. 3, San Martín de Pangoa<br>Satipo, Junín, Perú"
+        }
+      ],
+      "redes": [
+        {
+          "id": "54a62805-ed5f-59ca-aa5f-566797a1f28d",
+          "visible": true,
+          "red": "linkedin",
+          "url": "https://www.linkedin.com/company/103115534/",
+          "etiqueta": "LinkedIn"
+        },
+        {
+          "id": "bc859872-ef58-5327-a3a6-f6d5d20f93cf",
+          "visible": true,
+          "red": "instagram",
+          "url": "https://www.instagram.com/youthcoop.pe/",
+          "etiqueta": "Instagram"
+        },
+        {
+          "id": "474b3bde-f8e9-562d-8180-756554170b68",
+          "visible": true,
+          "red": "facebook",
+          "url": "https://web.facebook.com/youthcoop.pe",
+          "etiqueta": "Facebook"
+        },
+        {
+          "id": "8d2afb29-a6ea-5363-979d-277cf36b159e",
+          "visible": true,
+          "red": "whatsapp",
+          "url": "https://wa.me/51974289199",
+          "etiqueta": "WhatsApp"
+        },
+        {
+          "id": "33e1fbec-6d68-5a56-a4eb-c2c5a750ed48",
+          "visible": true,
+          "red": "tiktok",
+          "url": "#",
+          "etiqueta": "TikTok (pendiente)",
+          "pendiente": true
+        }
+      ]
+    },
+    "formulario": {
+      "gramos_min": 100,
+      "gramos_max": 1000,
+      "paso": 100,
+      "por_defecto": 300,
+      "incoterms": [
+        {
+          "value": "FOB Callao",
+          "label": "FOB Callao"
+        },
+        {
+          "value": "FCA",
+          "label": "FCA"
+        },
+        {
+          "value": "CIF",
+          "label": "CIF"
+        },
+        {
+          "value": "DAP",
+          "label": "DAP"
+        },
+        {
+          "value": "Por definir",
+          "label": {
+            "es": "Por definir",
+            "en": "To be defined"
+          }
+        }
+      ],
+      "regiones": {
+        "eori": {
+          "label": {
+            "es": "Número EORI",
+            "en": "EORI number"
+          },
+          "placeholder": {
+            "es": "Ej.: DE123456789012345",
+            "en": "e.g. DE123456789012345"
+          },
+          "ayuda": {
+            "es": "Lo exige el courier para entregar en la UE y el Reino Unido.",
+            "en": "Required by the courier for delivery in the EU and the UK."
+          },
+          "requerido": true,
+          "campo": "eori"
+        },
+        "us": {
+          "label": {
+            "es": "Tax ID / EIN (opcional)",
+            "en": "Tax ID / EIN (optional)"
+          },
+          "placeholder": null,
+          "ayuda": {
+            "es": "Ayuda al courier con el aviso previo de la FDA.",
+            "en": "Helps the courier file the FDA Prior Notice."
+          },
+          "requerido": false,
+          "campo": "ein"
+        },
+        "otro": {
+          "label": {
+            "es": "Tax ID del destinatario (opcional)",
+            "en": "Recipient tax ID (optional)"
+          },
+          "placeholder": null,
+          "ayuda": null,
+          "requerido": false,
+          "campo": "taxid"
+        }
+      },
+      "mensajes": {
+        "completa": {
+          "es": "Completa: ",
+          "en": "Please complete: "
+        },
+        "campos": {
+          "nombre": {
+            "es": "nombre",
+            "en": "name"
+          },
+          "empresa": {
+            "es": "empresa",
+            "en": "company"
+          },
+          "correo": {
+            "es": "correo válido",
+            "en": "valid email"
+          },
+          "producto": {
+            "es": "al menos un producto",
+            "en": "at least one product"
+          },
+          "pais": {
+            "es": "país",
+            "en": "country"
+          },
+          "direccion": {
+            "es": "dirección de entrega",
+            "en": "delivery address"
+          },
+          "eori": {
+            "es": "EORI",
+            "en": "EORI"
+          }
+        },
+        "resumen_singular": {
+          "es": "{n} muestra · {total} en total",
+          "en": "{n} sample · {total} in total"
+        },
+        "resumen_plural": {
+          "es": "{n} muestras · {total} en total",
+          "en": "{n} samples · {total} in total"
+        },
+        "exito": {
+          "es": "Recibimos tu solicitud. Te respondemos en menos de 48 horas.",
+          "en": "We received your request. We will reply within 48 hours."
+        },
+        "error_envio": {
+          "es": "No pudimos enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+          "en": "We could not send your request. Please try again in a few minutes."
+        },
+        "sin_endpoint": {
+          "es": "El envío del formulario todavía no está conectado, así que tu solicitud NO se envió. Escríbenos a {email} o por WhatsApp.",
+          "en": "The form is not connected yet, so your request was NOT sent. Please write to us at {email} or on WhatsApp."
+        }
+      }
+    },
+    "legal": {
+      "razon_social": "Cooperación de Jóvenes S.A.C.",
+      "ruc": "20612248371"
+    },
+    "notificaciones": {
+      "correo_activo": false,
+      "confirmar_al_cliente": false
+    }
+  },
+  "sections": [
+    {
+      "key": "header",
+      "position": 0,
+      "visible": true,
+      "content": {
+        "logo_oscuro": {
+          "media_id": 1,
+          "alt": "YOUTH COOP"
+        },
+        "logo_claro": {
+          "media_id": 2,
+          "alt": "YOUTH COOP"
+        },
+        "href_inicio": "#inicio",
+        "aria": {
+          "inicio": "YOUTH COOP, inicio",
+          "nav": "Principal",
+          "idioma": "Idioma / Language",
+          "menu": "Menú"
+        },
+        "nav": [
+          {
+            "id": "2c36e433-5948-565a-998a-546225b58f4a",
+            "visible": true,
+            "href": "#nosotros",
+            "label": {
+              "es": "Nosotros",
+              "en": "About"
+            }
+          },
+          {
+            "id": "c2bec873-c6d3-5b40-a84a-af2fd5eb5ec8",
+            "visible": true,
+            "href": "#modelo",
+            "label": {
+              "es": "Modelo",
+              "en": "Model"
+            }
+          },
+          {
+            "id": "4e7a5c31-d1ce-5174-a65d-973663025b26",
+            "visible": true,
+            "href": "#proyectos",
+            "label": {
+              "es": "Proyectos",
+              "en": "Projects"
+            }
+          },
+          {
+            "id": "46131d64-2870-5e11-af62-bb69e0e3ae5e",
+            "visible": true,
+            "href": "#oferta",
+            "label": {
+              "es": "Oferta",
+              "en": "Offer"
+            }
+          },
+          {
+            "id": "80e5518e-11cc-537f-94a8-648cf9ee6db1",
+            "visible": true,
+            "href": "#calidad",
+            "label": {
+              "es": "Calidad",
+              "en": "Quality"
+            }
+          },
+          {
+            "id": "c95f3cfb-5900-5ccb-b243-456848d0d8ea",
+            "visible": true,
+            "href": "#trazabilidad",
+            "label": {
+              "es": "Trazabilidad",
+              "en": "Traceability"
+            }
+          },
+          {
+            "id": "648557ec-542d-5a6d-abf4-a812e15864e6",
+            "visible": true,
+            "href": "#contacto",
+            "label": {
+              "es": "Contacto",
+              "en": "Contact"
+            }
+          }
+        ],
+        "cta": {
+          "label": {
+            "es": "Solicitar muestras",
+            "en": "Request samples"
+          },
+          "href": "#contacto"
+        }
+      }
+    },
+    {
+      "key": "hero",
+      "position": 1,
+      "visible": true,
+      "content": {
+        "titulo": {
+          "es": "Café y cacao de jóvenes productores que cuidan la Amazonía",
+          "en": "Coffee and cocoa from young farmers who care for the Amazon"
+        },
+        "bajada": {
+          "es": "Cultivamos café en Chanchamayo y cacao en Pangoa, en la Amazonía peruana, y exportamos junto a nuestras familias y vecinos, organizados en cooperativas. Fincas rentables, bosques en pie y trazabilidad parcela por parcela.",
+          "en": "We grow coffee in Chanchamayo and cocoa in Pangoa, in the Peruvian Amazon, and export together with our families and neighbors, organized in cooperatives. Profitable farms, standing forests and plot-by-plot traceability."
+        },
+        "cta_principal": {
+          "label": {
+            "es": "Solicitar muestras",
+            "en": "Request samples"
+          },
+          "href": "#contacto"
+        },
+        "cta_secundario": {
+          "label": {
+            "es": "Ver nuestra oferta",
+            "en": "See our offer"
+          },
+          "href": "#oferta"
+        },
+        "sellos": "Orgánico UE · NOP · COR · RTPO · Fairtrade · EUDR",
+        "foto": {
+          "media_id": 4,
+          "etiqueta": "FOTO",
+          "caption": "Productora joven sonriendo en su finca, con cerezos maduros en la mano. Luz natural de mañana.",
+          "medidas": "Vertical 1200 × 1500 px",
+          "pendiente": false
+        }
+      }
+    },
+    {
+      "key": "cifras",
+      "position": 2,
+      "visible": true,
+      "content": {
+        "items": [
+          {
+            "id": "2f8d0f23-f96f-518e-9e38-f01710de5939",
+            "visible": true,
+            "valor": "+100 ha",
+            "etiqueta": {
+              "es": "de bosque restauradas",
+              "en": "of forest restored"
+            }
+          },
+          {
+            "id": "c010c035-50e0-555d-bc38-823015617505",
+            "visible": true,
+            "valor": "3,000 ha",
+            "etiqueta": {
+              "es": "de bosque conservadas",
+              "en": "of forest conserved"
+            }
+          },
+          {
+            "id": "d3476e39-a5b1-515e-9921-4852513b57f3",
+            "visible": true,
+            "valor": "100%",
+            "etiqueta": {
+              "es": "de los lotes analizados antes de embarcar",
+              "en": "of lots tested before shipment"
+            }
+          },
+          {
+            "id": "0bfd834f-9d8f-58d8-afe9-064a209aa90b",
+            "visible": true,
+            "valor": "[000]",
+            "etiqueta": {
+              "es": "familias productoras",
+              "en": "farming families"
+            },
+            "pendiente": true
+          }
+        ]
+      }
+    },
+    {
+      "key": "nosotros",
+      "position": 3,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Nosotros",
+          "en": "About us"
+        },
+        "titulo": {
+          "es": "Productores y exportadores en origen",
+          "en": "Producers and exporters at origin"
+        },
+        "parrafos": [
+          {
+            "id": "03d0f0c1-134b-51d2-be83-fc1641caa7c3",
+            "visible": true,
+            "texto": {
+              "es": "Crecimos en los cafetales de Chanchamayo y Satipo, en la Selva Central del Perú. Hoy somos un equipo multidisciplinario, formado en gestión, comercio exterior y agronomía, que volvió para liderar el negocio familiar.",
+              "en": "We grew up on the coffee farms of Chanchamayo and Satipo, in Peru's Central Jungle. Today we are a multidisciplinary team, trained in management, international trade and agronomy, who came back to lead the family business."
+            }
+          },
+          {
+            "id": "ec8c9279-3eea-55e4-8fcf-56631d1af799",
+            "visible": true,
+            "texto": {
+              "es": "Producimos y exportamos junto a nuestras familias y vecinos del campo. Ponemos el acopio, la trazabilidad y la gestión comercial, y trabajamos de cerca con importadores, tostadores y chocolateros para llevar nuestro café y cacao al mundo.",
+              "en": "We produce and export together with our families and neighboring farmers. We provide collection, traceability and commercial management, and work closely with importers, roasters and chocolate makers to bring our coffee and cocoa to the world."
+            }
+          }
+        ],
+        "foto": {
+          "media_id": null,
+          "etiqueta": "FOTO",
+          "caption": {
+            "es": "Los socios fundadores con sus padres en el cafetal familiar. Luz natural, ropa de campo.",
+            "en": "Founding partners with their parents on the family farm. Natural light, field clothes."
+          },
+          "medidas": "Horizontal 1600 × 1200 px",
+          "pendiente": true
+        },
+        "hitos": [
+          {
+            "id": "496e633c-998a-5ac9-b545-3aa58c6ed0b7",
+            "visible": true,
+            "anio": {
+              "es": "1985 – 1995",
+              "en": "1985 – 1995"
+            },
+            "titulo": {
+              "es": "Volver al campo",
+              "en": "Back to the land"
+            },
+            "texto": {
+              "es": "Tras dejar sus fincas por el terrorismo, nuestras familias regresaron y reconstruyeron sus hogares con el café.",
+              "en": "After fleeing terrorism, our families returned and rebuilt their homes through coffee."
+            }
+          },
+          {
+            "id": "21b4f577-9f52-5792-8d91-f987a6f4451c",
+            "visible": true,
+            "anio": {
+              "es": "2000 – 2010",
+              "en": "2000 – 2010"
+            },
+            "titulo": {
+              "es": "El café nos formó",
+              "en": "Coffee educated us"
+            },
+            "texto": {
+              "es": "Las parcelas familiares pagaron nuestros estudios en gestión, comercio y agronomía.",
+              "en": "The family plots paid for our studies in management, trade and agronomy."
+            }
+          },
+          {
+            "id": "4611e52b-121b-596e-aedd-b97e3000afed",
+            "visible": true,
+            "anio": {
+              "es": "2012 – 2015",
+              "en": "2012 – 2015"
+            },
+            "titulo": {
+              "es": "La roya y el salto técnico",
+              "en": "Leaf rust and the technical leap"
+            },
+            "texto": {
+              "es": "La roya arrasó cerca del 70% de los cafetales de nuestra zona. Renovamos, tecnificamos y nos organizamos.",
+              "en": "Leaf rust wiped out nearly 70% of coffee farms in our area. We replanted, modernized and organized."
+            }
+          },
+          {
+            "id": "4508c492-de9f-5637-86d8-404d60a4229b",
+            "visible": true,
+            "anio": {
+              "es": "2017 – 2018",
+              "en": "2017 – 2018"
+            },
+            "titulo": {
+              "es": "Calidad en taza",
+              "en": "Cup quality"
+            },
+            "texto": {
+              "es": "Ferias, contacto directo con tostadores y los primeros lotes clasificados por perfil.",
+              "en": "Trade fairs, direct contact with roasters and our first lots graded by profile."
+            }
+          },
+          {
+            "id": "d7c5116c-882d-503c-af03-9118ffc854cf",
+            "visible": true,
+            "anio": {
+              "es": "2023 – hoy",
+              "en": "2023 – today"
+            },
+            "titulo": {
+              "es": "Nace YOUTH COOP",
+              "en": "YOUTH COOP is born"
+            },
+            "texto": {
+              "es": "Exportación directa desde origen, con acopio propio y trazabilidad completa.",
+              "en": "Direct export from origin, with our own collection and full traceability."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "modelo",
+      "position": 4,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Nuestro modelo",
+          "en": "Our model"
+        },
+        "titulo": {
+          "es": "Sin rentabilidad para el productor, no hay sostenibilidad",
+          "en": "Without farmer profitability, there is no sustainability"
+        },
+        "bajada": {
+          "es": "Gestionamos cada finca como un negocio. Primero revisamos con el productor si su finca gana o pierde dinero; con ese diagnóstico planificamos el año agrícola en cinco pilares.",
+          "en": "We manage every farm as a business. First we check with the farmer whether the farm is making or losing money; that diagnosis shapes the farming year around five pillars."
+        },
+        "pilares": [
+          {
+            "id": "9c48cd35-491a-5058-9070-8cc8e7fde56a",
+            "visible": true,
+            "icono": "tejidos",
+            "titulo": {
+              "es": "Manejo de tejidos",
+              "en": "Tissue management"
+            },
+            "texto": {
+              "es": "Podas de renovación en café y de mantenimiento en cacao, justo después de la cosecha.",
+              "en": "Renewal pruning in coffee and maintenance pruning in cocoa, right after harvest."
+            }
+          },
+          {
+            "id": "bdbe88a4-84cd-5178-9268-fa6e1100db4d",
+            "visible": true,
+            "icono": "sombra",
+            "titulo": {
+              "es": "Manejo de sombra",
+              "en": "Shade management"
+            },
+            "texto": {
+              "es": "Árboles en equilibrio para productividad, clima y biodiversidad.",
+              "en": "Balanced tree cover for yield, microclimate and biodiversity."
+            }
+          },
+          {
+            "id": "2aebc4d7-5a6c-5366-84a5-5696f508dbe9",
+            "visible": true,
+            "icono": "malezas",
+            "titulo": {
+              "es": "Control de malezas",
+              "en": "Weed control"
+            },
+            "texto": {
+              "es": "Menos competencia por agua y nutrientes, cuidando el suelo.",
+              "en": "Less competition for water and nutrients, protecting the soil."
+            }
+          },
+          {
+            "id": "9f71fe0a-400c-564a-8ab6-7efa7f74ebfe",
+            "visible": true,
+            "icono": "nutricion",
+            "titulo": {
+              "es": "Nutrición",
+              "en": "Nutrition"
+            },
+            "texto": {
+              "es": "Abonamiento planificado según análisis de suelo, al inicio de las lluvias.",
+              "en": "Planned fertilization based on soil analysis, at the start of the rains."
+            }
+          },
+          {
+            "id": "fc7df5ec-4145-52ee-9dcc-55368db89800",
+            "visible": true,
+            "icono": "plagas",
+            "titulo": {
+              "es": "Plagas y enfermedades",
+              "en": "Pests and diseases"
+            },
+            "texto": {
+              "es": "Monitoreo todo el año y control oportuno con prácticas orgánicas.",
+              "en": "Year-round monitoring and timely control with organic practices."
+            }
+          }
+        ],
+        "nota": {
+          "es": "El mismo método, en café y en cacao: más rendimiento por hectárea, bosque protegido y calidad sostenida.",
+          "en": "The same method for coffee and cocoa: higher yield per hectare, a protected forest and consistent quality."
+        }
+      }
+    },
+    {
+      "key": "proyectos",
+      "position": 5,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Proyectos productivos",
+          "en": "Producer projects"
+        },
+        "titulo": {
+          "es": "Nuestro café y cacao tiene nombre y apellido",
+          "en": "Our coffee and cocoa come from named projects"
+        },
+        "bajada": {
+          "es": "Cada lote proviene de uno de nuestros proyectos productivos y comerciales con cooperativas de pequeños productores.",
+          "en": "Every lot comes from one of our production and trade projects with smallholder cooperatives."
+        },
+        "items": [
+          {
+            "id": "a19223b3-a44b-5bac-98af-cb26155a645e",
+            "visible": true,
+            "color": "#FC5300",
+            "foto": {
+              "media_id": 5,
+              "etiqueta": "FOTO",
+              "caption": "Cafetal bajo sombra de árboles nativos, o plantones listos para reforestar. Añadir logo de Café + Árbol.",
+              "medidas": "1600 × 1000 px",
+              "pendiente": false
+            },
+            "nombre": "Café + Árbol",
+            "descripcion": {
+              "es": "Cooperativa agraria que restaura la Amazonía a través del comercio de café. Un porcentaje de la prima de cada venta se destina a restaurar bosques.",
+              "en": "An agrarian cooperative restoring the Amazon through coffee trade. A share of the premium from every sale funds forest restoration."
+            },
+            "impacto": {
+              "texto": {
+                "es": "+100 ha restauradas · 3,000 ha conservadas",
+                "en": "100+ ha restored · 3,000 ha conserved"
+              }
+            },
+            "chips": [
+              {
+                "id": "40d5d012-c795-57cc-bf7f-8b4007ae3969",
+                "visible": true,
+                "texto": {
+                  "es": "Café",
+                  "en": "Coffee"
+                }
+              },
+              {
+                "id": "805b2975-32bf-5f25-a5a0-7bec26d879b7",
+                "visible": true,
+                "texto": {
+                  "es": "Restauración",
+                  "en": "Restoration"
+                }
+              }
+            ]
+          },
+          {
+            "id": "82e5d3f5-a403-5a91-ab10-5a740a775c97",
+            "visible": true,
+            "color": "#BE8C00",
+            "foto": {
+              "media_id": 6,
+              "etiqueta": "FOTO",
+              "caption": "Mazorcas de cacao en el árbol dentro de un sistema agroforestal. Añadir logo de Cacao Bosque+.",
+              "medidas": "1600 × 1000 px",
+              "pendiente": false
+            },
+            "nombre": "Cacao Bosque+",
+            "descripcion": {
+              "es": "Comercializa café y cacao de productores organizados en sus bases, con un enfoque de conservación del bosque en sistemas agroforestales.",
+              "en": "Trades coffee and cocoa from its member producers, with a focus on forest conservation in agroforestry systems."
+            },
+            "impacto": {
+              "texto": {
+                "es": "Dato de impacto <span class=\"pendiente\">[pendiente]</span>",
+                "en": "Impact figure <span class=\"pendiente\">[pending]</span>"
+              },
+              "pendiente": true
+            },
+            "chips": [
+              {
+                "id": "a86d8923-3218-587d-bfcb-7ded00b0997b",
+                "visible": true,
+                "texto": {
+                  "es": "Cacao",
+                  "en": "Cocoa"
+                }
+              },
+              {
+                "id": "29b587dc-2879-5b5f-831a-9e5f991aafdf",
+                "visible": true,
+                "texto": {
+                  "es": "Café",
+                  "en": "Coffee"
+                }
+              },
+              {
+                "id": "62c5ac1c-3a32-537f-8dd3-a410a44ba81f",
+                "visible": true,
+                "texto": {
+                  "es": "Agroforestería",
+                  "en": "Agroforestry"
+                }
+              }
+            ]
+          },
+          {
+            "id": "df44ee07-3a8a-5f96-8a29-5d7f2d9993a5",
+            "visible": true,
+            "color": "#4E3632",
+            "foto": {
+              "media_id": null,
+              "etiqueta": "FOTO",
+              "caption": "Productoras y jóvenes de la cooperativa durante la cosecha o el secado. Añadir logo de Tierra de Jóvenes y Mujeres.",
+              "medidas": "1600 × 1000 px",
+              "pendiente": false
+            },
+            "nombre": {
+              "es": "Tierra de Jóvenes y Mujeres",
+              "en": "Tierra de Jóvenes y Mujeres"
+            },
+            "descripcion": {
+              "es": "Cooperativa con certificación de comercio justo y orgánica, que impulsa el liderazgo de jóvenes y mujeres en la producción de café.",
+              "en": "A Fairtrade and organic certified cooperative that advances the leadership of young people and women in coffee production."
+            },
+            "impacto": {
+              "texto": {
+                "es": "Fairtrade · Orgánico",
+                "en": "Fairtrade · Organic"
+              }
+            },
+            "chips": [
+              {
+                "id": "ae391f4f-77d2-5899-9a4e-02aec81b43d3",
+                "visible": true,
+                "texto": {
+                  "es": "Café",
+                  "en": "Coffee"
+                }
+              },
+              {
+                "id": "9cba1209-f1f7-59b5-aeb7-95c368a2476e",
+                "visible": true,
+                "texto": {
+                  "es": "Equidad de género",
+                  "en": "Gender equity"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "oferta",
+      "position": 6,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Nuestra oferta",
+          "en": "Our offer"
+        },
+        "titulo": {
+          "es": "Café catado saco por saco, en tres líneas",
+          "en": "Coffee cupped bag by bag, in three lines"
+        },
+        "bajada": {
+          "es": "Cada línea lleva el nombre de un árbol amazónico, en honor a Café + Árbol y al bosque que protegemos.",
+          "en": "Each line is named after an Amazonian tree, in honor of Café + Árbol and the forest we protect."
+        },
+        "ficha": [
+          {
+            "id": "344ba9ef-367a-545e-a8ca-10b1e081f9cc",
+            "visible": true,
+            "dt": {
+              "es": "Origen",
+              "en": "Origin"
+            },
+            "dd": "Chanchamayo · Satipo, Junín"
+          },
+          {
+            "id": "c4e5f2c8-1a0b-5ef6-9cec-4784bea86fd0",
+            "visible": true,
+            "dt": {
+              "es": "Altitud",
+              "en": "Altitude"
+            },
+            "dd": "<span class=\"pendiente\">[msnm / masl]</span>",
+            "pendiente": true
+          },
+          {
+            "id": "fe9a1b4d-813f-5391-a3f6-deba94c51c28",
+            "visible": true,
+            "dt": {
+              "es": "Variedades",
+              "en": "Varieties"
+            },
+            "dd": "<span class=\"pendiente\">[pendiente]</span>",
+            "pendiente": true
+          },
+          {
+            "id": "8aae4833-ecbd-5fe0-a877-12cc916f91e1",
+            "visible": true,
+            "dt": {
+              "es": "Proceso",
+              "en": "Process"
+            },
+            "dd": {
+              "es": "Lavado",
+              "en": "Washed"
+            }
+          },
+          {
+            "id": "d0670ba6-b6bb-5cf3-b7e3-1bdc78d5b1d5",
+            "visible": true,
+            "dt": {
+              "es": "Cosecha",
+              "en": "Harvest"
+            },
+            "dd": "<span class=\"pendiente\">[meses]</span>",
+            "pendiente": true
+          }
+        ],
+        "lineas": {
+          "unidad_puntaje": {
+            "es": "puntos SCA",
+            "en": "SCA points"
+          },
+          "etiqueta_notas": {
+            "es": "Notas",
+            "en": "Notes"
+          }
+        },
+        "como_armamos": {
+          "titulo": {
+            "es": "Cómo armamos cada lote",
+            "en": "How we build each lot"
+          },
+          "pasos": [
+            {
+              "id": "4be7b457-424f-5d9e-8bf4-2047eed071fc",
+              "visible": true,
+              "titulo": {
+                "es": "Entrega del productor",
+                "en": "Farmer delivery"
+              },
+              "texto": {
+                "es": "Cada productor entrega su café en nuestro almacén de origen, con su código y parcela registrados.",
+                "en": "Each farmer delivers coffee to our origin warehouse, with their code and plot on record."
+              }
+            },
+            {
+              "id": "abba72fa-50af-5ca1-9d68-2b672f4ecc45",
+              "visible": true,
+              "titulo": {
+                "es": "Análisis físico y cata",
+                "en": "Physical analysis and cupping"
+              },
+              "texto": {
+                "es": "Cada saco pasa por análisis físico y cata sensorial con el protocolo SCA de 10 atributos, con descuento por tazas con defecto.",
+                "en": "Every bag gets a physical analysis and a sensory cupping under the 10-attribute SCA protocol, with deductions for defective cups."
+              }
+            },
+            {
+              "id": "f510dc09-bd47-5658-b7eb-a2079ff42a19",
+              "visible": true,
+              "titulo": {
+                "es": "Asignación a una línea",
+                "en": "Assignment to a line"
+              },
+              "texto": {
+                "es": "El puntaje y el perfil de taza (acidez, cuerpo, notas y final) definen a qué línea comercial pertenece cada entrega.",
+                "en": "Score and cup profile (acidity, body, notes and finish) decide which commercial line each delivery joins."
+              }
+            },
+            {
+              "id": "eaab6314-89e2-5fdd-95ff-c68760c5f8ad",
+              "visible": true,
+              "titulo": {
+                "es": "Lote final y recata",
+                "en": "Final lot and re-cupping"
+              },
+              "texto": {
+                "es": "Armamos los lotes por afinidad de perfil, no solo por puntaje, y volvemos a catar el lote final antes de ofrecerlo.",
+                "en": "We build lots by profile affinity, not just score, and cup the final lot again before offering it."
+              }
+            }
+          ],
+          "principio": {
+            "es": "Ningún saco entra a una línea sin pasar por cata.",
+            "en": "No bag joins a line without being cupped."
+          }
+        },
+        "cacao": {
+          "titulo": {
+            "es": "Cacao",
+            "en": "Cocoa"
+          },
+          "color": "#BE8C00",
+          "bajada": {
+            "es": "Fermentado, seco y analizado por sublotes de 5 toneladas en nuestro almacén de Lima.",
+            "en": "Fermented, dried and tested in 5-tonne sub-lots at our Lima warehouse."
+          }
+        },
+        "cta": {
+          "label": {
+            "es": "Solicitar muestras",
+            "en": "Request samples"
+          },
+          "href": "#contacto"
+        }
+      }
+    },
+    {
+      "key": "calidad",
+      "position": 7,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Calidad y control de riesgo",
+          "en": "Quality and risk control"
+        },
+        "titulo": {
+          "es": "Nada se embarca sin resultados",
+          "en": "Nothing ships without results"
+        },
+        "bajada": {
+          "es": "Analizamos residuos de plaguicidas (multirresiduo y glifosato) según los límites máximos de residuos (LMR) de la Unión Europea, en laboratorio acreditado y ajustados a los lineamientos de cada cliente.",
+          "en": "We test for pesticide residues (multi-residue screening and glyphosate) against EU maximum residue levels (MRLs), at an accredited lab and in line with each buyer's guidelines."
+        },
+        "aria_tabs": "Producto",
+        "tabs": [
+          {
+            "id": "b866e149-6e34-550b-bb79-4e8919c50f4c",
+            "visible": true,
+            "key": "cafe",
+            "label": {
+              "es": "Café",
+              "en": "Coffee"
+            },
+            "color": "#FC5300"
+          },
+          {
+            "id": "d8de3ad5-a0c8-5d5f-8e83-c3ee29f5389b",
+            "visible": true,
+            "key": "cacao",
+            "label": {
+              "es": "Cacao",
+              "en": "Cocoa"
+            },
+            "color": "#BE8C00"
+          }
+        ],
+        "cafe": {
+          "destacado": {
+            "titulo": {
+              "es": "Multirresiduo y glifosato, lote por lote",
+              "en": "Multi-residue and glyphosate, lot by lot"
+            },
+            "texto": {
+              "es": "Cada lote de exportación, de unas 20 toneladas, se analiza antes de embarcar.",
+              "en": "Every export lot, around 20 tonnes, is tested before shipment."
+            }
+          },
+          "pasos": [
+            {
+              "id": "2b6382bd-9f4a-57c9-8598-0d0bbd93c98d",
+              "visible": true,
+              "titulo": {
+                "es": "Cata en origen",
+                "en": "Cupping at origin"
+              },
+              "texto": {
+                "es": "Cada saco ya fue catado y asignado a su línea.",
+                "en": "Every bag has already been cupped and assigned to its line."
+              }
+            },
+            {
+              "id": "045a508b-cd2c-5b93-8d4e-fe9450d05c76",
+              "visible": true,
+              "titulo": {
+                "es": "Beneficio seco",
+                "en": "Dry milling"
+              },
+              "texto": {
+                "es": "Pilado y selección en planta.",
+                "en": "Hulling and sorting at the mill."
+              }
+            },
+            {
+              "id": "82d21ff9-86df-5f67-b933-45145aff60f8",
+              "visible": true,
+              "titulo": {
+                "es": "Tres caladas por saco",
+                "en": "Three probes per bag"
+              },
+              "texto": {
+                "es": "Muestra representativa de todo el lote.",
+                "en": "A representative sample of the whole lot."
+              }
+            },
+            {
+              "id": "7dadf1b3-7878-5588-8fec-401de1cd6d36",
+              "visible": true,
+              "titulo": {
+                "es": "Análisis de residuos",
+                "en": "Residue testing"
+              },
+              "texto": {
+                "es": "Multirresiduo de plaguicidas y glifosato, en un laboratorio acreditado que elegimos con el cliente.",
+                "en": "Pesticide multi-residue and glyphosate testing at an accredited lab chosen with the buyer."
+              }
+            },
+            {
+              "id": "18e5c747-2828-5acb-b31e-5539c45aa65b",
+              "visible": true,
+              "titulo": {
+                "es": "Embarque",
+                "en": "Shipment"
+              },
+              "texto": {
+                "es": "Solo con resultados conformes y documentación EUDR completa.",
+                "en": "Only with compliant results and complete EUDR documents."
+              }
+            }
+          ]
+        },
+        "cacao": {
+          "comparacion": {
+            "mercado": {
+              "titulo": {
+                "es": "Práctica habitual del mercado",
+                "en": "Common market practice"
+              },
+              "lote": {
+                "es": "1 análisis · 25 t",
+                "en": "1 test · 25 t"
+              },
+              "pie": {
+                "es": "Un solo resultado para todo el contenedor.",
+                "en": "A single result for the whole container."
+              }
+            },
+            "nuestro": {
+              "titulo": "YOUTH COOP",
+              "sublotes": [
+                {
+                  "id": "91e4a660-f13d-5bd4-9040-59cc89a1ba39",
+                  "visible": true,
+                  "texto": "5 t"
+                },
+                {
+                  "id": "fc8a6ec1-f764-5649-9890-51d065eef4d3",
+                  "visible": true,
+                  "texto": "5 t"
+                },
+                {
+                  "id": "d14f2500-e52e-5d59-9617-cf9c8ede07d8",
+                  "visible": true,
+                  "texto": "5 t"
+                },
+                {
+                  "id": "54fdc67c-1917-5501-b5b3-149384c160de",
+                  "visible": true,
+                  "texto": "5 t"
+                },
+                {
+                  "id": "0087bf24-f41e-5a9f-87fa-f11102291b0a",
+                  "visible": true,
+                  "texto": "5 t"
+                }
+              ],
+              "pie": {
+                "es": "Cinco resultados independientes por contenedor. Si un sublote no cumple, se separa y el resto sigue su curso.",
+                "en": "Five independent results per container. If one sub-lot fails, it is set aside and the rest moves on."
+              }
+            }
+          },
+          "pasos": [
+            {
+              "id": "efd45c1c-1e4e-5470-8ff2-11be38276065",
+              "visible": true,
+              "titulo": {
+                "es": "Acopio trazable",
+                "en": "Traceable sourcing"
+              },
+              "texto": {
+                "es": "Asistencia técnica y financiamiento al productor, a través de su organización.",
+                "en": "Technical assistance and financing for each farmer, through their organization."
+              }
+            },
+            {
+              "id": "8851230e-fece-5e6f-9c67-f9e8fdda3f64",
+              "visible": true,
+              "titulo": {
+                "es": "Almacén en Lima",
+                "en": "Lima warehouse"
+              },
+              "texto": {
+                "es": "Recepción, control de calidad y armado de sublotes de 5 t.",
+                "en": "Receipt, quality control and 5 t sub-lot assembly."
+              }
+            },
+            {
+              "id": "9cc741e2-a94f-5a2f-bae1-21f5bfae9b5e",
+              "visible": true,
+              "titulo": {
+                "es": "Análisis por sublote",
+                "en": "Sub-lot testing"
+              },
+              "texto": {
+                "es": "Multirresiduo de plaguicidas y glifosato para cada sublote, en laboratorio acreditado.",
+                "en": "Pesticide multi-residue and glyphosate testing on every sub-lot, at an accredited lab."
+              }
+            },
+            {
+              "id": "11c7fc03-f9a0-5e9a-9ec5-8c4f49229656",
+              "visible": true,
+              "titulo": {
+                "es": "Protocolo con el cliente",
+                "en": "Buyer protocol"
+              },
+              "texto": {
+                "es": "Revisamos resultados con el cliente según sus lineamientos internos.",
+                "en": "Results are reviewed with the buyer against their internal guidelines."
+              }
+            },
+            {
+              "id": "7262062e-7014-54d3-9070-86d85840ba57",
+              "visible": true,
+              "titulo": {
+                "es": "Exportación",
+                "en": "Shipment"
+              },
+              "texto": {
+                "es": "Embarque solo con resultados aprobados y documentación EUDR completa.",
+                "en": "Shipment only with approved results and complete EUDR documentation."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "trazabilidad",
+      "position": 8,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Trazabilidad y certificaciones",
+          "en": "Traceability and certifications"
+        },
+        "titulo": {
+          "es": "Datos desde la parcela, listos para EUDR",
+          "en": "Plot-level data, EUDR-ready"
+        },
+        "bajada": {
+          "es": "Nuestros técnicos registran en tablet cada visita a la finca. Esa información alimenta la trazabilidad, la certificación y el monitoreo.",
+          "en": "Our technicians log every farm visit on a tablet. That data feeds traceability, certification and monitoring."
+        },
+        "checks": [
+          {
+            "id": "f9062623-a8d1-5d6a-a98f-7c8922c321e1",
+            "visible": true,
+            "titulo": {
+              "es": "Tablets en las fincas",
+              "en": "Tablets on every farm visit"
+            },
+            "texto": {
+              "es": "Registro de visitas técnicas, prácticas y producción en tiempo real.",
+              "en": "Technical visits, practices and yields recorded in real time."
+            }
+          },
+          {
+            "id": "6847ceb3-f57d-5453-9afb-d58800ca0a39",
+            "visible": true,
+            "titulo": {
+              "es": "Cumplimiento EUDR",
+              "en": "EUDR compliance"
+            },
+            "texto": {
+              "es": "Geolocalización de cada parcela, verificación de libre deforestación y documentación de la tenencia legal del predio (título o constancia de posesión).",
+              "en": "Geolocation of every plot, deforestation-free verification and documented legal land tenure (title or proof of possession)."
+            }
+          },
+          {
+            "id": "b9b140cc-61e3-5f61-9c00-c153864c6e17",
+            "visible": true,
+            "titulo": {
+              "es": "Monitoreo permanente",
+              "en": "Ongoing monitoring"
+            },
+            "texto": {
+              "es": "Sistema Interno de Control con seguimiento continuo de cada parcela.",
+              "en": "An Internal Control System with continuous tracking of every plot."
+            }
+          },
+          {
+            "id": "c0ddf713-f8ea-5b03-a0e4-1af5d63e02e0",
+            "visible": true,
+            "titulo": {
+              "es": "Trayectoria confiable",
+              "en": "Proven reliability"
+            },
+            "texto": {
+              "es": "Contratos y certificaciones cumplidos sin observaciones desde nuestro inicio.",
+              "en": "Contracts and certifications fulfilled without findings since day one."
+            }
+          }
+        ],
+        "certs": [
+          {
+            "id": "6a096e4d-152d-589a-9728-7644de676f01",
+            "visible": true,
+            "sello": {
+              "texto": "LOGO<br>oficial",
+              "media_id": null,
+              "pendiente": true
+            },
+            "nombre": "Orgánico UE",
+            "detalle": {
+              "es": "Unión Europea",
+              "en": "European Union"
+            }
+          },
+          {
+            "id": "f75cb9c2-5a5d-513b-b08d-7ec79b710e06",
+            "visible": true,
+            "sello": {
+              "texto": "LOGO<br>oficial",
+              "media_id": null,
+              "pendiente": true
+            },
+            "nombre": "NOP",
+            "detalle": {
+              "es": "USDA · Estados Unidos",
+              "en": "USDA · United States"
+            }
+          },
+          {
+            "id": "a487b4fc-6f95-5f89-835e-62c425152ac3",
+            "visible": true,
+            "sello": {
+              "texto": "LOGO<br>oficial",
+              "media_id": null,
+              "pendiente": true
+            },
+            "nombre": "COR",
+            "detalle": {
+              "es": "Canadá",
+              "en": "Canada"
+            }
+          },
+          {
+            "id": "e593d26b-d9ff-5a60-9edd-b277edff7bba",
+            "visible": true,
+            "sello": {
+              "texto": "LOGO<br>oficial",
+              "media_id": null,
+              "pendiente": true
+            },
+            "nombre": "RTPO",
+            "detalle": {
+              "es": "Perú · SENASA",
+              "en": "Peru · SENASA"
+            }
+          },
+          {
+            "id": "04d0acd8-299e-5e26-b8bb-0be6d4167007",
+            "visible": true,
+            "sello": {
+              "texto": "LOGO<br>oficial",
+              "media_id": null,
+              "pendiente": true
+            },
+            "nombre": "Fairtrade",
+            "detalle": "FLOCERT"
+          },
+          {
+            "id": "7a17dceb-105a-57df-9112-a36da379efbd",
+            "visible": true,
+            "sello": {
+              "texto": "EUDR",
+              "media_id": null
+            },
+            "nombre": "EUDR",
+            "detalle": {
+              "es": "Libre de deforestación",
+              "en": "Deforestation-free"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "galeria",
+      "position": 9,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Desde el campo",
+          "en": "From the field"
+        },
+        "titulo": {
+          "es": "Así trabajamos, de la finca al contenedor",
+          "en": "How we work, from farm to container"
+        },
+        "aria": "Galería",
+        "fotos": [
+          {
+            "id": "bd8e01c2-9642-532f-baf1-199f02285b19",
+            "visible": true,
+            "media_id": 9,
+            "etiqueta": "FOTO 1",
+            "caption": {
+              "es": "Cosecha selectiva de cerezos maduros",
+              "en": "Selective picking of ripe cherries"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": false
+          },
+          {
+            "id": "7d775381-1dff-5520-9b09-513c358c5170",
+            "visible": true,
+            "media_id": null,
+            "etiqueta": "FOTO 2",
+            "caption": {
+              "es": "Cata en el laboratorio de origen",
+              "en": "Cupping at our origin lab"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": true
+          },
+          {
+            "id": "a6ab7235-7c21-5316-8427-4cfe2cbf04e9",
+            "visible": true,
+            "media_id": null,
+            "etiqueta": "FOTO 3",
+            "caption": {
+              "es": "Calado de sacos para análisis de glifosato",
+              "en": "Bag probing for glyphosate testing"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": true
+          },
+          {
+            "id": "f9b64a9d-1c48-569d-be06-0a15007dc498",
+            "visible": true,
+            "media_id": 10,
+            "etiqueta": "FOTO 4",
+            "caption": {
+              "es": "Fermentación o secado de cacao",
+              "en": "Cocoa fermentation or drying"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": false
+          },
+          {
+            "id": "8e349739-bab0-586c-b3ce-8b9715cd9549",
+            "visible": true,
+            "media_id": null,
+            "etiqueta": "FOTO 5",
+            "caption": {
+              "es": "Almacén de Lima con sacos apilados por sublote",
+              "en": "Lima warehouse with bags stacked by sub-lot"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": true
+          },
+          {
+            "id": "5be24dcf-0f21-5ff1-bb2f-0e42c28b0ed4",
+            "visible": true,
+            "media_id": null,
+            "etiqueta": "FOTO 6",
+            "caption": {
+              "es": "Contenedor cargándose para exportación",
+              "en": "Container being loaded for export"
+            },
+            "medidas": "1200 × 900 px",
+            "pendiente": true
+          }
+        ]
+      }
+    },
+    {
+      "key": "novedades",
+      "position": 10,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Novedades",
+          "en": "News"
+        },
+        "titulo": {
+          "es": "Lo último desde el campo",
+          "en": "Latest from the field"
+        },
+        "boton": {
+          "label": {
+            "es": "Síguenos en LinkedIn",
+            "en": "Follow us on LinkedIn"
+          },
+          "href": "https://www.linkedin.com/company/103115534/"
+        },
+        "posts": [
+          {
+            "id": "c8c6b36b-0798-53ef-a7a3-7b4299b543e6",
+            "visible": true,
+            "embed_url": "",
+            "alto": 480,
+            "placeholder": {
+              "titulo": {
+                "es": "Publicación de LinkedIn 1",
+                "en": "LinkedIn post 1"
+              },
+              "texto": {
+                "es": "Aquí va el código de \"Insertar publicación\".",
+                "en": "The \"Embed this post\" code goes here."
+              }
+            },
+            "pendiente": true
+          },
+          {
+            "id": "946620ae-f217-5898-b0b1-7c35d421ede7",
+            "visible": true,
+            "embed_url": "",
+            "alto": 480,
+            "placeholder": {
+              "titulo": {
+                "es": "Publicación de LinkedIn 2",
+                "en": "LinkedIn post 2"
+              },
+              "texto": {
+                "es": "Aquí va el código de \"Insertar publicación\".",
+                "en": "The \"Embed this post\" code goes here."
+              }
+            },
+            "pendiente": true
+          },
+          {
+            "id": "839684c8-7807-5220-a9fa-b7d97c168039",
+            "visible": true,
+            "embed_url": "",
+            "alto": 480,
+            "placeholder": {
+              "titulo": {
+                "es": "Publicación de LinkedIn 3",
+                "en": "LinkedIn post 3"
+              },
+              "texto": {
+                "es": "Aquí va el código de \"Insertar publicación\".",
+                "en": "The \"Embed this post\" code goes here."
+              }
+            },
+            "pendiente": true
+          }
+        ]
+      }
+    },
+    {
+      "key": "contacto",
+      "position": 11,
+      "visible": true,
+      "content": {
+        "etiqueta": {
+          "es": "Contacto comercial",
+          "en": "Sales contact"
+        },
+        "titulo": {
+          "es": "Solicita muestras o una cotización",
+          "en": "Request samples or a quote"
+        },
+        "bajada": {
+          "es": "Elige muestras o cotización y te respondemos en menos de 48 horas.",
+          "en": "Choose samples or a quote and we will reply within 48 hours."
+        },
+        "form": {
+          "tipo": {
+            "legend": {
+              "es": "Tipo de solicitud",
+              "en": "Request type"
+            },
+            "opciones": [
+              {
+                "id": "2820aed4-2aa9-591b-9a55-196d33264093",
+                "visible": true,
+                "value": "muestras",
+                "label": {
+                  "es": "Muestras",
+                  "en": "Samples"
+                }
+              },
+              {
+                "id": "eefc8e3f-a7f5-50fa-9bd8-a77d92760413",
+                "visible": true,
+                "value": "cotizacion",
+                "label": {
+                  "es": "Cotización",
+                  "en": "Quote"
+                }
+              }
+            ]
+          },
+          "nombre": {
+            "label": {
+              "es": "Nombre",
+              "en": "Name"
+            }
+          },
+          "empresa": {
+            "label": {
+              "es": "Empresa",
+              "en": "Company"
+            }
+          },
+          "correo": {
+            "label": {
+              "es": "Correo",
+              "en": "Email"
+            }
+          },
+          "telefono": {
+            "label": {
+              "es": "Teléfono",
+              "en": "Phone"
+            }
+          },
+          "productos": {
+            "legend": {
+              "es": "Productos",
+              "en": "Products"
+            },
+            "ayuda_muestras": {
+              "es": "· elige y ajusta la cantidad de cada muestra (100 g a 1 kg)",
+              "en": "· pick each one and set the sample amount (100 g to 1 kg)"
+            },
+            "grupos": [
+              {
+                "id": "8a5ebcf3-2b5e-57ac-acf1-fd4308e09125",
+                "visible": true,
+                "key": "cafe",
+                "titulo": {
+                  "es": "Café verde",
+                  "en": "Green coffee"
+                },
+                "color": "#FC5300"
+              },
+              {
+                "id": "6707b64d-69ad-5311-9116-0e19c180ccd2",
+                "visible": true,
+                "key": "cacao",
+                "titulo": {
+                  "es": "Cacao",
+                  "en": "Cocoa"
+                },
+                "color": "#BE8C00"
+              }
+            ]
+          },
+          "pais": {
+            "label": {
+              "es": "País de destino",
+              "en": "Destination country"
+            },
+            "placeholder": {
+              "es": "Selecciona",
+              "en": "Select"
+            }
+          },
+          "direccion": {
+            "label": {
+              "es": "Dirección de entrega completa",
+              "en": "Full delivery address"
+            },
+            "placeholder": {
+              "es": "Calle, número, ciudad, código postal",
+              "en": "Street, number, city, postal code"
+            }
+          },
+          "courier": {
+            "label": {
+              "es": "Cuenta de courier (opcional)",
+              "en": "Courier account (optional)"
+            },
+            "placeholder": {
+              "es": "DHL / FedEx / UPS y número de cuenta",
+              "en": "DHL / FedEx / UPS and account number"
+            }
+          },
+          "volumen": {
+            "label": {
+              "es": "Volumen estimado",
+              "en": "Estimated volume"
+            },
+            "placeholder": {
+              "es": "Ej.: 1 contenedor / año",
+              "en": "e.g. 1 container / year"
+            }
+          },
+          "incoterm": {
+            "label": {
+              "es": "Incoterm",
+              "en": "Incoterm"
+            }
+          },
+          "certificacion": {
+            "label": {
+              "es": "Certificación requerida",
+              "en": "Required certification"
+            },
+            "placeholder": {
+              "es": "Orgánico, Fairtrade…",
+              "en": "Organic, Fairtrade…"
+            }
+          },
+          "embarque": {
+            "label": {
+              "es": "Fecha de embarque",
+              "en": "Shipment date"
+            }
+          },
+          "mensaje": {
+            "label": {
+              "es": "Mensaje (opcional)",
+              "en": "Message (optional)"
+            }
+          },
+          "enviar": {
+            "label": {
+              "es": "Enviar solicitud",
+              "en": "Send request"
+            }
+          }
+        },
+        "datos": {
+          "escribenos": {
+            "titulo": {
+              "es": "Escríbenos",
+              "en": "Write to us"
+            },
+            "comercial": {
+              "es": "Comercial:",
+              "en": "Sales:"
+            },
+            "logistica": {
+              "es": "Logística:",
+              "en": "Logistics:"
+            }
+          },
+          "redes": {
+            "titulo": {
+              "es": "Síguenos",
+              "en": "Follow us"
+            }
+          }
+        }
+      }
+    },
+    {
+      "key": "footer",
+      "position": 12,
+      "visible": true,
+      "content": {
+        "logo": {
+          "media_id": 3,
+          "alt": "YOUTH COOP"
+        },
+        "descripcion": {
+          "es": "Jóvenes productores y exportadores de café y cacao de la Amazonía peruana.<br><em>Producimos desde el origen, comercializamos al mundo, servimos con amor fraternal.</em>",
+          "en": "Young coffee and cocoa producers and exporters from the Peruvian Amazon.<br><em>Grown at origin, traded worldwide, served with brotherly care.</em>"
+        },
+        "explorar": {
+          "titulo": {
+            "es": "Explorar",
+            "en": "Explore"
+          },
+          "links": [
+            {
+              "id": "52debcc9-8fe2-5665-92a0-db6bb9b968ca",
+              "visible": true,
+              "href": "#modelo",
+              "label": {
+                "es": "Modelo",
+                "en": "Model"
+              }
+            },
+            {
+              "id": "a07a601f-7811-5ee5-894b-b1bc7d3c413f",
+              "visible": true,
+              "href": "#proyectos",
+              "label": {
+                "es": "Proyectos",
+                "en": "Projects"
+              }
+            },
+            {
+              "id": "29ee101c-dc84-59fc-ae99-086b25367a58",
+              "visible": true,
+              "href": "#oferta",
+              "label": {
+                "es": "Oferta",
+                "en": "Offer"
+              }
+            },
+            {
+              "id": "00b1bd58-b9e8-5a30-8da2-64748fafe73e",
+              "visible": true,
+              "href": "#calidad",
+              "label": {
+                "es": "Calidad",
+                "en": "Quality"
+              }
+            },
+            {
+              "id": "2e3176a7-15eb-5da2-93b5-10af9a9b442b",
+              "visible": true,
+              "href": "#trazabilidad",
+              "label": {
+                "es": "Trazabilidad",
+                "en": "Traceability"
+              }
+            }
+          ]
+        },
+        "contacto": {
+          "titulo": {
+            "es": "Contacto",
+            "en": "Contact"
+          }
+        },
+        "derechos": {
+          "es": "Todos los derechos reservados.",
+          "en": "All rights reserved."
+        }
+      }
+    }
+  ],
+  "products": [
+    {
+      "kind": "coffee_line",
+      "slug": "lupuna",
+      "position": 0,
+      "active": true,
+      "data": {
+        "name": "Lupuna",
+        "tipo": {
+          "es": "Micro-lotes",
+          "en": "Micro-lots"
+        },
+        "puntaje": "84+",
+        "arbol": {
+          "es": "El gigante del bosque amazónico.",
+          "en": "The giant of the Amazon forest."
+        },
+        "descripcion": {
+          "es": "Taza compleja, dulce y de gran claridad. Lotes singulares, trazables hasta el productor, en cantidades limitadas.",
+          "en": "Complex, sweet and exceptionally clear cup. Singular lots, traceable to the farmer, in limited quantities."
+        },
+        "escalas": [
+          {
+            "label": {
+              "es": "Acidez",
+              "en": "Acidity"
+            },
+            "valor": {
+              "es": "jugosa a brillante",
+              "en": "juicy to bright"
+            },
+            "total": 7,
+            "on": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "label": {
+              "es": "Cuerpo",
+              "en": "Body"
+            },
+            "valor": {
+              "es": "sedoso a cremoso",
+              "en": "silky to creamy"
+            },
+            "total": 8,
+            "on": [
+              4,
+              5
+            ]
+          }
+        ],
+        "notas": {
+          "es": "Frutales y florales: durazno, toronja, flor de café, miel",
+          "en": "Fruity and floral: peach, grapefruit, coffee blossom, honey"
+        }
+      }
+    },
+    {
+      "kind": "cocoa_card",
+      "slug": "cocoa-beans",
+      "position": 0,
+      "active": true,
+      "data": {
+        "titulo": {
+          "es": "Cacao en grano",
+          "en": "Cocoa beans"
+        },
+        "foto": {
+          "media_id": 8,
+          "etiqueta": "FOTO",
+          "caption": {
+            "es": "Granos de cacao fermentados y secos en manos del productor.",
+            "en": "Fermented, dried cocoa beans in a farmer's hands."
+          },
+          "medidas": "1200 × 900 px",
+          "pendiente": false
+        },
+        "filas": [
+          {
+            "dt": {
+              "es": "Origen",
+              "en": "Origin"
+            },
+            "dd": "Pangoa, Satipo (Junín)"
+          },
+          {
+            "dt": {
+              "es": "Genética",
+              "en": "Genetics"
+            },
+            "dd": "<span class=\"pendiente\">[pendiente]</span>",
+            "pendiente": true
+          },
+          {
+            "dt": {
+              "es": "Control",
+              "en": "Control"
+            },
+            "dd": {
+              "es": "Multirresiduo y glifosato cada 5 t",
+              "en": "Multi-residue and glyphosate every 5 t"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "coffee_line",
+      "slug": "capirona",
+      "position": 1,
+      "active": true,
+      "data": {
+        "name": "Capirona",
+        "tipo": {
+          "es": "Línea selecta",
+          "en": "Select line"
+        },
+        "puntaje": "82.5 – 83.75",
+        "arbol": {
+          "es": "Árbol de tronco liso que renueva su corteza.",
+          "en": "A smooth-trunked tree that renews its bark."
+        },
+        "descripcion": {
+          "es": "Taza limpia y dulce, con acidez y cuerpo bien definidos. Un perfil claro, con más carácter que la línea clásica.",
+          "en": "Clean, sweet cup with well-defined acidity and body. A clear profile with more character than the classic line."
+        },
+        "escalas": [
+          {
+            "label": {
+              "es": "Acidez",
+              "en": "Acidity"
+            },
+            "valor": {
+              "es": "melosa a jugosa",
+              "en": "honeyed to juicy"
+            },
+            "total": 7,
+            "on": [
+              3,
+              4
+            ]
+          },
+          {
+            "label": {
+              "es": "Cuerpo",
+              "en": "Body"
+            },
+            "valor": {
+              "es": "terso a sedoso",
+              "en": "smooth to silky"
+            },
+            "total": 8,
+            "on": [
+              3,
+              4
+            ]
+          }
+        ],
+        "notas": {
+          "es": "Caramelo, chocolate y frutos secos, con toques frutales",
+          "en": "Caramel, chocolate and nuts, with fruity touches"
+        }
+      }
+    },
+    {
+      "kind": "cocoa_card",
+      "slug": "cocoa-products",
+      "position": 1,
+      "active": true,
+      "data": {
+        "titulo": {
+          "es": "Derivados de cacao",
+          "en": "Cocoa products"
+        },
+        "foto": {
+          "media_id": null,
+          "etiqueta": "FOTO",
+          "caption": {
+            "es": "Bodegón de licor, manteca, polvo y nibs sobre fondo neutro.",
+            "en": "Still life of liquor, butter, powder and nibs on a neutral background."
+          },
+          "medidas": "1200 × 900 px",
+          "pendiente": true
+        },
+        "filas": [
+          {
+            "dt": {
+              "es": "Licor",
+              "en": "Liquor"
+            },
+            "dd": {
+              "es": "Masa de cacao",
+              "en": "Cocoa mass"
+            }
+          },
+          {
+            "dt": {
+              "es": "Manteca",
+              "en": "Butter"
+            },
+            "dd": "Natural"
+          },
+          {
+            "dt": {
+              "es": "Polvo",
+              "en": "Powder"
+            },
+            "dd": "Natural"
+          },
+          {
+            "dt": "Nibs",
+            "dd": {
+              "es": "Tostados",
+              "en": "Roasted"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "coffee_line",
+      "slug": "pacay",
+      "position": 2,
+      "active": true,
+      "data": {
+        "name": "Pacay",
+        "tipo": {
+          "es": "Línea clásica",
+          "en": "Classic line"
+        },
+        "puntaje": "80 – 82.25",
+        "arbol": {
+          "es": "El árbol que da sombra a nuestros cafetales.",
+          "en": "The tree that shades our coffee farms."
+        },
+        "descripcion": {
+          "es": "Taza limpia, amable y equilibrada, de acidez y cuerpo suaves. Consistente de lote a lote y pensada para volumen.",
+          "en": "Clean, friendly and balanced cup with soft acidity and body. Consistent lot to lot and built for volume."
+        },
+        "escalas": [
+          {
+            "label": {
+              "es": "Acidez",
+              "en": "Acidity"
+            },
+            "valor": {
+              "es": "leve a suave",
+              "en": "faint to soft"
+            },
+            "total": 7,
+            "on": [
+              1,
+              2
+            ]
+          },
+          {
+            "label": {
+              "es": "Cuerpo",
+              "en": "Body"
+            },
+            "valor": {
+              "es": "suave a terso",
+              "en": "soft to smooth"
+            },
+            "total": 8,
+            "on": [
+              2,
+              3
+            ]
+          }
+        ],
+        "notas": {
+          "es": "Chocolate, caramelo y frutos secos",
+          "en": "Chocolate, caramel and nuts"
+        }
+      }
+    }
+  ],
+  "sample_options": [
+    {
+      "group": "cafe",
+      "value": "Lupuna",
+      "label": {
+        "es": "Lupuna",
+        "en": "Lupuna"
+      },
+      "subtitle": {
+        "es": "Micro-lotes · 84+",
+        "en": "Micro-lots · 84+"
+      },
+      "position": 0,
+      "active": true
+    },
+    {
+      "group": "cafe",
+      "value": "Capirona",
+      "label": {
+        "es": "Capirona",
+        "en": "Capirona"
+      },
+      "subtitle": {
+        "es": "Línea selecta · 82.5–83.75",
+        "en": "Select line · 82.5–83.75"
+      },
+      "position": 1,
+      "active": true
+    },
+    {
+      "group": "cafe",
+      "value": "Pacay",
+      "label": {
+        "es": "Pacay",
+        "en": "Pacay"
+      },
+      "subtitle": {
+        "es": "Línea clásica · 80–82.25",
+        "en": "Classic line · 80–82.25"
+      },
+      "position": 2,
+      "active": true
+    },
+    {
+      "group": "cacao",
+      "value": "Cacao en grano",
+      "label": {
+        "es": "Cacao en grano",
+        "en": "Cocoa beans"
+      },
+      "subtitle": {
+        "es": "Fermentado y seco",
+        "en": "Fermented and dried"
+      },
+      "position": 3,
+      "active": true
+    },
+    {
+      "group": "cacao",
+      "value": "Licor de cacao",
+      "label": {
+        "es": "Licor de cacao",
+        "en": "Cocoa liquor"
+      },
+      "subtitle": {
+        "es": "Masa de cacao",
+        "en": "Cocoa mass"
+      },
+      "position": 4,
+      "active": true
+    },
+    {
+      "group": "cacao",
+      "value": "Manteca de cacao",
+      "label": {
+        "es": "Manteca de cacao",
+        "en": "Cocoa butter"
+      },
+      "subtitle": {
+        "es": "Natural",
+        "en": "Natural"
+      },
+      "position": 5,
+      "active": true
+    },
+    {
+      "group": "cacao",
+      "value": "Cacao en polvo",
+      "label": {
+        "es": "Cacao en polvo",
+        "en": "Cocoa powder"
+      },
+      "subtitle": {
+        "es": "Natural",
+        "en": "Natural"
+      },
+      "position": 6,
+      "active": true
+    },
+    {
+      "group": "cacao",
+      "value": "Nibs de cacao",
+      "label": {
+        "es": "Nibs de cacao",
+        "en": "Cocoa nibs"
+      },
+      "subtitle": {
+        "es": "Tostados",
+        "en": "Roasted"
+      },
+      "position": 7,
+      "active": true
+    }
+  ],
+  "countries": [
+    {
+      "value": "Alemania",
+      "name_es": "Alemania",
+      "name_en": "Germany",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 0,
+      "active": true
+    },
+    {
+      "value": "Austria",
+      "name_es": "Austria",
+      "name_en": "Austria",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 1,
+      "active": true
+    },
+    {
+      "value": "Bulgaria",
+      "name_es": "Bulgaria",
+      "name_en": "Bulgaria",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 2,
+      "active": true
+    },
+    {
+      "value": "Bélgica",
+      "name_es": "Bélgica",
+      "name_en": "Belgium",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 3,
+      "active": true
+    },
+    {
+      "value": "Chipre",
+      "name_es": "Chipre",
+      "name_en": "Cyprus",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 4,
+      "active": true
+    },
+    {
+      "value": "Croacia",
+      "name_es": "Croacia",
+      "name_en": "Croatia",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 5,
+      "active": true
+    },
+    {
+      "value": "Dinamarca",
+      "name_es": "Dinamarca",
+      "name_en": "Denmark",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 6,
+      "active": true
+    },
+    {
+      "value": "Eslovaquia",
+      "name_es": "Eslovaquia",
+      "name_en": "Slovakia",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 7,
+      "active": true
+    },
+    {
+      "value": "Eslovenia",
+      "name_es": "Eslovenia",
+      "name_en": "Slovenia",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 8,
+      "active": true
+    },
+    {
+      "value": "España",
+      "name_es": "España",
+      "name_en": "Spain",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 9,
+      "active": true
+    },
+    {
+      "value": "Estonia",
+      "name_es": "Estonia",
+      "name_en": "Estonia",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 10,
+      "active": true
+    },
+    {
+      "value": "Finlandia",
+      "name_es": "Finlandia",
+      "name_en": "Finland",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 11,
+      "active": true
+    },
+    {
+      "value": "Francia",
+      "name_es": "Francia",
+      "name_en": "France",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 12,
+      "active": true
+    },
+    {
+      "value": "Grecia",
+      "name_es": "Grecia",
+      "name_en": "Greece",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 13,
+      "active": true
+    },
+    {
+      "value": "Hungría",
+      "name_es": "Hungría",
+      "name_en": "Hungary",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 14,
+      "active": true
+    },
+    {
+      "value": "Irlanda",
+      "name_es": "Irlanda",
+      "name_en": "Ireland",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 15,
+      "active": true
+    },
+    {
+      "value": "Italia",
+      "name_es": "Italia",
+      "name_en": "Italy",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 16,
+      "active": true
+    },
+    {
+      "value": "Letonia",
+      "name_es": "Letonia",
+      "name_en": "Latvia",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 17,
+      "active": true
+    },
+    {
+      "value": "Lituania",
+      "name_es": "Lituania",
+      "name_en": "Lithuania",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 18,
+      "active": true
+    },
+    {
+      "value": "Luxemburgo",
+      "name_es": "Luxemburgo",
+      "name_en": "Luxembourg",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 19,
+      "active": true
+    },
+    {
+      "value": "Malta",
+      "name_es": "Malta",
+      "name_en": "Malta",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 20,
+      "active": true
+    },
+    {
+      "value": "Países Bajos",
+      "name_es": "Países Bajos",
+      "name_en": "Netherlands",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 21,
+      "active": true
+    },
+    {
+      "value": "Polonia",
+      "name_es": "Polonia",
+      "name_en": "Poland",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 22,
+      "active": true
+    },
+    {
+      "value": "Portugal",
+      "name_es": "Portugal",
+      "name_en": "Portugal",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 23,
+      "active": true
+    },
+    {
+      "value": "Reino Unido",
+      "name_es": "Reino Unido",
+      "name_en": "United Kingdom",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 24,
+      "active": true
+    },
+    {
+      "value": "República Checa",
+      "name_es": "República Checa",
+      "name_en": "Czech Republic",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 25,
+      "active": true
+    },
+    {
+      "value": "Rumania",
+      "name_es": "Rumania",
+      "name_en": "Romania",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 26,
+      "active": true
+    },
+    {
+      "value": "Suecia",
+      "name_es": "Suecia",
+      "name_en": "Sweden",
+      "region": "eori",
+      "grupo": "Europa",
+      "position": 27,
+      "active": true
+    },
+    {
+      "value": "Estados Unidos",
+      "name_es": "Estados Unidos",
+      "name_en": "United States",
+      "region": "us",
+      "grupo": "—",
+      "position": 28,
+      "active": true
+    },
+    {
+      "value": "Canadá",
+      "name_es": "Canadá",
+      "name_en": "Canada",
+      "region": "otro",
+      "grupo": "—",
+      "position": 29,
+      "active": true
+    },
+    {
+      "value": "Japón",
+      "name_es": "Japón",
+      "name_en": "Japan",
+      "region": "otro",
+      "grupo": "—",
+      "position": 30,
+      "active": true
+    },
+    {
+      "value": "Corea del Sur",
+      "name_es": "Corea del Sur",
+      "name_en": "South Korea",
+      "region": "otro",
+      "grupo": "—",
+      "position": 31,
+      "active": true
+    },
+    {
+      "value": "Australia",
+      "name_es": "Australia",
+      "name_en": "Australia",
+      "region": "otro",
+      "grupo": "—",
+      "position": 32,
+      "active": true
+    },
+    {
+      "value": "Nueva Zelanda",
+      "name_es": "Nueva Zelanda",
+      "name_en": "New Zealand",
+      "region": "otro",
+      "grupo": "—",
+      "position": 33,
+      "active": true
+    },
+    {
+      "value": "Suiza",
+      "name_es": "Suiza",
+      "name_en": "Switzerland",
+      "region": "otro",
+      "grupo": "—",
+      "position": 34,
+      "active": true
+    },
+    {
+      "value": "Noruega",
+      "name_es": "Noruega",
+      "name_en": "Norway",
+      "region": "otro",
+      "grupo": "—",
+      "position": 35,
+      "active": true
+    },
+    {
+      "value": "China",
+      "name_es": "China",
+      "name_en": "China",
+      "region": "otro",
+      "grupo": "—",
+      "position": 36,
+      "active": true
+    },
+    {
+      "value": "Taiwán",
+      "name_es": "Taiwán",
+      "name_en": "Taiwan",
+      "region": "otro",
+      "grupo": "—",
+      "position": 37,
+      "active": true
+    },
+    {
+      "value": "Emiratos Árabes Unidos",
+      "name_es": "Emiratos Árabes Unidos",
+      "name_en": "United Arab Emirates",
+      "region": "otro",
+      "grupo": "—",
+      "position": 38,
+      "active": true
+    },
+    {
+      "value": "México",
+      "name_es": "México",
+      "name_en": "Mexico",
+      "region": "otro",
+      "grupo": "—",
+      "position": 39,
+      "active": true
+    },
+    {
+      "value": "Chile",
+      "name_es": "Chile",
+      "name_en": "Chile",
+      "region": "otro",
+      "grupo": "—",
+      "position": 40,
+      "active": true
+    },
+    {
+      "value": "Colombia",
+      "name_es": "Colombia",
+      "name_en": "Colombia",
+      "region": "otro",
+      "grupo": "—",
+      "position": 41,
+      "active": true
+    },
+    {
+      "value": "Otro",
+      "name_es": "Otro",
+      "name_en": "Other",
+      "region": "otro",
+      "grupo": "—",
+      "position": 42,
+      "active": true
+    }
+  ],
+  "media": {
+    "1": {
+      "url": "media/logo-oscuro.png",
+      "kind": "image",
+      "mime": "image/png",
+      "width": 520,
+      "height": 253,
+      "alt": {
+        "es": "YOUTH COOP",
+        "en": "YOUTH COOP"
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/logo-oscuro.png",
+          "width": 520
+        }
+      ]
+    },
+    "2": {
+      "url": "media/logo-claro.png",
+      "kind": "image",
+      "mime": "image/png",
+      "width": 520,
+      "height": 253,
+      "alt": {
+        "es": "YOUTH COOP",
+        "en": "YOUTH COOP"
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/logo-claro.png",
+          "width": 520
+        }
+      ]
+    },
+    "3": {
+      "url": "media/logo-pie.png",
+      "kind": "image",
+      "mime": "image/png",
+      "width": 520,
+      "height": 253,
+      "alt": {
+        "es": "YOUTH COOP",
+        "en": "YOUTH COOP"
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/logo-pie.png",
+          "width": 520
+        }
+      ]
+    },
+    "4": {
+      "url": "media/hero-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 1500,
+      "alt": {
+        "es": "Joven productora sonriendo entre las plantas de un cafetal, con montañas cubiertas de bosque al fondo.",
+        "en": "Young woman farmer smiling among coffee plants, with forested mountains behind her."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/hero-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/hero-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/hero-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "5": {
+      "url": "media/proyecto_cafe_arbol-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 750,
+      "alt": {
+        "es": "Cafetal bajo la sombra de árboles altos, con un sendero entre las plantas.",
+        "en": "Coffee plantation under tall shade trees, with a path between the plants."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/proyecto_cafe_arbol-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/proyecto_cafe_arbol-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/proyecto_cafe_arbol-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "6": {
+      "url": "media/proyecto_cacao_bosque-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 750,
+      "alt": {
+        "es": "Mazorcas de cacao maduras, de color vino, colgando de una rama.",
+        "en": "Ripe wine-red cocoa pods hanging from a branch."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/proyecto_cacao_bosque-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/proyecto_cacao_bosque-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/proyecto_cacao_bosque-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "8": {
+      "url": "media/cacao_grano-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "es": "Manos sosteniendo granos de cacao fermentados y secos sobre un saco lleno de más granos.",
+        "en": "Hands holding fermented, dried cocoa beans over a sack full of more beans."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/cacao_grano-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/cacao_grano-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/cacao_grano-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "9": {
+      "url": "media/galeria_cosecha-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Cesta de malla llena de cerezas de café maduras, en su mayoría rojas y algunas amarillas.",
+        "en": "Mesh basket full of ripe coffee cherries, mostly red with some yellow ones."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/galeria_cosecha-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/galeria_cosecha-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/galeria_cosecha-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "10": {
+      "url": "media/galeria_fermentacion_secado_cacao-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Granos de cacao extendidos sobre una malla oscura para secarse, bajo una cubierta de plástico.",
+        "en": "Cocoa beans spread out on a dark mesh to dry, under a plastic cover."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/galeria_fermentacion_secado_cacao-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/galeria_fermentacion_secado_cacao-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/galeria_fermentacion_secado_cacao-1200.webp",
+          "width": 1200
+        }
+      ]
+    }
+  }
+}
