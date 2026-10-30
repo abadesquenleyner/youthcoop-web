@@ -1,0 +1,14 @@
+{
+  "name": "youthcoop-decap-oauth",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Worker de Cloudflare: acceso con usuario y contraseña al panel /admin (Decap CMS)",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/worker.test.mjs",
+    "hash": "node hash-password.mjs"
+  }
+}

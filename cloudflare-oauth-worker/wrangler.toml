@@ -1,4 +1,4 @@
-# Worker de Cloudflare: inicio de sesión con GitHub para el panel /admin (Decap CMS).
+# Worker de Cloudflare: acceso con usuario y contraseña al panel /admin (Decap CMS).
 # Procedimiento completo en README.md. Aquí NO van secretos.
 name = "youthcoop-decap-oauth"
 main = "src/index.js"
@@ -13,9 +13,17 @@ compatibility_date = "2025-09-01"
 [vars]
 # Páginas desde las que se abre el panel (y que pueden recibir el token). Con coma si son varias. Sin barra final.
 ALLOWED_ORIGINS = "https://abadesquenleyner.github.io,https://youthcoop.pe,https://www.youthcoop.pe"
-# "public_repo" para un repositorio público; "repo" si el repositorio es privado.
-GITHUB_SCOPE = "public_repo"
+
+# RECOMENDADO: espacio KV (gratis) para contar los intentos fallidos por IP y bloquear 15 min tras 5 fallos.
+# 1) npx wrangler kv namespace create LIMITES   -> imprime un "id"
+# 2) Quita el comentario de las 3 líneas siguientes y pega ese id; luego npx wrangler deploy.
+# Sin esto el Worker funciona igual, pero los contadores viven solo en la memoria de cada instancia (mejor esfuerzo).
+[[kv_namespaces]]
+binding = "LIMITES"
+id = "81ca20f41fc4461886fe80813b3ed790"
 
 # Secretos (se cargan con `npx wrangler secret put`, NUNCA aquí):
-#   GITHUB_CLIENT_ID
-#   GITHUB_CLIENT_SECRET
+#   PANEL_USER          usuario del cliente
+#   PANEL_PASS_HASH     hash de su contraseña (lo genera hash-password.mjs)
+#   GITHUB_REPO_TOKEN   token fine-grained de GitHub (solo el repo youthcoop-web, Contents: read and write)
+#   SESSION_SECRET      cadena aleatoria larga para firmar el formulario

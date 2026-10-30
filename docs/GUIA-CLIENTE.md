@@ -4,8 +4,8 @@ Para quien administra el sitio. No hace falta saber de programación. Desde el m
 
 ## Cambiar una foto (paso a paso)
 
-1. Entra a **https://TUDOMINIO.com/admin/** (cámbialo por la dirección real de tu web, terminada en `/admin/`).
-2. Pulsa **Iniciar sesión con GitHub** y entra con tu cuenta de GitHub. La primera vez te pedirá permiso: pulsa **Authorize** (autorizar).
+1. Entra a **https://youthcoop.pe/admin/** (la dirección de tu web terminada en `/admin/`).
+2. Pulsa el botón de entrar (dice **Iniciar sesión con GitHub**: es el texto fijo del panel, **no necesitas cuenta de GitHub**). Se abre una ventana pequeña con tu **usuario** y **contraseña**: escríbelos y pulsa **Entrar**. La ventana se cierra sola y el panel se abre. (Si no aparece la ventana, tu navegador la bloqueó: permite las **ventanas emergentes** de youthcoop.pe, normalmente con el aviso arriba a la derecha de la barra de direcciones, y pulsa el botón otra vez.)
 3. Haz clic en **Fotos del sitio** (si aparece una lista con ese mismo nombre, haz clic otra vez). Verás una lista con cada espacio de foto de la web: «Foto principal (portada)», «Nosotros: equipo», «Proyecto 1», «Cacao en grano», «Galería 1: cosecha»…
 4. Abre el espacio que quieres cambiar (clic en su nombre).
 5. En **Foto** pulsa **Elige una imagen diferente** → **Subir nuevo** → elige el archivo de tu computador → **Confirmar selección**.
@@ -15,7 +15,7 @@ Para quien administra el sitio. No hace falta saber de programación. Desde el m
 
 ## Cambiar un texto (paso a paso)
 
-1. Entra al panel **https://TUDOMINIO.com/admin/** e inicia sesión con GitHub, igual que para las fotos (pasos 1 y 2 de arriba).
+1. Entra al panel **https://youthcoop.pe/admin/** con tu usuario y contraseña, igual que para las fotos (pasos 1 y 2 de arriba).
 2. En la lista de la izquierda elige dónde está el texto:
    - **Textos por sección**: lo que dice cada parte de la web (Inicio, Nosotros, Calidad, menú superior, pie de página…).
    - **Productos**: nombres, descripciones y datos de los cafés y cacaos.
@@ -63,14 +63,15 @@ La web se actualiza sola en **1 o 2 minutos**. Si no ves el cambio, recarga con 
 - No subas fotos de **menores de edad** ni de personas sin su **autorización de imagen**.
 - No subas fotos de más de 10 MB ni videos de más de 20 MB.
 - No entres a GitHub a borrar o renombrar archivos: usa solo este panel.
+- No compartas la contraseña por chat o correo abierto ni la dejes escrita en un lugar visible. Si se equivocó cinco veces seguidas, el acceso se bloquea **15 minutos**: espera y vuelve a intentar. Si olvidas la contraseña o crees que otra persona la conoce, avisa al técnico para cambiarla.
 - No copies textos con formato desde Word o desde una página web sin revisar cómo quedan: pega como **texto sin formato**.
 - No cierres la pestaña antes de pulsar **Publicar** y **Publicar ahora**: el cambio no se guarda.
 - No cambies fotos por otras que no sean de YOUTH COOP o que no tengas derecho a usar.
-- No compartas tu cuenta de GitHub con otras personas: si alguien más va a editar, avisa para invitarlo con su propia cuenta.
+- Si alguien más va a editar el panel, avisa al técnico: todos comparten el mismo usuario, así que conviene que sea una decisión consciente.
 
 ## Ver el historial y deshacer un cambio
 
 - **Volver al texto anterior:** vuelve a escribir el texto que había (si no lo recuerdas, mira el historial como se explica abajo: cada cambio muestra en rojo lo que había y en verde lo nuevo) y publica de nuevo.
 - **Volver a la foto anterior:** en el espacio, pulsa **Elige una imagen diferente**: ahí aparecen **todas las fotos que subiste antes**. Elige la anterior y publica.
-- **Ver quién cambió qué y cuándo:** en `https://github.com/OWNER/REPO/commits/main` (cámbialo por el repositorio real) aparece cada cambio con fecha, hora y su autor.
+- **Ver qué cambió y cuándo:** el técnico puede consultarlo en `https://github.com/abadesquenleyner/youthcoop-web/commits/main`: cada cambio aparece con fecha y hora.
 - Si algo salió mal y no logras arreglarlo, escribe al técnico: cada versión anterior de la web queda guardada y se puede recuperar.

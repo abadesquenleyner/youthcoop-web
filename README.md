@@ -92,7 +92,7 @@ Desde el panel (colecciones **Textos por sección**, **Productos** y **Contacto 
 Las 13 fotos ya **no se editan en `site.json`**: salen de [`content/fotos.json`](./content/fotos.json) y de los originales en [`content/originales/`](./content/originales/). El script [`scripts/build-media.mjs`](./scripts/build-media.mjs) (corre solo en `npm run build`, `npm run dev` y en el workflow) recorta cada original a la proporción de su hueco con el punto focal, genera las variantes WebP de 480/800/1200 px en `public/media/fotos/` (carpeta generada, fuera de git; el nombre lleva un hash para que la caché de Cloudflare nunca sirva una foto vieja) y reescribe la entrada `media` y el enlace del hueco en `site.json`. Es idempotente: no regenera lo que no cambió.
 
 - **Quien administra el sitio** usa el panel `https://TUDOMINIO.com/admin/` (Decap CMS, sin tocar archivos): guía en [`docs/GUIA-CLIENTE.md`](./docs/GUIA-CLIENTE.md).
-- **Quien pone en marcha el sitio** (repositorio, Pages, OAuth App, Worker de Cloudflare, dominio): [`docs/PUESTA-EN-MARCHA.md`](./docs/PUESTA-EN-MARCHA.md). El Worker está en [`cloudflare-oauth-worker/`](./cloudflare-oauth-worker/README.md).
+- **Quien pone en marcha el sitio** (repositorio, Pages, token de GitHub, Worker de Cloudflare con usuario y contraseña, dominio): [`docs/PUESTA-EN-MARCHA.md`](./docs/PUESTA-EN-MARCHA.md). El Worker está en [`cloudflare-oauth-worker/`](./cloudflare-oauth-worker/README.md).
 - **Por archivos:** copia la imagen original (JPG, PNG o WebP, cualquier tamaño) a `content/originales/`, apunta a ella en el hueco de `content/fotos.json` (`"imagen": "/content/originales/mifoto.jpg"`), ajusta `alt` ES/EN, `leyenda` y `focal_x`/`focal_y` (0 a 100, vacío = 50) y ejecuta `npm run media`. En el hueco de la galería 6, `"video"` (.mp4, recomendado ≤ 20 MB; GitHub rechaza más de 100 MB) tiene prioridad sobre `"imagen"`, que hace de póster.
 - Proporciones: hero 4:5, nosotros y galería 4:3, proyectos 16:10, cacao 16:9 (están en `scripts/build-media.mjs`). Nunca agranda: con originales de menos de 1200 px de ancho avisa y publica el tamaño real.
 
@@ -158,7 +158,7 @@ scripts/build-textos.mjs    content/textos -> src/data/site.json (solo campos de
 scripts/textos-esquema.mjs  lista blanca de textos editables y sus nombres en el panel
 scripts/textos-lib.mjs      marcas sencillas y saneado de HTML
 scripts/generar-panel-textos.mjs  genera las colecciones de textos de public/admin/config.yml (npm run panel)
-cloudflare-oauth-worker/    Worker de inicio de sesión con GitHub para el panel
+cloudflare-oauth-worker/    Worker de acceso al panel con usuario y contraseña
 docs/                       GUIA-CLIENTE.md y PUESTA-EN-MARCHA.md
 google-apps-script/         Code.gs y su README
 .github/workflows/deploy.yml

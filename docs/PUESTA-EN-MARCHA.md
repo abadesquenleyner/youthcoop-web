@@ -14,7 +14,7 @@ Piezas (ya están en este repositorio):
 | Regenera las colecciones de textos de `config.yml` y los archivos iniciales | `scripts/generar-panel-textos.mjs` (`npm run panel`) |
 | Fotos originales que sube el cliente | `content/originales/` |
 | Procesador de fotos (recorta y genera 480/800/1200 px) | `scripts/build-media.mjs` |
-| Inicio de sesión con GitHub (Worker de Cloudflare) | `cloudflare-oauth-worker/` |
+| Acceso al panel con usuario y contraseña (Worker de Cloudflare) | `cloudflare-oauth-worker/` |
 | Publicación | `.github/workflows/deploy.yml` |
 
 Lo que sigue son los pasos **manuales** (requieren tus cuentas). Reemplaza `OWNER/REPO` por usuario y repositorio reales y `TUDOMINIO.com` por el dominio.
@@ -43,14 +43,30 @@ git push -u origin main
 
 **Settings → Secrets and variables → Actions → Variables → New repository variable**: nombre `VITE_FORM_ENDPOINT`, valor la URL `/exec` de Apps Script (ver `google-apps-script/README.md`). Es una dirección pública (queda en el JavaScript del sitio), por eso basta una *variable*; un *secreto* también funciona. Vuelve a ejecutar el workflow para que se incluya.
 
-## 4. Crear la OAuth App de GitHub y desplegar el Worker
+## 4. Crear el token de GitHub y desplegar el Worker (acceso con usuario y contraseña)
 
-Sigue **`cloudflare-oauth-worker/README.md`** completo. En resumen:
+El cliente **no necesita cuenta de GitHub**: entra al panel con un usuario y una contraseña que valida el Worker de Cloudflare, y el Worker le entrega al panel un token de GitHub guardado como secreto. Sigue **`cloudflare-oauth-worker/README.md`** completo. En resumen:
 
-1. GitHub → Settings → Developer settings → OAuth Apps → New: *Homepage* `https://TUDOMINIO.com`, *Callback* `URL_WORKER/callback`. Genera el Client Secret.
-2. Edita `ALLOWED_ORIGINS` en `cloudflare-oauth-worker/wrangler.toml` (`"https://TUDOMINIO.com"`).
-3. `cd cloudflare-oauth-worker`, luego `npx wrangler login`, `npx wrangler deploy`, `npx wrangler secret put GITHUB_CLIENT_ID` y `npx wrangler secret put GITHUB_CLIENT_SECRET` (los valores se escriben en la consola; no van en ningún archivo).
-4. Comprueba que `URL_WORKER/` responde «funcionando».
+1. **Token fine-grained de GitHub:** Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token. Nombre `youthcoop-panel`; *Expiration*: la máxima; *Repository access*: **Only select repositories → solo `youthcoop-web`**; *Permissions → Repository permissions*: **Contents: Read and write** (Metadata: Read-only queda solo). Cópialo al portapapeles (empieza con `github_pat_`; solo se muestra una vez). **Anota la fecha de vencimiento** y renueva el token antes (Regenerate token y volver a cargar el secreto; ver el README del Worker).
+2. Revisa `ALLOWED_ORIGINS` en `cloudflare-oauth-worker/wrangler.toml` (`"https://TUDOMINIO.com"`, con y sin `www`).
+3. (Recomendado) Crea el espacio KV del bloqueo por intentos: `npx wrangler kv namespace create LIMITES` y pega el `id` en `wrangler.toml`.
+4. Carga los **4 secretos** desde PowerShell, en `cloudflare-oauth-worker` (no van en ningún archivo):
+
+```powershell
+cd cloudflare-oauth-worker
+npx wrangler login
+Get-Clipboard | npx wrangler secret put GITHUB_REPO_TOKEN                     # con el token en el portapapeles
+Set-Clipboard "NOMBRE_DE_USUARIO"; Get-Clipboard | npx wrangler secret put PANEL_USER
+node hash-password.mjs | Set-Clipboard                                          # pide la contraseña (oculta, mín. 12 caracteres) y deja su HASH en el portapapeles
+Get-Clipboard | npx wrangler secret put PANEL_PASS_HASH
+Set-Clipboard $null
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))" | npx wrangler secret put SESSION_SECRET
+npx wrangler deploy
+```
+
+5. Comprueba que `URL_WORKER/` responde «funcionando» y que `URL_WORKER/auth` muestra el formulario.
+6. **Cambiar la contraseña** más adelante: `node hash-password.mjs | Set-Clipboard` y `Get-Clipboard | npx wrangler secret put PANEL_PASS_HASH` (efecto inmediato). **Renovar el token:** Regenerate token en GitHub y `Get-Clipboard | npx wrangler secret put GITHUB_REPO_TOKEN`.
+7. Las pruebas del Worker: `cd cloudflare-oauth-worker` y `npm test`.
 
 ## 5. Completar `public/admin/config.yml`
 
@@ -61,11 +77,11 @@ Cambia solo dos líneas (están marcadas `# <-- COMPLETAR`):
   base_url: URL_WORKER        # p. ej. https://oauth.TUDOMINIO.com, sin barra final
 ```
 
-Commit y push. Tras el despliegue (1 o 2 minutos), `https://TUDOMINIO.com/admin/` muestra el botón «Iniciar sesión con GitHub».
+`auth_endpoint: auth` ya está puesto y no hace falta cambiar nada más. Commit y push. Tras el despliegue (1 o 2 minutos), `https://TUDOMINIO.com/admin/` muestra el botón de entrar (el texto dice «Iniciar sesión con GitHub»: es el fijo de Decap; al pulsarlo se abre el formulario de usuario y contraseña del Worker).
 
-## 6. Invitar al cliente
+## 6. Entregar el acceso al cliente
 
-Repositorio → **Settings → Collaborators → Add people**: su usuario de GitHub (debe crearse una cuenta gratuita) con rol **Write**. Él acepta la invitación por correo. Sin ese permiso podrá entrar al panel pero no guardar. Dale `docs/GUIA-CLIENTE.md` (cubre fotos y textos).
+No hay que invitarlo a GitHub ni que cree cuenta. Entrégale, por un canal privado y por separado: la dirección `https://TUDOMINIO.com/admin/`, el **usuario** y la **contraseña** que definiste en el paso 4, y `docs/GUIA-CLIENTE.md` (cubre entrar, fotos y textos). Quién cambió qué sigue visible en el historial de commits del repositorio, pero todos los cambios del panel aparecen con el autor del token (no distingue personas): si más de una persona edita, comparten el mismo usuario.
 
 ## 7. Dominio en Cloudflare
 
@@ -76,17 +92,17 @@ Repositorio → **Settings → Collaborators → Add people**: su usuario de Git
 2. En GitHub: **Settings → Pages → Custom domain**: escribe el dominio (el que será principal) y **Save**. Espera el «DNS check successful» y que GitHub emita el certificado (de minutos a una hora); luego marca **Enforce HTTPS**.
 3. Ya con el certificado de GitHub, vuelve a Cloudflare y activa el proxy (**nube naranja**) en esos registros, y en **SSL/TLS → Overview** elige el modo **Full** (no «Flexible»: provoca bucles de redirección con GitHub Pages; «Full (strict)» también sirve una vez emitido el certificado de GitHub).
 4. **Archivo `CNAME`:** con el origen en *GitHub Actions* no hace falta (el dominio queda guardado en Settings → Pages). Si prefieres versionarlo, crea `public/CNAME` con una sola línea, el dominio.
-5. Cuando haya dominio, pon su dirección en `ALLOWED_ORIGINS` del Worker (paso 4) y en el *Homepage* de la OAuth App.
+5. Cuando haya dominio, pon su dirección en `ALLOWED_ORIGINS` del Worker (paso 4) y vuelve a desplegar (`npx wrangler deploy`).
 
 ## 8. Comprobación final
 
 1. Abre `https://TUDOMINIO.com/` (la web se ve igual que antes) y `https://TUDOMINIO.com/admin/` (aparece el panel).
-2. Entra con la cuenta del cliente, cambia una foto de prueba y un texto de prueba (p. ej. el título de «Inicio (portada)», en español y en inglés) y publica. En **Actions** aparece un nuevo *Publicar en GitHub Pages*; en 1 o 2 minutos el cambio se ve (Ctrl+F5).
+2. Entra con el usuario y la contraseña del cliente, cambia una foto de prueba y un texto de prueba (p. ej. el título de «Inicio (portada)», en español y en inglés) y publica. En **Actions** aparece un nuevo *Publicar en GitHub Pages*; en 1 o 2 minutos el cambio se ve (Ctrl+F5).
 3. Deshaz la prueba eligiendo la foto anterior y volviendo a escribir el texto anterior en el panel.
 
 ## Si el repositorio debe ser privado
 
-GitHub Pages gratis no publica repositorios privados. Alternativa gratuita: **Cloudflare Pages** conectado al mismo repositorio (privado): framework *None*, comando de compilación `npm run build`, carpeta de salida `dist`, variable `NODE_VERSION=22` y `VITE_FORM_ENDPOINT`. En ese caso no se usa `deploy.yml`, el CNAME se configura en Cloudflare Pages (*Custom domains*), el Worker usa `GITHUB_SCOPE = "repo"` y el cliente debe ser colaborador igualmente. El resto (panel, `build-media`, `content/`) funciona igual porque corre dentro de `npm run build`.
+GitHub Pages gratis no publica repositorios privados. Alternativa gratuita: **Cloudflare Pages** conectado al mismo repositorio (privado): framework *None*, comando de compilación `npm run build`, carpeta de salida `dist`, variable `NODE_VERSION=22` y `VITE_FORM_ENDPOINT`. En ese caso no se usa `deploy.yml` y el CNAME se configura en Cloudflare Pages (*Custom domains*); el token fine-grained funciona igual con un repositorio privado. El resto (panel, `build-media`, `content/`) funciona igual porque corre dentro de `npm run build`.
 
 ## Cómo funcionan los textos editables
 
@@ -118,14 +134,15 @@ node -e "fetch('https://unpkg.com/decap-cms@NUEVA.VERSION/dist/decap-cms.js').th
 ```
 
   Pega el resultado en `integrity`. Prueba el panel antes de publicar.
-- **Quitar acceso al cliente:** quitarlo de **Collaborators** (deja de poder guardar).
+- **Quitar acceso al cliente:** cambiar la contraseña (`PANEL_PASS_HASH`, efecto inmediato). Para cortar también las sesiones ya abiertas, revocar el token en GitHub (Fine-grained tokens → Delete) y crear otro.
 
 ## Problemas frecuentes
 
 | Síntoma | Qué mirar |
 |---|---|
-| El panel dice que no encuentra el repositorio | `repo:` en `config.yml` mal escrito, o la cuenta no es colaboradora con permiso Write. |
-| La ventana de login se cierra y no entra | `ALLOWED_ORIGINS` del Worker no incluye exactamente el origen del panel (`https`, con o sin `www`). |
+| El panel dice que no encuentra el repositorio o da «Bad credentials» al guardar | `repo:` en `config.yml` mal escrito, o `GITHUB_REPO_TOKEN` venció / no tiene Contents: Read and write sobre `youthcoop-web` (renovarlo, ver README del Worker). |
+| La ventana de login se cierra y no entra | `ALLOWED_ORIGINS` del Worker no incluye exactamente el origen del panel (`https`, con o sin `www`), o el navegador bloqueó la ventana emergente. |
+| «Demasiados intentos fallidos» | Bloqueo de 15 minutos por 5 fallos desde esa IP; esperar. |
 | Guardó pero la web no cambia | **Actions**: ¿falló el workflow? El log de «Procesar fotos» dice qué foto tiene el problema. Si pasó, recargar con Ctrl+F5 (hasta ~10 minutos de caché en casos raros). |
 | Error de redirecciones en el dominio | Cloudflare en modo SSL «Flexible»: cambiar a «Full». |
 | Guardó un texto pero la web no cambia | **Actions → paso «Aplicar textos»**: ¿hay una advertencia? Dice qué campo se rechazó y por qué (texto vacío, demasiado largo, falta `{n}`/`{total}`/`{email}`, enlace inválido, lista con otro tamaño). El resto de cambios sí se publicó. |
