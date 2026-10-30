@@ -7,7 +7,7 @@ import { BASE, RAIZ, URL_FINAL } from './comun';
 
 const ADMIN = `${BASE}/youthcoop/admin/`;
 
-test('el build publica /admin con config.yml y los 13 huecos de foto, sin copiar los originales', async ({ request }) => {
+test('el build publica /admin con config.yml y los 13 huecos de foto', async ({ request }) => {
   const html = await request.get(ADMIN);
   expect(html.status()).toBe(200);
   const cuerpo = await html.text();
@@ -25,14 +25,14 @@ test('el build publica /admin con config.yml y los 13 huecos de foto, sin copiar
   expect(cfg).toMatch(/^\s+base_url: https:\/\/\S+/m);
   expect(cfg).toMatch(/^publish_mode: simple$/m);
   expect(cfg).toMatch(/^media_folder: content\/originales$/m);
-  expect(cfg).toMatch(/^public_folder: content\/originales$/m); // sin barra inicial: Decap muestra las miniaturas
+  expect(cfg).toMatch(/^public_folder: \/content\/originales$/m); // con barra: Decap carga la miniatura desde la web (el despliegue copia los originales)
   // cada hueco de content/fotos.json está en el panel
   const fotos = JSON.parse(fs.readFileSync(path.join(RAIZ, 'content', 'fotos.json'), 'utf8'));
   expect(Object.keys(fotos)).toHaveLength(13);
   for (const clave of Object.keys(fotos)) expect(cfg, `hueco ${clave} en config.yml`).toMatch(new RegExp(`name: ${clave}$`, 'm'));
 
-  // los originales y el JSON de contenido no se publican en la web
-  for (const ruta of ['content/fotos.json', 'content/originales/hero.webp']) {
+  // el JSON de contenido no se publica en la web (los originales los copia el despliegue, no vite build)
+  for (const ruta of ['content/fotos.json']) {
     expect((await request.get(`${BASE}/youthcoop/${ruta}`)).status(), ruta).toBe(404);
   }
 });

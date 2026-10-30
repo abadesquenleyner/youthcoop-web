@@ -29,11 +29,11 @@ publish_mode: simple
 locale: es
 
 # Las fotos originales van al repositorio (no a la web). La web publica solo las versiones que genera scripts/build-media.mjs.
-# public_folder es solo el texto que Decap guarda en content/fotos.json (sin barra inicial: con barra, Decap lo toma por una
-# dirección web y no muestra la miniatura). El sitio lo resuelve como ruta dentro del repositorio, así que no depende de la
-# raíz ni de la subruta donde esté publicado.
+# public_folder con barra inicial: Decap lo toma como dirección web y muestra la miniatura desde https://youthcoop.pe/content/originales/
+# (el despliegue copia content/originales a la web para eso). Sin barra, el panel intentaba leerla desde GitHub y no la mostraba.
+# scripts/build-media.mjs quita la barra y lo resuelve como ruta dentro del repositorio.
 media_folder: content/originales
-public_folder: content/originales
+public_folder: /content/originales
 
 # (Decap no permite fijar un tope de subida con la biblioteca de medios por defecto: los límites son de la guía.
 #  GitHub rechaza archivos de más de 100 MB; scripts/build-media.mjs avisa de los videos de más de 20 MB.)

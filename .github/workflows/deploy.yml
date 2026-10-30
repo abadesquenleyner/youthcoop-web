@@ -59,6 +59,11 @@ jobs:
           VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT || vars.VITE_FORM_ENDPOINT }}
         run: npm run build
 
+      # Las fotos originales también se publican para que el panel /admin muestre la miniatura de la foto actual
+      # (public_folder: /content/originales en public/admin/config.yml).
+      - name: Publicar originales para las miniaturas del panel
+        run: mkdir -p dist/content && cp -r content/originales dist/content/
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
