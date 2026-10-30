@@ -11,7 +11,7 @@ backend:
   name: github
   repo: abadesquenleyner/youthcoop-web
   branch: main
-  base_url: https://oauth.TUDOMINIO.com # <-- COMPLETAR (sin barra final)
+  base_url: https://youthcoop-decap-oauth.cloudflare-oauth-worker.workers.dev
   auth_endpoint: auth
   commit_messages:
     create: 'Panel: crear {{path}}'

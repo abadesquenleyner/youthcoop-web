@@ -12,7 +12,7 @@ compatibility_date = "2025-09-01"
 
 [vars]
 # Páginas desde las que se abre el panel (y que pueden recibir el token). Con coma si son varias. Sin barra final.
-ALLOWED_ORIGINS = "https://TUDOMINIO.com"
+ALLOWED_ORIGINS = "https://abadesquenleyner.github.io,https://youthcoop.pe,https://www.youthcoop.pe"
 # "public_repo" para un repositorio público; "repo" si el repositorio es privado.
 GITHUB_SCOPE = "public_repo"
 
