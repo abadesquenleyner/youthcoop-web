@@ -296,7 +296,12 @@ function faltaConfiguracion(env, permitidos) {
   if (permitidos.some((o) => !/^https?:\/\/[^/]+$/.test(o))) return 'ALLOWED_ORIGINS debe tener orígenes como https://tudominio.com (sin ruta ni barra final).';
   if (secreto(env.SESSION_SECRET).length < 32) return 'SESSION_SECRET es demasiado corto (mínimo 32 caracteres).';
   // Un token con espacios, saltos internos o caracteres raros hace fallar el fetch de Decap ("Invalid value")
-  if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(secreto(env.GITHUB_REPO_TOKEN))) return 'GITHUB_REPO_TOKEN no tiene el formato de un token de GitHub (github_pat_...). Vuelve a copiarlo y cargarlo.';
+  const tk = secreto(env.GITHUB_REPO_TOKEN);
+  if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(tk)) {
+    // Diagnóstico sin revelar el token: largo, prefijo esperado y códigos de los caracteres no válidos
+    const raros = [...new Set([...tk].filter((c) => !/[A-Za-z0-9_]/.test(c)).map((c) => c.codePointAt(0)))].slice(0, 10);
+    return `GITHUB_REPO_TOKEN no tiene el formato de un token de GitHub (github_pat_...). Vuelve a copiarlo y cargarlo. [largo ${tk.length}, empieza bien: ${/^(github_pat_|ghp_)/.test(tk) ? 'sí' : 'no'}, caracteres no válidos: ${raros.join(',') || 'ninguno'}]`;
+  }
   if (!parsearHash(env.PANEL_PASS_HASH)) return 'PANEL_PASS_HASH no tiene el formato esperado (pbkdf2$iteraciones$sal$hash, iteraciones hasta 100000). Genéralo con hash-password.mjs.';
   return '';
 }
