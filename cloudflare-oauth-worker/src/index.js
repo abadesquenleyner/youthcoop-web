@@ -295,6 +295,8 @@ function faltaConfiguracion(env, permitidos) {
   if (faltan.length) return `Worker sin configurar: faltan ${faltan.join(', ')}. Ver cloudflare-oauth-worker/README.md.`;
   if (permitidos.some((o) => !/^https?:\/\/[^/]+$/.test(o))) return 'ALLOWED_ORIGINS debe tener orígenes como https://tudominio.com (sin ruta ni barra final).';
   if (secreto(env.SESSION_SECRET).length < 32) return 'SESSION_SECRET es demasiado corto (mínimo 32 caracteres).';
+  // Un token con espacios, saltos internos o caracteres raros hace fallar el fetch de Decap ("Invalid value")
+  if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(secreto(env.GITHUB_REPO_TOKEN))) return 'GITHUB_REPO_TOKEN no tiene el formato de un token de GitHub (github_pat_...). Vuelve a copiarlo y cargarlo.';
   if (!parsearHash(env.PANEL_PASS_HASH)) return 'PANEL_PASS_HASH no tiene el formato esperado (pbkdf2$iteraciones$sal$hash, iteraciones hasta 100000). Genéralo con hash-password.mjs.';
   return '';
 }
