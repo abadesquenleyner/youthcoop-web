@@ -29,7 +29,8 @@
         display: none;
       }
       /* pantalla de entrada: sin el ícono de GitHub en el botón y con los colores de la marca */
-      button[class*="LoginButton"] svg, button[class*="login-button"] svg { display: none; }
+      button[class*="LoginButton"] [class*="LoginButtonIcon"], button[class*="LoginButton"] svg { display: none; }
+      [class*="NetlifyCreditIcon"] { display: none !important; } /* logo pequeño de Decap al pie */
       button[class*="LoginButton"], button[class*="login-button"] { background: #FC5300 !important; color: #fff !important; }
       @media (max-width: 760px) {
         div:has(> [class*="ControlContainer"] > [id^="es-field-"]):has(> [class*="ControlContainer"] > [id^="en-field-"]) {
