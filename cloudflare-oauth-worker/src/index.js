@@ -192,7 +192,8 @@ const CABECERAS_PAGINA = {
   pragma: 'no-cache',
   'x-frame-options': 'DENY',
   'x-content-type-options': 'nosniff',
-  'referrer-policy': 'no-referrer',
+  // same-origin y no no-referrer: con no-referrer el navegador manda "Origin: null" al enviar el formulario y /login lo rechaza
+  'referrer-policy': 'same-origin',
 };
 
 const cookieCsrf = (valor, maxAge) => `${COOKIE_CSRF}=${valor}; Max-Age=${maxAge}; Path=/; Secure; HttpOnly; SameSite=Strict`;

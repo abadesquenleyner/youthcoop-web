@@ -184,6 +184,8 @@ test('el formulario de login trae CSP estricta y cabeceras de protección', asyn
   assert.match(csp, /frame-ancestors 'none'/);
   assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval|script-src/);
   assert.equal(f.r.headers.get('x-frame-options'), 'DENY');
+  // Con no-referrer el navegador envía "Origin: null" en el POST del formulario y /login lo rechazaría
+  assert.equal(f.r.headers.get('referrer-policy'), 'same-origin');
   assert.equal(f.r.headers.get('cache-control'), 'no-store');
   assert.match(f.r.headers.get('set-cookie'), /HttpOnly/);
   assert.match(f.r.headers.get('set-cookie'), /Secure/);
