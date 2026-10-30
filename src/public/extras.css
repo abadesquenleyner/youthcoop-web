@@ -18,3 +18,6 @@
 /* Botón de envío mientras la solicitud viaja al servidor */
 .boton:disabled{opacity:.6;cursor:progress;transform:none}
 .boton:disabled:hover{background:var(--naranja);transform:none}
+
+/* Con una cifra pendiente oculta (3 en vez de 4) las columnas se reparten en 3, sin hueco a la derecha */
+@media (min-width:1061px){.cifras .contenedor:has(> .cifra:nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}}

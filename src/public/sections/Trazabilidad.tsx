@@ -38,7 +38,7 @@ export function Trazabilidad() {
         <div className="certs">
           {vis(c.certs, ocultar).map((k) => {
             const m = k.sello.media_id != null ? media[String(k.sello.media_id)] : undefined;
-            const sinSello = !m && ocultar && k.sello.pendiente; // "LOGO oficial" pendiente: no se pinta el círculo
+            const sinSello = !m && ocultar && k.sello.pendiente; // "LOGO oficial" pendiente: círculo vacío, sin el texto
             return (
               <div className="cert aparecer" key={k.id}>
                 {m ? (
@@ -46,11 +46,7 @@ export function Trazabilidad() {
                     <img src={m.url} alt={altDe(m, lang) || k.nombre} loading="lazy" decoding="async" />
                   </div>
                 ) : (
-                  !sinSello && (
-                    <div className="sello">
-                      <T v={k.sello.texto} />
-                    </div>
-                  )
+                  <div className="sello">{!sinSello && <T v={k.sello.texto} />}</div>
                 )}
                 <strong>{k.nombre}</strong>
                 {typeof k.detalle === 'string' ? <span>{inline(k.detalle)}</span> : <T v={k.detalle} />}

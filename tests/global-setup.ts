@@ -2,6 +2,7 @@
 //  dist           build final, SIN VITE_FORM_ENDPOINT (el formulario debe avisar que no está conectado)
 //  dist-endpoint  mismo sitio con un endpoint de prueba (las pruebas lo interceptan con page.route)
 //  dist-redirect  endpoint local (http://127.0.0.1:4183/exec) para probar el 302 de Apps Script con servidores reales
+//  dist-real      datos reales (fotos, video y textos del panel) con ocultar_pendientes=false: se compara con la maqueta fuera de las fotos
 //  dist-visual    datos de la plantilla: ocultar_pendientes=false, sin las 13 fotos y con las leyendas originales (para comparar con original.html)
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -47,6 +48,20 @@ function derivarPlantilla(): string {
   return destino;
 }
 
+/**
+ * Datos reales tal como se publican (fotos, video, textos del panel) pero con los pendientes visibles ([000], "Dato de impacto [pendiente]"...).
+ * Con la plantilla tal cual (todo visible), lo unico que debe diferir de la maqueta son las fotos; asi se puede exigir 0 pixeles fuera de ellas.
+ */
+function derivarReal(): string {
+  const site = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src', 'data', 'site.json'), 'utf8'));
+  site.settings.site.ocultar_pendientes = false;
+  const dir = path.join(AQUI, '.tmp');
+  fs.mkdirSync(dir, { recursive: true });
+  const destino = path.join(dir, 'site-real.json');
+  fs.writeFileSync(destino, JSON.stringify(site, null, 2));
+  return destino;
+}
+
 function compilar(salida: string, env: Record<string, string>) {
   execSync(`npx vite build --outDir ${salida} --emptyOutDir`, { cwd: RAIZ, stdio: 'pipe', env: { ...process.env, ...env } });
 }
@@ -60,5 +75,6 @@ export default function globalSetup() {
   compilar('dist', { VITE_FORM_ENDPOINT: '' });
   compilar('dist-endpoint', { VITE_FORM_ENDPOINT: ENDPOINT_PRUEBA });
   compilar('dist-redirect', { VITE_FORM_ENDPOINT: 'http://127.0.0.1:4183/exec' });
+  compilar('dist-real', { VITE_FORM_ENDPOINT: '', SITE_JSON: derivarReal() });
   compilar('dist-visual', { VITE_FORM_ENDPOINT: '', SITE_JSON: derivarPlantilla() });
 }
