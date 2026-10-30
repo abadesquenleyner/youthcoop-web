@@ -28,6 +28,9 @@
       div:has(> div:last-child > [class*="ControlContainer"] > [id^="es-field-"]) > [class*="TopBarContainer"] {
         display: none;
       }
+      /* pantalla de entrada: sin el ícono de GitHub en el botón y con los colores de la marca */
+      button[class*="LoginButton"] svg, button[class*="login-button"] svg { display: none; }
+      button[class*="LoginButton"], button[class*="login-button"] { background: #FC5300 !important; color: #fff !important; }
       @media (max-width: 760px) {
         div:has(> [class*="ControlContainer"] > [id^="es-field-"]):has(> [class*="ControlContainer"] > [id^="en-field-"]) {
           grid-template-columns: 1fr;
@@ -44,5 +47,14 @@
       integrity="sha384-RWRzuHfiZSWCt3nEvG7B0v3cMgM1C2UuJmgBSL92GQh4uXmNSkbcthql/mNBqvjr"
       crossorigin="anonymous"
     ></script>
+    <!-- El botón de entrada dice "Entrar" (no "Iniciar sesión con GitHub"): el cliente entra con usuario y contraseña. -->
+    <script>
+      (function () {
+        if (!window.CMS || !CMS.getLocale) return;
+        var es = CMS.getLocale('es');
+        if (!es || !es.auth) return;
+        CMS.registerLocale('es', Object.assign({}, es, { auth: Object.assign({}, es.auth, { loginWithGitHub: 'Entrar' }) }));
+      })();
+    </script>
   </body>
 </html>

@@ -46,7 +46,7 @@ test('el panel carga con Decap desde el CDN y muestra el inicio de sesión (capt
   page.on('pageerror', (e) => consola.push(String(e)));
   await page.goto(ADMIN, { waitUntil: 'networkidle' });
   // la configuración se leyó bien (sin «Error loading the CMS configuration») y pide iniciar sesión (con GitHub, o «Iniciar sesión» si hay un decap-server local abierto)
-  await expect(page.getByRole('button', { name: /Iniciar sesión|Login/ })).toBeVisible({ timeout: 20_000 });
+  await expect(page.getByRole('button', { name: /Entrar|Iniciar sesión|Login/ })).toBeVisible({ timeout: 20_000 });
   await expect(page.getByText(/Config Errors|Errores de configuración/)).toHaveCount(0);
   expect(consola, 'sin errores de JavaScript en el panel').toEqual([]);
   fs.mkdirSync(path.join(RAIZ, 'tests', 'test-results'), { recursive: true });

@@ -28,6 +28,11 @@ publish_mode: simple
 
 locale: es
 
+# Logo de YOUTH COOP en la pantalla de entrada y en la barra superior del panel (en vez del de Decap)
+logo:
+  src: /media/logo-oscuro.png
+  show_in_header: true
+
 # Las fotos originales van al repositorio (no a la web). La web publica solo las versiones que genera scripts/build-media.mjs.
 # public_folder con barra inicial: Decap lo toma como dirección web y muestra la miniatura desde https://youthcoop.pe/content/originales/
 # (el despliegue copia content/originales a la web para eso). Sin barra, el panel intentaba leerla desde GitHub y no la mostraba.
