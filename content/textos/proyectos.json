@@ -1,0 +1,112 @@
+{
+  "etiqueta": {
+    "es": "Proyectos productivos",
+    "en": "Producer projects"
+  },
+  "titulo": {
+    "es": "Nuestro café y cacao tiene nombre y apellido",
+    "en": "Our coffee and cocoa come from named projects"
+  },
+  "bajada": {
+    "es": "Cada lote proviene de uno de nuestros proyectos productivos y comerciales con cooperativas de pequeños productores.",
+    "en": "Every lot comes from one of our production and trade projects with smallholder cooperatives."
+  },
+  "items": [
+    {
+      "nombre": {
+        "es": "Café + Árbol",
+        "en": "Café + Árbol"
+      },
+      "descripcion": {
+        "es": "Cooperativa agraria que restaura la Amazonía a través del comercio de café. Un porcentaje de la prima de cada venta se destina a restaurar bosques.",
+        "en": "An agrarian cooperative restoring the Amazon through coffee trade. A share of the premium from every sale funds forest restoration."
+      },
+      "impacto": {
+        "texto": {
+          "es": "+100 ha restauradas · 3,000 ha conservadas",
+          "en": "100+ ha restored · 3,000 ha conserved"
+        }
+      },
+      "chips": [
+        {
+          "texto": {
+            "es": "Café",
+            "en": "Coffee"
+          }
+        },
+        {
+          "texto": {
+            "es": "Restauración",
+            "en": "Restoration"
+          }
+        }
+      ]
+    },
+    {
+      "nombre": {
+        "es": "Cacao Bosque+",
+        "en": "Cacao Bosque+"
+      },
+      "descripcion": {
+        "es": "Comercializa café y cacao de productores organizados en sus bases, con un enfoque de conservación del bosque en sistemas agroforestales.",
+        "en": "Trades coffee and cocoa from its member producers, with a focus on forest conservation in agroforestry systems."
+      },
+      "impacto": {
+        "texto": {
+          "es": "Dato de impacto [pendiente]",
+          "en": "Impact figure [pending]"
+        }
+      },
+      "chips": [
+        {
+          "texto": {
+            "es": "Cacao",
+            "en": "Cocoa"
+          }
+        },
+        {
+          "texto": {
+            "es": "Café",
+            "en": "Coffee"
+          }
+        },
+        {
+          "texto": {
+            "es": "Agroforestería",
+            "en": "Agroforestry"
+          }
+        }
+      ]
+    },
+    {
+      "nombre": {
+        "es": "Tierra de Jóvenes y Mujeres",
+        "en": "Tierra de Jóvenes y Mujeres"
+      },
+      "descripcion": {
+        "es": "Cooperativa con certificación de comercio justo y orgánica, que impulsa el liderazgo de jóvenes y mujeres en la producción de café.",
+        "en": "A Fairtrade and organic certified cooperative that advances the leadership of young people and women in coffee production."
+      },
+      "impacto": {
+        "texto": {
+          "es": "Fairtrade · Orgánico",
+          "en": "Fairtrade · Organic"
+        }
+      },
+      "chips": [
+        {
+          "texto": {
+            "es": "Café",
+            "en": "Coffee"
+          }
+        },
+        {
+          "texto": {
+            "es": "Equidad de género",
+            "en": "Gender equity"
+          }
+        }
+      ]
+    }
+  ]
+}

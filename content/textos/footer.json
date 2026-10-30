@@ -1,0 +1,54 @@
+{
+  "descripcion": {
+    "es": "Jóvenes productores y exportadores de café y cacao de la Amazonía peruana.\n*Producimos desde el origen, comercializamos al mundo, servimos con amor fraternal.*",
+    "en": "Young coffee and cocoa producers and exporters from the Peruvian Amazon.\n*Grown at origin, traded worldwide, served with brotherly care.*"
+  },
+  "explorar": {
+    "titulo": {
+      "es": "Explorar",
+      "en": "Explore"
+    },
+    "links": [
+      {
+        "label": {
+          "es": "Modelo",
+          "en": "Model"
+        }
+      },
+      {
+        "label": {
+          "es": "Proyectos",
+          "en": "Projects"
+        }
+      },
+      {
+        "label": {
+          "es": "Oferta",
+          "en": "Offer"
+        }
+      },
+      {
+        "label": {
+          "es": "Calidad",
+          "en": "Quality"
+        }
+      },
+      {
+        "label": {
+          "es": "Trazabilidad",
+          "en": "Traceability"
+        }
+      }
+    ]
+  },
+  "contacto": {
+    "titulo": {
+      "es": "Contacto",
+      "en": "Contact"
+    }
+  },
+  "derechos": {
+    "es": "Todos los derechos reservados.",
+    "en": "All rights reserved."
+  }
+}

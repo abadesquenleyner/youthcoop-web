@@ -5,12 +5,14 @@
   "type": "module",
   "description": "Pruebas de la copia estática: Apps Script (Node), visual contra la plantilla, subruta, fotos y formulario (Playwright)",
   "scripts": {
-    "test": "npm run test:script && npm run test:e2e",
+    "test": "npm run test:script && npm run test:media && npm run test:textos && npm run test:e2e",
     "test:script": "node --test apps-script.test.mjs",
+    "test:media": "node --test build-media.test.mjs",
     "test:e2e": "playwright test",
     "test:visual": "playwright test visual.spec.ts",
     "test:subruta": "playwright test subruta.spec.ts",
-    "test:formulario": "playwright test formulario.spec.ts"
+    "test:formulario": "playwright test formulario.spec.ts",
+    "test:textos": "node --test build-textos.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",

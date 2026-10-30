@@ -1,0 +1,180 @@
+{
+  "etiqueta": {
+    "es": "Contacto comercial",
+    "en": "Sales contact"
+  },
+  "titulo": {
+    "es": "Solicita muestras o una cotización",
+    "en": "Request samples or a quote"
+  },
+  "bajada": {
+    "es": "Elige muestras o cotización y te respondemos en menos de 48 horas.",
+    "en": "Choose samples or a quote and we will reply within 48 hours."
+  },
+  "form": {
+    "tipo": {
+      "legend": {
+        "es": "Tipo de solicitud",
+        "en": "Request type"
+      },
+      "opciones": [
+        {
+          "label": {
+            "es": "Muestras",
+            "en": "Samples"
+          }
+        },
+        {
+          "label": {
+            "es": "Cotización",
+            "en": "Quote"
+          }
+        }
+      ]
+    },
+    "nombre": {
+      "label": {
+        "es": "Nombre",
+        "en": "Name"
+      }
+    },
+    "empresa": {
+      "label": {
+        "es": "Empresa",
+        "en": "Company"
+      }
+    },
+    "correo": {
+      "label": {
+        "es": "Correo",
+        "en": "Email"
+      }
+    },
+    "telefono": {
+      "label": {
+        "es": "Teléfono",
+        "en": "Phone"
+      }
+    },
+    "productos": {
+      "legend": {
+        "es": "Productos",
+        "en": "Products"
+      },
+      "ayuda_muestras": {
+        "es": "· elige y ajusta la cantidad de cada muestra (100 g a 1 kg)",
+        "en": "· pick each one and set the sample amount (100 g to 1 kg)"
+      },
+      "grupos": [
+        {
+          "titulo": {
+            "es": "Café verde",
+            "en": "Green coffee"
+          }
+        },
+        {
+          "titulo": {
+            "es": "Cacao",
+            "en": "Cocoa"
+          }
+        }
+      ]
+    },
+    "pais": {
+      "label": {
+        "es": "País de destino",
+        "en": "Destination country"
+      },
+      "placeholder": {
+        "es": "Selecciona",
+        "en": "Select"
+      }
+    },
+    "direccion": {
+      "label": {
+        "es": "Dirección de entrega completa",
+        "en": "Full delivery address"
+      },
+      "placeholder": {
+        "es": "Calle, número, ciudad, código postal",
+        "en": "Street, number, city, postal code"
+      }
+    },
+    "courier": {
+      "label": {
+        "es": "Cuenta de courier (opcional)",
+        "en": "Courier account (optional)"
+      },
+      "placeholder": {
+        "es": "DHL / FedEx / UPS y número de cuenta",
+        "en": "DHL / FedEx / UPS and account number"
+      }
+    },
+    "volumen": {
+      "label": {
+        "es": "Volumen estimado",
+        "en": "Estimated volume"
+      },
+      "placeholder": {
+        "es": "Ej.: 1 contenedor / año",
+        "en": "e.g. 1 container / year"
+      }
+    },
+    "incoterm": {
+      "label": {
+        "es": "Incoterm",
+        "en": "Incoterm"
+      }
+    },
+    "certificacion": {
+      "label": {
+        "es": "Certificación requerida",
+        "en": "Required certification"
+      },
+      "placeholder": {
+        "es": "Orgánico, Fairtrade…",
+        "en": "Organic, Fairtrade…"
+      }
+    },
+    "embarque": {
+      "label": {
+        "es": "Fecha de embarque",
+        "en": "Shipment date"
+      }
+    },
+    "mensaje": {
+      "label": {
+        "es": "Mensaje (opcional)",
+        "en": "Message (optional)"
+      }
+    },
+    "enviar": {
+      "label": {
+        "es": "Enviar solicitud",
+        "en": "Send request"
+      }
+    }
+  },
+  "datos": {
+    "escribenos": {
+      "titulo": {
+        "es": "Escríbenos",
+        "en": "Write to us"
+      },
+      "comercial": {
+        "es": "Comercial:",
+        "en": "Sales:"
+      },
+      "logistica": {
+        "es": "Logística:",
+        "en": "Logistics:"
+      }
+    },
+    "redes": {
+      "titulo": {
+        "es": "Síguenos",
+        "en": "Follow us"
+      }
+    }
+  }
+}

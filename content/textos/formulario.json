@@ -1,0 +1,204 @@
+{
+  "mensajes": {
+    "completa": {
+      "es": "Completa:",
+      "en": "Please complete:"
+    },
+    "campos": {
+      "nombre": {
+        "es": "nombre",
+        "en": "name"
+      },
+      "empresa": {
+        "es": "empresa",
+        "en": "company"
+      },
+      "correo": {
+        "es": "correo válido",
+        "en": "valid email"
+      },
+      "producto": {
+        "es": "al menos un producto",
+        "en": "at least one product"
+      },
+      "pais": {
+        "es": "país",
+        "en": "country"
+      },
+      "direccion": {
+        "es": "dirección de entrega",
+        "en": "delivery address"
+      },
+      "eori": {
+        "es": "EORI",
+        "en": "EORI"
+      }
+    },
+    "resumen_singular": {
+      "es": "{n} muestra · {total} en total",
+      "en": "{n} sample · {total} in total"
+    },
+    "resumen_plural": {
+      "es": "{n} muestras · {total} en total",
+      "en": "{n} samples · {total} in total"
+    },
+    "exito": {
+      "es": "Recibimos tu solicitud. Te respondemos en menos de 48 horas.",
+      "en": "We received your request. We will reply within 48 hours."
+    },
+    "error_envio": {
+      "es": "No pudimos enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+      "en": "We could not send your request. Please try again in a few minutes."
+    },
+    "sin_endpoint": {
+      "es": "El envío del formulario todavía no está conectado, así que tu solicitud NO se envió. Escríbenos a {email} o por WhatsApp.",
+      "en": "The form is not connected yet, so your request was NOT sent. Please write to us at {email} or on WhatsApp."
+    }
+  },
+  "incoterms": [
+    {
+      "label": {
+        "es": "FOB Callao",
+        "en": "FOB Callao"
+      }
+    },
+    {
+      "label": {
+        "es": "FCA",
+        "en": "FCA"
+      }
+    },
+    {
+      "label": {
+        "es": "CIF",
+        "en": "CIF"
+      }
+    },
+    {
+      "label": {
+        "es": "DAP",
+        "en": "DAP"
+      }
+    },
+    {
+      "label": {
+        "es": "Por definir",
+        "en": "To be defined"
+      }
+    }
+  ],
+  "regiones": {
+    "eori": {
+      "label": {
+        "es": "Número EORI",
+        "en": "EORI number"
+      },
+      "placeholder": {
+        "es": "Ej.: DE123456789012345",
+        "en": "e.g. DE123456789012345"
+      },
+      "ayuda": {
+        "es": "Lo exige el courier para entregar en la UE y el Reino Unido.",
+        "en": "Required by the courier for delivery in the EU and the UK."
+      }
+    },
+    "us": {
+      "label": {
+        "es": "Tax ID / EIN (opcional)",
+        "en": "Tax ID / EIN (optional)"
+      },
+      "ayuda": {
+        "es": "Ayuda al courier con el aviso previo de la FDA.",
+        "en": "Helps the courier file the FDA Prior Notice."
+      }
+    },
+    "otro": {
+      "label": {
+        "es": "Tax ID del destinatario (opcional)",
+        "en": "Recipient tax ID (optional)"
+      }
+    }
+  },
+  "sample_options": [
+    {
+      "label": {
+        "es": "Lupuna",
+        "en": "Lupuna"
+      },
+      "subtitle": {
+        "es": "Micro-lotes · 84+",
+        "en": "Micro-lots · 84+"
+      }
+    },
+    {
+      "label": {
+        "es": "Capirona",
+        "en": "Capirona"
+      },
+      "subtitle": {
+        "es": "Línea selecta · 82.5–83.75",
+        "en": "Select line · 82.5–83.75"
+      }
+    },
+    {
+      "label": {
+        "es": "Pacay",
+        "en": "Pacay"
+      },
+      "subtitle": {
+        "es": "Línea clásica · 80–82.25",
+        "en": "Classic line · 80–82.25"
+      }
+    },
+    {
+      "label": {
+        "es": "Cacao en grano",
+        "en": "Cocoa beans"
+      },
+      "subtitle": {
+        "es": "Fermentado y seco",
+        "en": "Fermented and dried"
+      }
+    },
+    {
+      "label": {
+        "es": "Licor de cacao",
+        "en": "Cocoa liquor"
+      },
+      "subtitle": {
+        "es": "Masa de cacao",
+        "en": "Cocoa mass"
+      }
+    },
+    {
+      "label": {
+        "es": "Manteca de cacao",
+        "en": "Cocoa butter"
+      },
+      "subtitle": {
+        "es": "Natural",
+        "en": "Natural"
+      }
+    },
+    {
+      "label": {
+        "es": "Cacao en polvo",
+        "en": "Cocoa powder"
+      },
+      "subtitle": {
+        "es": "Natural",
+        "en": "Natural"
+      }
+    },
+    {
+      "label": {
+        "es": "Nibs de cacao",
+        "en": "Cocoa nibs"
+      },
+      "subtitle": {
+        "es": "Tostados",
+        "en": "Roasted"
+      }
+    }
+  ]
+}

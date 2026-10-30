@@ -13,3 +13,6 @@ tests/visual-diff/
 tests/playwright-report/
 .DS_Store
 Thumbs.db
+
+# fotos generadas por scripts/build-media.mjs (se regeneran desde content/originales)
+public/media/fotos/

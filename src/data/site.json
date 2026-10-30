@@ -368,7 +368,7 @@
         "foto": {
           "media_id": 4,
           "etiqueta": "FOTO",
-          "caption": "Productora joven sonriendo en su finca, con cerezos maduros en la mano. Luz natural de mañana.",
+          "caption": "Productora joven sonriendo en su cafetal, con montañas al fondo.",
           "medidas": "Vertical 1200 × 1500 px",
           "pendiente": false
         }
@@ -452,14 +452,14 @@
           }
         ],
         "foto": {
-          "media_id": null,
+          "media_id": 11,
           "etiqueta": "FOTO",
           "caption": {
-            "es": "Los socios fundadores con sus padres en el cafetal familiar. Luz natural, ropa de campo.",
-            "en": "Founding partners with their parents on the family farm. Natural light, field clothes."
+            "es": "Equipo de la cooperativa en la oficina",
+            "en": "The cooperative team at the office"
           },
-          "medidas": "Horizontal 1600 × 1200 px",
-          "pendiente": true
+          "medidas": "Horizontal 1200 × 900 px",
+          "pendiente": false
         },
         "hitos": [
           {
@@ -660,7 +660,7 @@
             "foto": {
               "media_id": 5,
               "etiqueta": "FOTO",
-              "caption": "Cafetal bajo sombra de árboles nativos, o plantones listos para reforestar. Añadir logo de Café + Árbol.",
+              "caption": "Cafetal bajo la sombra de árboles altos, con un sendero entre las plantas.",
               "medidas": "1600 × 1000 px",
               "pendiente": false
             },
@@ -701,7 +701,7 @@
             "foto": {
               "media_id": 6,
               "etiqueta": "FOTO",
-              "caption": "Mazorcas de cacao en el árbol dentro de un sistema agroforestal. Añadir logo de Cacao Bosque+.",
+              "caption": "Mazorcas de cacao maduras colgando del árbol.",
               "medidas": "1600 × 1000 px",
               "pendiente": false
             },
@@ -749,9 +749,9 @@
             "visible": true,
             "color": "#4E3632",
             "foto": {
-              "media_id": null,
+              "media_id": 7,
               "etiqueta": "FOTO",
-              "caption": "Productoras y jóvenes de la cooperativa durante la cosecha o el secado. Añadir logo de Tierra de Jóvenes y Mujeres.",
+              "caption": "Dos personas rastrillan café extendido para secar bajo una cubierta.",
               "medidas": "1600 × 1000 px",
               "pendiente": false
             },
@@ -1353,8 +1353,8 @@
             "media_id": 9,
             "etiqueta": "FOTO 1",
             "caption": {
-              "es": "Cosecha selectiva de cerezos maduros",
-              "en": "Selective picking of ripe cherries"
+              "es": "Cerezas de café maduras recién cosechadas",
+              "en": "Freshly picked ripe coffee cherries"
             },
             "medidas": "1200 × 900 px",
             "pendiente": false
@@ -1362,26 +1362,26 @@
           {
             "id": "7d775381-1dff-5520-9b09-513c358c5170",
             "visible": true,
-            "media_id": null,
+            "media_id": 12,
             "etiqueta": "FOTO 2",
             "caption": {
-              "es": "Cata en el laboratorio de origen",
-              "en": "Cupping at our origin lab"
+              "es": "Cata de una taza de café",
+              "en": "Tasting a cup of coffee"
             },
             "medidas": "1200 × 900 px",
-            "pendiente": true
+            "pendiente": false
           },
           {
             "id": "a6ab7235-7c21-5316-8427-4cfe2cbf04e9",
             "visible": true,
-            "media_id": null,
+            "media_id": 13,
             "etiqueta": "FOTO 3",
             "caption": {
-              "es": "Calado de sacos para análisis de glifosato",
-              "en": "Bag probing for glyphosate testing"
+              "es": "Revisión de café pergamino frente a sacos",
+              "en": "Checking parchment coffee in front of sacks"
             },
             "medidas": "1200 × 900 px",
-            "pendiente": true
+            "pendiente": false
           },
           {
             "id": "f9b64a9d-1c48-569d-be06-0a15007dc498",
@@ -1389,8 +1389,8 @@
             "media_id": 10,
             "etiqueta": "FOTO 4",
             "caption": {
-              "es": "Fermentación o secado de cacao",
-              "en": "Cocoa fermentation or drying"
+              "es": "Granos de cacao secándose bajo cubierta",
+              "en": "Cocoa beans drying under a cover"
             },
             "medidas": "1200 × 900 px",
             "pendiente": false
@@ -1398,26 +1398,26 @@
           {
             "id": "8e349739-bab0-586c-b3ce-8b9715cd9549",
             "visible": true,
-            "media_id": null,
+            "media_id": 14,
             "etiqueta": "FOTO 5",
             "caption": {
-              "es": "Almacén de Lima con sacos apilados por sublote",
-              "en": "Lima warehouse with bags stacked by sub-lot"
+              "es": "Almacén de acopio",
+              "en": "Collection warehouse"
             },
             "medidas": "1200 × 900 px",
-            "pendiente": true
+            "pendiente": false
           },
           {
             "id": "5be24dcf-0f21-5ff1-bb2f-0e42c28b0ed4",
             "visible": true,
-            "media_id": null,
+            "media_id": 16,
             "etiqueta": "FOTO 6",
             "caption": {
-              "es": "Contenedor cargándose para exportación",
-              "en": "Container being loaded for export"
+              "es": "Fachada de la sede con parte del equipo (video)",
+              "en": "Headquarters facade with part of the team (video)"
             },
-            "medidas": "1200 × 900 px",
-            "pendiente": true
+            "medidas": "1280 × 720 px (video)",
+            "pendiente": false
           }
         ]
       }
@@ -1953,14 +1953,14 @@
           "en": "Cocoa products"
         },
         "foto": {
-          "media_id": null,
+          "media_id": 15,
           "etiqueta": "FOTO",
           "caption": {
-            "es": "Bodegón de licor, manteca, polvo y nibs sobre fondo neutro.",
-            "en": "Still life of liquor, butter, powder and nibs on a neutral background."
+            "es": "Cacao seco en grano, listo para transformar.",
+            "en": "Dried cocoa beans, ready to be processed."
           },
           "medidas": "1200 × 900 px",
-          "pendiente": true
+          "pendiente": false
         },
         "filas": [
           {
@@ -2621,7 +2621,7 @@
       ]
     },
     "4": {
-      "url": "media/hero-1200.webp",
+      "url": "media/fotos/hero-15dce0bfa2-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2635,21 +2635,21 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/hero-480.webp",
+          "url": "media/fotos/hero-15dce0bfa2-480.webp",
           "width": 480
         },
         {
-          "url": "media/hero-800.webp",
+          "url": "media/fotos/hero-15dce0bfa2-800.webp",
           "width": 800
         },
         {
-          "url": "media/hero-1200.webp",
+          "url": "media/fotos/hero-15dce0bfa2-1200.webp",
           "width": 1200
         }
       ]
     },
     "5": {
-      "url": "media/proyecto_cafe_arbol-1200.webp",
+      "url": "media/fotos/proyecto_1-1be72d4413-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2663,21 +2663,21 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/proyecto_cafe_arbol-480.webp",
+          "url": "media/fotos/proyecto_1-1be72d4413-480.webp",
           "width": 480
         },
         {
-          "url": "media/proyecto_cafe_arbol-800.webp",
+          "url": "media/fotos/proyecto_1-1be72d4413-800.webp",
           "width": 800
         },
         {
-          "url": "media/proyecto_cafe_arbol-1200.webp",
+          "url": "media/fotos/proyecto_1-1be72d4413-1200.webp",
           "width": 1200
         }
       ]
     },
     "6": {
-      "url": "media/proyecto_cacao_bosque-1200.webp",
+      "url": "media/fotos/proyecto_2-541363ac8d-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2691,21 +2691,49 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/proyecto_cacao_bosque-480.webp",
+          "url": "media/fotos/proyecto_2-541363ac8d-480.webp",
           "width": 480
         },
         {
-          "url": "media/proyecto_cacao_bosque-800.webp",
+          "url": "media/fotos/proyecto_2-541363ac8d-800.webp",
           "width": 800
         },
         {
-          "url": "media/proyecto_cacao_bosque-1200.webp",
+          "url": "media/fotos/proyecto_2-541363ac8d-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "7": {
+      "url": "media/fotos/proyecto_3-a66f782620-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 750,
+      "alt": {
+        "es": "Un hombre y una mujer rastrillan granos de café extendidos para secar bajo un techo translúcido.",
+        "en": "A man and a woman rake coffee beans spread out to dry under a translucent roof."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/proyecto_3-a66f782620-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/proyecto_3-a66f782620-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/proyecto_3-a66f782620-1200.webp",
           "width": 1200
         }
       ]
     },
     "8": {
-      "url": "media/cacao_grano-1200.webp",
+      "url": "media/fotos/cacao_grano-424def1196-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2719,21 +2747,21 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/cacao_grano-480.webp",
+          "url": "media/fotos/cacao_grano-424def1196-480.webp",
           "width": 480
         },
         {
-          "url": "media/cacao_grano-800.webp",
+          "url": "media/fotos/cacao_grano-424def1196-800.webp",
           "width": 800
         },
         {
-          "url": "media/cacao_grano-1200.webp",
+          "url": "media/fotos/cacao_grano-424def1196-1200.webp",
           "width": 1200
         }
       ]
     },
     "9": {
-      "url": "media/galeria_cosecha-1200.webp",
+      "url": "media/fotos/galeria_1-7cdbfaf311-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2747,21 +2775,21 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/galeria_cosecha-480.webp",
+          "url": "media/fotos/galeria_1-7cdbfaf311-480.webp",
           "width": 480
         },
         {
-          "url": "media/galeria_cosecha-800.webp",
+          "url": "media/fotos/galeria_1-7cdbfaf311-800.webp",
           "width": 800
         },
         {
-          "url": "media/galeria_cosecha-1200.webp",
+          "url": "media/fotos/galeria_1-7cdbfaf311-1200.webp",
           "width": 1200
         }
       ]
     },
     "10": {
-      "url": "media/galeria_fermentacion_secado_cacao-1200.webp",
+      "url": "media/fotos/galeria_4-f727d6da2c-1200.webp",
       "kind": "image",
       "mime": "image/webp",
       "width": 1200,
@@ -2775,18 +2803,173 @@
       "focal_y": 50,
       "srcset": [
         {
-          "url": "media/galeria_fermentacion_secado_cacao-480.webp",
+          "url": "media/fotos/galeria_4-f727d6da2c-480.webp",
           "width": 480
         },
         {
-          "url": "media/galeria_fermentacion_secado_cacao-800.webp",
+          "url": "media/fotos/galeria_4-f727d6da2c-800.webp",
           "width": 800
         },
         {
-          "url": "media/galeria_fermentacion_secado_cacao-1200.webp",
+          "url": "media/fotos/galeria_4-f727d6da2c-1200.webp",
           "width": 1200
         }
       ]
+    },
+    "11": {
+      "url": "media/fotos/nosotros-aee418e141-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Equipo de diez personas posando juntas en una oficina, con polos y camisas con emblema y afiches de cultivo de café en la pared.",
+        "en": "Team of ten people posing together in an office, wearing shirts with an emblem, with coffee-growing posters on the wall."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/nosotros-aee418e141-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/nosotros-aee418e141-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/nosotros-aee418e141-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "12": {
+      "url": "media/fotos/galeria_2-f16c5e33ac-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Hombre con gorra y camisa blanca oliendo una taza blanca de café.",
+        "en": "Man in a cap and white shirt smelling a white cup of coffee."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/galeria_2-f16c5e33ac-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/galeria_2-f16c5e33ac-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/galeria_2-f16c5e33ac-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "13": {
+      "url": "media/fotos/galeria_3-bc6fa002ab-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Hombre dejando caer granos de café pergamino de sus manos frente a una pila de sacos en un almacén.",
+        "en": "Man letting parchment coffee beans fall from his hands in front of a pile of sacks in a warehouse."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/galeria_3-bc6fa002ab-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/galeria_3-bc6fa002ab-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/galeria_3-bc6fa002ab-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "14": {
+      "url": "media/fotos/galeria_5-cc8aca0397-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "es": "Dos personas trabajando junto a una pila de sacos en un almacén; una sonríe y sostiene un recipiente.",
+        "en": "Two people working next to a pile of sacks in a warehouse; one smiles and holds a bowl."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/galeria_5-cc8aca0397-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/galeria_5-cc8aca0397-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/galeria_5-cc8aca0397-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "15": {
+      "url": "media/fotos/cacao_derivados-6a7e73d9cc-1200.webp",
+      "kind": "image",
+      "mime": "image/webp",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "es": "Montón de granos de cacao secos, en tonos marrón oscuro.",
+        "en": "Pile of dried cocoa beans in dark brown tones."
+      },
+      "poster": null,
+      "focal_x": 50,
+      "focal_y": 50,
+      "srcset": [
+        {
+          "url": "media/fotos/cacao_derivados-6a7e73d9cc-480.webp",
+          "width": 480
+        },
+        {
+          "url": "media/fotos/cacao_derivados-6a7e73d9cc-800.webp",
+          "width": 800
+        },
+        {
+          "url": "media/fotos/cacao_derivados-6a7e73d9cc-1200.webp",
+          "width": 1200
+        }
+      ]
+    },
+    "16": {
+      "url": "media/fotos/galeria_6-ef712a4d3d.mp4",
+      "kind": "video",
+      "mime": "video/mp4",
+      "width": 1280,
+      "height": 720,
+      "alt": {
+        "es": "Video: fachada de un edificio de tres pisos con un portón verde y un grupo de personas de pie frente a él.",
+        "en": "Video: facade of a three-story building with a green gate and a group of people standing in front of it."
+      },
+      "poster": "media/fotos/galeria_6-7275e61c76-poster.webp",
+      "focal_x": 58,
+      "focal_y": 50,
+      "srcset": []
     }
   }
 }

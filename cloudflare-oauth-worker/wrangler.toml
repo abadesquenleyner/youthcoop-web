@@ -1,0 +1,21 @@
+# Worker de Cloudflare: inicio de sesión con GitHub para el panel /admin (Decap CMS).
+# Procedimiento completo en README.md. Aquí NO van secretos.
+name = "youthcoop-decap-oauth"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Quita el comentario y completa esto SOLO si quieres que el Worker viva en tu dominio (p. ej. oauth.tudominio.com).
+# Requiere que tudominio.com esté en tu cuenta de Cloudflare. Si no, usa la dirección *.workers.dev que te da Wrangler.
+# routes = [
+#   { pattern = "oauth.TUDOMINIO.com", custom_domain = true }
+# ]
+
+[vars]
+# Páginas desde las que se abre el panel (y que pueden recibir el token). Con coma si son varias. Sin barra final.
+ALLOWED_ORIGINS = "https://TUDOMINIO.com"
+# "public_repo" para un repositorio público; "repo" si el repositorio es privado.
+GITHUB_SCOPE = "public_repo"
+
+# Secretos (se cargan con `npx wrangler secret put`, NUNCA aquí):
+#   GITHUB_CLIENT_ID
+#   GITHUB_CLIENT_SECRET

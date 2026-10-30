@@ -1,0 +1,2110 @@
+# Configuración de Decap CMS (panel /admin) para cambiar las fotos y los textos del sitio (sin crear ni borrar secciones ni páginas).
+# El panel edita el repositorio de GitHub: guarda content/fotos.json (y sube la foto original a content/originales/) y content/textos/*.json.
+# Al guardar, GitHub Actions recompila y republica el sitio solo (1 a 2 minutos).
+#
+# ===== COMPLETAR ANTES DE PUBLICAR (2 valores) =====
+#   backend.repo      -> usuario/organización y nombre del repositorio, p. ej. youthcoop/sitio
+#   backend.base_url  -> dirección del Worker de Cloudflare que hace el inicio de sesión con GitHub
+#                        (ver cloudflare-oauth-worker/README.md y docs/PUESTA-EN-MARCHA.md)
+
+backend:
+  name: github
+  repo: abadesquenleyner/youthcoop-web
+  branch: main
+  base_url: https://oauth.TUDOMINIO.com # <-- COMPLETAR (sin barra final)
+  auth_endpoint: auth
+  commit_messages:
+    create: 'Panel: crear {{path}}'
+    update: 'Panel: actualizar {{collection}} ({{slug}})'
+    delete: 'Panel: borrar {{path}}'
+    uploadMedia: 'Panel: subir {{path}}'
+    deleteMedia: 'Panel: borrar {{path}}'
+
+# Solo se activa cuando se abre /admin desde localhost (prueba local con `npx decap-server`); en internet no hace nada.
+local_backend: true
+
+# Publicación directa a main (sin borradores ni revisión): "Publicar" = el cambio sale en 1 o 2 minutos.
+publish_mode: simple
+
+locale: es
+
+# Las fotos originales van al repositorio (no a la web). La web publica solo las versiones que genera scripts/build-media.mjs.
+# public_folder es solo el texto que Decap guarda en content/fotos.json (sin barra inicial: con barra, Decap lo toma por una
+# dirección web y no muestra la miniatura). El sitio lo resuelve como ruta dentro del repositorio, así que no depende de la
+# raíz ni de la subruta donde esté publicado.
+media_folder: content/originales
+public_folder: content/originales
+
+# (Decap no permite fijar un tope de subida con la biblioteca de medios por defecto: los límites son de la guía.
+#  GitHub rechaza archivos de más de 100 MB; scripts/build-media.mjs avisa de los videos de más de 20 MB.)
+
+# Barra lateral, en este orden: Fotos del sitio, Textos por sección, Productos, Contacto y ajustes.
+# Las tres últimas colecciones están GENERADAS (bloque «TEXTOS» al final) desde scripts/textos-esquema.mjs con
+# `npm run panel`; las listas no permiten agregar, quitar ni reordenar ítems (allow_add/allow_remove/allow_reorder en false).
+collections:
+  - name: fotos
+    label: Fotos del sitio
+    editor:
+      preview: false
+    files:
+      - name: fotos
+        label: Fotos del sitio
+        file: content/fotos.json
+        format: json
+        fields:
+          # ---------- Portada ----------
+          - label: 'Foto principal (portada)'
+            name: hero
+            widget: object
+            collapsed: true
+            hint: 'Foto vertical (proporción 4:5, p. ej. 1200 × 1500 px). Si subes otra proporción, la web la recorta usando el punto focal.'
+            fields: &campos_foto
+              - label: 'Foto'
+                name: imagen
+                widget: image
+                required: true
+                allow_multiple: false
+                choose_url: false
+                hint: 'Sube la foto tal como sale de la cámara (JPG, PNG o WebP). La web la recorta y la optimiza sola.'
+              - label: 'Texto alternativo (describe lo que se ve)'
+                name: alt
+                widget: object
+                collapsed: false
+                fields:
+                  - { label: 'Español', name: es, widget: string, required: true, hint: 'Lo leen los lectores de pantalla y Google. Una frase corta.' }
+                  - { label: 'Inglés', name: en, widget: string, required: false, hint: 'Si lo dejas vacío se usa el español.' }
+              - label: 'Leyenda'
+                name: leyenda
+                widget: object
+                collapsed: true
+                hint: 'Respaldo del texto alternativo; no se ve escrita en la página.'
+                required: false
+                fields:
+                  - { label: 'Español', name: es, widget: string, required: false }
+                  - { label: 'Inglés', name: en, widget: string, required: false }
+              - { label: 'Punto focal horizontal (0 = izquierda, 100 = derecha)', name: focal_x, widget: number, value_type: int, min: 0, max: 100, required: false, hint: 'Opcional. Vacío = centro (50). Úsalo para que el recorte no corte a la persona o el objeto importante.' }
+              - { label: 'Punto focal vertical (0 = arriba, 100 = abajo)', name: focal_y, widget: number, value_type: int, min: 0, max: 100, required: false, hint: 'Opcional. Vacío = centro (50).' }
+
+          # ---------- Nosotros ----------
+          - label: 'Nosotros: equipo'
+            name: nosotros
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+
+          # ---------- Proyectos ----------
+          - label: 'Proyecto 1: Café + Árbol'
+            name: proyecto_1
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 16:10, p. ej. 1600 × 1000 px).'
+            fields: *campos_foto
+          - label: 'Proyecto 2: Cacao Bosque+'
+            name: proyecto_2
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 16:10, p. ej. 1600 × 1000 px).'
+            fields: *campos_foto
+          - label: 'Proyecto 3: Tierra de Jóvenes y Mujeres'
+            name: proyecto_3
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 16:10, p. ej. 1600 × 1000 px).'
+            fields: *campos_foto
+
+          # ---------- Cacao ----------
+          - label: 'Cacao en grano'
+            name: cacao_grano
+            widget: object
+            collapsed: true
+            hint: 'Foto panorámica (proporción 16:9, p. ej. 1600 × 900 px).'
+            fields: *campos_foto
+          - label: 'Derivados de cacao'
+            name: cacao_derivados
+            widget: object
+            collapsed: true
+            hint: 'Foto panorámica (proporción 16:9, p. ej. 1600 × 900 px).'
+            fields: *campos_foto
+
+          # ---------- Galería ----------
+          - label: 'Galería 1: cosecha'
+            name: galeria_1
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+          - label: 'Galería 2: cata de café'
+            name: galeria_2
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+          - label: 'Galería 3: control de calidad'
+            name: galeria_3
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+          - label: 'Galería 4: fermentación y secado de cacao'
+            name: galeria_4
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+          - label: 'Galería 5: almacén'
+            name: galeria_5
+            widget: object
+            collapsed: true
+            hint: 'Foto horizontal (proporción 4:3, p. ej. 1200 × 900 px).'
+            fields: *campos_foto
+          - label: 'Galería 6: video de la sede (o una foto)'
+            name: galeria_6
+            widget: object
+            collapsed: true
+            hint: 'Este espacio puede ser un VIDEO (.mp4) o una foto 4:3. Si hay video, se muestra el video y la foto sirve de portada; si dejas el video vacío, se muestra la foto.'
+            fields:
+              - { label: 'Video (.mp4)', name: video, widget: file, required: false, allow_multiple: false, choose_url: false, hint: 'Archivo .mp4 (H.264). Pesa lo mejor posible: recomendado hasta 20 MB. GitHub no admite más de 100 MB.' }
+              - { label: 'Foto o portada del video', name: imagen, widget: image, required: false, allow_multiple: false, choose_url: false, hint: 'Con video: es la imagen que se ve antes de darle play. Sin video: es la foto del espacio.' }
+              - { label: 'Portada del video (reemplaza a la foto)', name: poster, widget: image, required: false, allow_multiple: false, choose_url: false, hint: 'Solo si quieres una portada distinta de la foto.' }
+              - label: 'Texto alternativo (describe lo que se ve)'
+                name: alt
+                widget: object
+                collapsed: false
+                fields:
+                  - { label: 'Español', name: es, widget: string, required: true, hint: 'Lo leen los lectores de pantalla y Google. Una frase corta.' }
+                  - { label: 'Inglés', name: en, widget: string, required: false, hint: 'Si lo dejas vacío se usa el español.' }
+              - label: 'Leyenda'
+                name: leyenda
+                widget: object
+                collapsed: true
+                hint: 'Respaldo del texto alternativo; no se ve escrita en la página.'
+                required: false
+                fields:
+                  - { label: 'Español', name: es, widget: string, required: false }
+                  - { label: 'Inglés', name: en, widget: string, required: false }
+              - { label: 'Punto focal horizontal (0 = izquierda, 100 = derecha)', name: focal_x, widget: number, value_type: int, min: 0, max: 100, required: false, hint: 'Opcional. Vacío = centro (50). En el video decide qué parte se ve al recortarlo a 4:3.' }
+              - { label: 'Punto focal vertical (0 = arriba, 100 = abajo)', name: focal_y, widget: number, value_type: int, min: 0, max: 100, required: false, hint: 'Opcional. Vacío = centro (50).' }
+
+# >>> TEXTOS (generado por scripts/generar-panel-textos.mjs; no editar a mano: cambia scripts/textos-esquema.mjs y vuelve a generar)
+  - name: "textos"
+    label: "Textos por sección"
+    description: "Cambia los textos de cada parte de la página, en español y en inglés. Elige una sección de la lista."
+    editor:
+      preview: false
+    files:
+      - name: "header"
+        label: "Menú superior (cabecera)"
+        description: "Las palabras del menú de arriba y el botón «Solicitar muestras»."
+        file: "content/textos/header.json"
+        format: "json"
+        fields:
+          - label: "Enlaces del menú"
+            label_singular: "Enlace"
+            name: "nav"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.label.es}}"
+            min: 7
+            max: 7
+            fields:
+              - label: "Texto del enlace"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Español"
+                    name: "es"
+                    widget: "string"
+                    required: true
+                    pattern: ["^[\\s\\S]{0,24}$", "Máximo 24 caracteres: con más, el diseño de la página se desordena"]
+                    hint: "Cada enlace lleva a su sección: el destino no se cambia desde aquí. Espacio limitado: hasta 24 caracteres."
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,24}$", "Máximo 24 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Botón de la cabecera"
+            name: "cta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Texto del botón"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 32 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Textos para lectores de pantalla (no se ven en la página)"
+            name: "aria"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Nombre del logo", name: "inicio", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Nombre del menú", name: "nav", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+              - { label: "Nombre del selector de idioma", name: "idioma", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+              - { label: "Botón del menú en celular", name: "menu", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+      - name: "hero"
+        label: "Inicio (portada)"
+        description: "Título grande, texto de introducción, botones y sellos de la portada."
+        file: "content/textos/hero.json"
+        format: "json"
+        fields:
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,130}$", "Máximo 130 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,130}$", "Máximo 130 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Botón principal"
+            name: "cta_principal"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Texto del botón"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 32 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Botón secundario"
+            name: "cta_secundario"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Texto del botón"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 32 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"] }
+          - { label: "Línea de sellos y certificaciones", name: "sellos", widget: "string", required: true, pattern: ["^[\\s\\S]{0,90}$", "Máximo 90 caracteres: con más, el diseño de la página se desordena"], hint: "Ejemplo: Orgánico UE · NOP · COR · Fairtrade" }
+      - name: "cifras"
+        label: "Cifras (franja de números)"
+        description: "Los 4 números destacados debajo de la portada."
+        file: "content/textos/cifras.json"
+        format: "json"
+        fields:
+          - label: "Cifras"
+            label_singular: "Cifra"
+            name: "items"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.valor}} {{fields.etiqueta.es}}"
+            min: 4
+            max: 4
+            fields:
+              - label: "Número"
+                name: "valor"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,12}$", "Máximo 12 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Ejemplo: +100 ha. Si escribes [000] entre corchetes, la cifra queda oculta hasta que pongas el dato real. Espacio limitado: hasta 12 caracteres."
+              - label: "Qué significa"
+                name: "etiqueta"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,70}$", "Máximo 70 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,70}$", "Máximo 70 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "nosotros"
+        label: "Nosotros"
+        description: "Quiénes somos y la línea de tiempo."
+        file: "content/textos/nosotros.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Párrafos"
+            label_singular: "Párrafo"
+            name: "parrafos"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.texto.es | truncate(60)}}"
+            min: 2
+            max: 2
+            fields:
+              - label: "Párrafo"
+                name: "texto"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,500}$", "Máximo 500 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,500}$", "Máximo 500 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Hitos de la línea de tiempo"
+            label_singular: "Hito"
+            name: "hitos"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.anio.es}}: {{fields.titulo.es}}"
+            min: 5
+            max: 5
+            fields:
+              - label: "Años"
+                name: "anio"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Título del hito"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Texto del hito"
+                name: "texto"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,220}$", "Máximo 220 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,220}$", "Máximo 220 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "modelo"
+        label: "Nuestro modelo"
+        description: "Los cinco pilares de la gestión de fincas."
+        file: "content/textos/modelo.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Pilares"
+            label_singular: "Pilar"
+            name: "pilares"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.titulo.es}}"
+            min: 5
+            max: 5
+            fields:
+              - label: "Nombre del pilar"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Explicación"
+                name: "texto"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Frase final"
+            name: "nota"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,300}$", "Máximo 300 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,300}$", "Máximo 300 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "proyectos"
+        label: "Proyectos productivos"
+        description: "Los 3 proyectos con su foto (la foto se cambia en «Fotos del sitio»)."
+        file: "content/textos/proyectos.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Proyectos"
+            label_singular: "Proyecto"
+            name: "items"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.nombre.es}}"
+            min: 3
+            max: 3
+            fields:
+              - label: "Nombre del proyecto"
+                name: "nombre"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,320}$", "Máximo 320 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,320}$", "Máximo 320 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Dato de impacto"
+                name: "impacto"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Dato de impacto"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - label: "Español"
+                        name: "es"
+                        widget: "string"
+                        required: true
+                        pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"]
+                        hint: "Mientras diga [pendiente] (entre corchetes) este dato NO se muestra en la web. Cuando escribas el dato real, se publica solo."
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Etiquetas (chips)"
+                label_singular: "Etiqueta"
+                name: "chips"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.texto.es}}"
+                min: 2
+                max: 3
+                fields:
+                  - label: "Etiqueta"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "oferta"
+        label: "Oferta de café y cacao"
+        description: "Ficha de origen, los pasos para armar cada lote y la introducción del cacao. Los nombres y descripciones de cada café y cacao están en «Productos»."
+        file: "content/textos/oferta.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Datos de la ficha de origen"
+            label_singular: "Dato"
+            name: "ficha"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.dt.es}}"
+            min: 5
+            max: 5
+            fields:
+              - label: "Nombre del dato"
+                name: "dt"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Valor"
+                name: "dd"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Español"
+                    name: "es"
+                    widget: "string"
+                    required: true
+                    pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"]
+                    hint: "Mientras diga [pendiente] (entre corchetes) este dato NO se muestra en la web. Cuando escribas el dato real, se publica solo."
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Textos de las tarjetas de café"
+            name: "lineas"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Unidad del puntaje"
+                name: "unidad_puntaje"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Título de las notas de cata"
+                name: "etiqueta_notas"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Cómo armamos cada lote"
+            name: "como_armamos"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Título del desplegable"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Pasos"
+                label_singular: "Paso"
+                name: "pasos"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.titulo.es}}"
+                min: 4
+                max: 4
+                fields:
+                  - label: "Título del paso"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto del paso"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Principio destacado"
+                name: "principio"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Introducción del cacao"
+            name: "cacao"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Título"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Texto"
+                name: "bajada"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Botón final"
+            name: "cta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Texto del botón"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 32 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "calidad"
+        label: "Calidad y control de riesgo"
+        description: "Pestañas de café y cacao con sus controles."
+        file: "content/textos/calidad.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Nombre de las pestañas para lectores de pantalla (no se ve)"
+            name: "aria_tabs"
+            widget: "string"
+            required: true
+            pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+            hint: "Espacio limitado: hasta 40 caracteres."
+          - label: "Pestañas"
+            label_singular: "Pestaña"
+            name: "tabs"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.label.es}}"
+            min: 2
+            max: 2
+            fields:
+              - label: "Texto de la pestaña"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Pestaña Café"
+            name: "cafe"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Recuadro destacado"
+                name: "destacado"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Pasos"
+                label_singular: "Paso"
+                name: "pasos"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.titulo.es}}"
+                min: 5
+                max: 5
+                fields:
+                  - label: "Título del paso"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto del paso"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Pestaña Cacao"
+            name: "cacao"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Comparación de análisis"
+                name: "comparacion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Práctica habitual del mercado"
+                    name: "mercado"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - label: "Título"
+                        name: "titulo"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                      - label: "Lote"
+                        name: "lote"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                      - label: "Texto al pie"
+                        name: "pie"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,140}$", "Máximo 140 caracteres: con más, el diseño de la página se desordena"] }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,140}$", "Máximo 140 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Nuestra práctica"
+                    name: "nuestro"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Título", name: "titulo", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - label: "Sublotes"
+                        label_singular: "Sublote"
+                        name: "sublotes"
+                        widget: "list"
+                        allow_add: false
+                        allow_remove: false
+                        allow_reorder: false
+                        collapsed: true
+                        summary: "{{fields.texto}}"
+                        min: 5
+                        max: 5
+                        fields:
+                          - { label: "Texto del sublote", name: "texto", widget: "string", required: true, pattern: ["^[\\s\\S]{0,10}$", "Máximo 10 caracteres: con más, el diseño de la página se desordena"], hint: "Ejemplo: 5 t Espacio limitado: hasta 10 caracteres." }
+                      - label: "Texto al pie"
+                        name: "pie"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Pasos"
+                label_singular: "Paso"
+                name: "pasos"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.titulo.es}}"
+                min: 5
+                max: 5
+                fields:
+                  - label: "Título del paso"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto del paso"
+                    name: "texto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,200}$", "Máximo 200 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "trazabilidad"
+        label: "Trazabilidad y certificaciones"
+        description: "Qué se registra en campo y las certificaciones. Los logos de las certificaciones no se cambian aquí."
+        file: "content/textos/trazabilidad.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Puntos de trazabilidad"
+            label_singular: "Punto"
+            name: "checks"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.titulo.es}}"
+            min: 4
+            max: 4
+            fields:
+              - label: "Título"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Texto"
+                name: "texto"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Certificaciones"
+            label_singular: "Certificación"
+            name: "certs"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.nombre}}"
+            min: 6
+            max: 6
+            fields:
+              - { label: "Nombre", name: "nombre", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+              - label: "Detalle (debajo del nombre)"
+                name: "detalle"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "galeria"
+        label: "Galería (títulos)"
+        description: "El título de la galería. Las fotos y sus descripciones se cambian en «Fotos del sitio»."
+        file: "content/textos/galeria.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Nombre de la galería para lectores de pantalla (no se ve)"
+            name: "aria"
+            widget: "string"
+            required: true
+            pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+            hint: "Espacio limitado: hasta 40 caracteres."
+      - name: "novedades"
+        label: "Novedades (LinkedIn)"
+        description: "Título y botón de la sección de novedades. Las publicaciones de LinkedIn aún no se incrustan desde el panel."
+        file: "content/textos/novedades.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Botón de LinkedIn"
+            name: "boton"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Texto del botón"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 32 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,32}$", "Máximo 32 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "contacto"
+        label: "Contacto: formulario"
+        description: "Títulos y nombres de los campos del formulario. Los avisos de error y de éxito están en «Formulario: avisos y opciones»."
+        file: "content/textos/contacto.json"
+        format: "json"
+        fields:
+          - label: "Etiqueta pequeña (sobre el título)"
+            name: "etiqueta"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Español"
+                name: "es"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "La frase corta en mayúsculas que va sobre el título. Espacio limitado: hasta 40 caracteres."
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Título"
+            name: "titulo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Texto de introducción"
+            name: "bajada"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,420}$", "Máximo 420 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Formulario"
+            name: "form"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Tipo de solicitud"
+                name: "tipo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título (lo leen los lectores de pantalla)"
+                    name: "legend"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Opciones"
+                    label_singular: "Opción"
+                    name: "opciones"
+                    widget: "list"
+                    allow_add: false
+                    allow_remove: false
+                    allow_reorder: false
+                    collapsed: true
+                    summary: "{{fields.label.es}}"
+                    min: 2
+                    max: 2
+                    fields:
+                      - label: "Texto"
+                        name: "label"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Nombre"
+                name: "nombre"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Empresa"
+                name: "empresa"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Correo"
+                name: "correo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Teléfono"
+                name: "telefono"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Productos"
+                name: "productos"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título"
+                    name: "legend"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Ayuda al elegir muestras"
+                    name: "ayuda_muestras"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"], hint: "Empieza con «·» y se muestra al lado del título." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Grupos de productos"
+                    label_singular: "Grupo"
+                    name: "grupos"
+                    widget: "list"
+                    allow_add: false
+                    allow_remove: false
+                    allow_reorder: false
+                    collapsed: true
+                    summary: "{{fields.titulo.es}}"
+                    min: 2
+                    max: 2
+                    fields:
+                      - label: "Nombre del grupo"
+                        name: "titulo"
+                        widget: "object"
+                        collapsed: false
+                        fields:
+                          - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                          - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo País"
+                name: "pais"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto de ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Dirección"
+                name: "direccion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto de ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Courier"
+                name: "courier"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto de ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Volumen"
+                name: "volumen"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto de ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Incoterm"
+                name: "incoterm"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Certificación"
+                name: "certificacion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto de ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Fecha de embarque"
+                name: "embarque"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Campo Mensaje"
+                name: "mensaje"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Botón de enviar"
+                name: "enviar"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Etiqueta del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Datos de contacto (lado derecho)"
+            name: "datos"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Escríbenos"
+                name: "escribenos"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto «Comercial»"
+                    name: "comercial"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Texto «Logística»"
+                    name: "logistica"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Redes sociales"
+                name: "redes"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+      - name: "footer"
+        label: "Pie de página"
+        description: "Descripción, enlaces y frase de derechos del final de la página."
+        file: "content/textos/footer.json"
+        format: "json"
+        fields:
+          - label: "Descripción de la empresa"
+            name: "descripcion"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,300}$", "Máximo 300 caracteres: con más, el diseño de la página se desordena"], hint: "Con Enter bajas de línea; con *asteriscos* pones cursiva." }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,300}$", "Máximo 300 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Columna «Explorar»"
+            name: "explorar"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Título"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Enlaces"
+                label_singular: "Enlace"
+                name: "links"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.label.es}}"
+                min: 5
+                max: 5
+                fields:
+                  - label: "Texto del enlace"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,24}$", "Máximo 24 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 24 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,24}$", "Máximo 24 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Columna «Contacto»"
+            name: "contacto"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Título"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Frase de derechos"
+            name: "derechos"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+  - name: "productos"
+    label: "Productos"
+    description: "Nombres, descripciones y datos de los cafés y cacaos."
+    editor:
+      preview: false
+    files:
+      - name: "productos"
+        label: "Productos (café y cacao)"
+        description: "Los 3 cafés y las 2 fichas de cacao: nombres, descripciones y datos. Las fotos y las barras de acidez y cuerpo no se cambian aquí."
+        file: "content/textos/productos.json"
+        format: "json"
+        fields:
+          - label: "Café Lupuna"
+            name: "lupuna"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Nombre"
+                name: "name"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Es el nombre que se ve en la tarjeta. El nombre del producto en el formulario se cambia en «Formulario: avisos y opciones». Espacio limitado: hasta 30 caracteres."
+              - label: "Tipo de línea"
+                name: "tipo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Puntaje", name: "puntaje", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Ejemplo: 84+  o  82.5 – 83.75 Espacio limitado: hasta 20 caracteres." }
+              - label: "Frase del árbol"
+                name: "arbol"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Barras de sabor (solo los textos)"
+                label_singular: "Barra"
+                name: "escalas"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.label.es}}"
+                min: 2
+                max: 2
+                fields:
+                  - label: "Nombre de la barra"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Descripción"
+                    name: "valor"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Notas de cata"
+                name: "notas"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Café Capirona"
+            name: "capirona"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Nombre"
+                name: "name"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Es el nombre que se ve en la tarjeta. El nombre del producto en el formulario se cambia en «Formulario: avisos y opciones». Espacio limitado: hasta 30 caracteres."
+              - label: "Tipo de línea"
+                name: "tipo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Puntaje", name: "puntaje", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Ejemplo: 84+  o  82.5 – 83.75 Espacio limitado: hasta 20 caracteres." }
+              - label: "Frase del árbol"
+                name: "arbol"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Barras de sabor (solo los textos)"
+                label_singular: "Barra"
+                name: "escalas"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.label.es}}"
+                min: 2
+                max: 2
+                fields:
+                  - label: "Nombre de la barra"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Descripción"
+                    name: "valor"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Notas de cata"
+                name: "notas"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Café Pacay"
+            name: "pacay"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Nombre"
+                name: "name"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Es el nombre que se ve en la tarjeta. El nombre del producto en el formulario se cambia en «Formulario: avisos y opciones». Espacio limitado: hasta 30 caracteres."
+              - label: "Tipo de línea"
+                name: "tipo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "Puntaje", name: "puntaje", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Ejemplo: 84+  o  82.5 – 83.75 Espacio limitado: hasta 20 caracteres." }
+              - label: "Frase del árbol"
+                name: "arbol"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,260}$", "Máximo 260 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Barras de sabor (solo los textos)"
+                label_singular: "Barra"
+                name: "escalas"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.label.es}}"
+                min: 2
+                max: 2
+                fields:
+                  - label: "Nombre de la barra"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Descripción"
+                    name: "valor"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Notas de cata"
+                name: "notas"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Cacao en grano"
+            name: "cocoa_beans"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Título de la ficha"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Filas de la ficha"
+                label_singular: "Fila"
+                name: "filas"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.dt.es}}"
+                min: 3
+                max: 3
+                fields:
+                  - label: "Nombre del dato"
+                    name: "dt"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Valor"
+                    name: "dd"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - label: "Español"
+                        name: "es"
+                        widget: "string"
+                        required: true
+                        pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"]
+                        hint: "Mientras diga [pendiente] (entre corchetes) este dato NO se muestra en la web. Cuando escribas el dato real, se publica solo."
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Derivados de cacao"
+            name: "cocoa_products"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Título de la ficha"
+                name: "titulo"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Filas de la ficha"
+                label_singular: "Fila"
+                name: "filas"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.dt.es}}"
+                min: 4
+                max: 4
+                fields:
+                  - label: "Nombre del dato"
+                    name: "dt"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Valor"
+                    name: "dd"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - label: "Español"
+                        name: "es"
+                        widget: "string"
+                        required: true
+                        pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"]
+                        hint: "Mientras diga [pendiente] (entre corchetes) este dato NO se muestra en la web. Cuando escribas el dato real, se publica solo."
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+  - name: "ajustes"
+    label: "Contacto y ajustes"
+    description: "Correos, WhatsApp, direcciones, redes, título para Google, datos legales y avisos del formulario."
+    editor:
+      preview: false
+    files:
+      - name: "ajustes"
+        label: "Contacto, buscadores y datos legales"
+        description: "Correos, WhatsApp, direcciones, redes sociales, título y descripción para Google, razón social y RUC."
+        file: "content/textos/ajustes.json"
+        format: "json"
+        fields:
+          - label: "Título y descripción en Google"
+            name: "seo"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "En español"
+                name: "es"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Título de la pestaña y de Google"
+                    name: "title"
+                    widget: "string"
+                    required: true
+                    pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"]
+                    hint: "Es lo que aparece en la pestaña del navegador y como título en Google."
+                  - label: "Descripción para Google"
+                    name: "description"
+                    widget: "text"
+                    required: true
+                    pattern: ["^[\\s\\S]{0,320}$", "Máximo 320 caracteres: con más, el diseño de la página se desordena"]
+                    hint: "Una o dos frases que resumen la empresa (recomendado hasta 160 caracteres)."
+              - label: "En inglés"
+                name: "en"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Título (inglés)", name: "title", widget: "string", required: true, pattern: ["^[\\s\\S]{0,120}$", "Máximo 120 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Descripción (inglés)", name: "description", widget: "text", required: false, pattern: ["^[\\s\\S]{0,320}$", "Máximo 320 caracteres: con más, el diseño de la página se desordena"], hint: "Si la dejas vacía se usa la española." }
+          - label: "Datos de contacto"
+            name: "contacto"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Correo comercial", name: "email_comercial", widget: "string", required: true, pattern: ["^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "Escribe un correo válido, por ejemplo nombre@empresa.com"] }
+              - { label: "Correo de logística", name: "email_logistica", widget: "string", required: true, pattern: ["^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "Escribe un correo válido, por ejemplo nombre@empresa.com"] }
+              - label: "Número de WhatsApp (solo números)"
+                name: "whatsapp_numero"
+                widget: "string"
+                required: true
+                pattern: ["^[0-9]{8,15}$", "Solo números, con el código del país y sin + ni espacios. Ejemplo: 51974289199"]
+                hint: "Con código de país, sin + ni espacios (ejemplo: 51974289199). También actualiza solo el enlace de la red WhatsApp."
+              - label: "Texto del botón de WhatsApp"
+                name: "whatsapp_texto"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Cómo se lee en el botón de la sección Contacto. Ejemplo: WhatsApp +51 974 289 199 Espacio limitado: hasta 40 caracteres."
+              - label: "WhatsApp que se muestra en el pie"
+                name: "whatsapp_pie"
+                widget: "string"
+                required: true
+                pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"]
+                hint: "Ejemplo: +51 974 289 199 Espacio limitado: hasta 30 caracteres."
+              - { label: "Dirección web que se muestra en el pie", name: "sitio_web", widget: "string", required: true, pattern: ["^[\\s\\S]{0,60}$", "Máximo 60 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Direcciones"
+                label_singular: "Dirección"
+                name: "direcciones"
+                widget: "list"
+                allow_add: false
+                allow_remove: false
+                allow_reorder: false
+                collapsed: true
+                summary: "{{fields.titulo.es}}"
+                min: 2
+                max: 2
+                fields:
+                  - label: "Título (sede, origen...)"
+                    name: "titulo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Dirección", name: "texto", widget: "text", required: true, pattern: ["^[\\s\\S]{0,160}$", "Máximo 160 caracteres: con más, el diseño de la página se desordena"], hint: "Con Enter bajas de línea." }
+              - label: "Enlaces de redes sociales"
+                name: "redes"
+                widget: "object"
+                collapsed: false
+                hint: "El enlace de WhatsApp se arma solo con el número de arriba."
+                fields:
+                  - label: "LinkedIn"
+                    name: "linkedin"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Enlace de LinkedIn", name: "url", widget: "string", required: true, pattern: ["^(#|https?://[^\\s<>\"'`\\\\]+)$", "Escribe la dirección completa, empezando por https://"] }
+                  - label: "Instagram"
+                    name: "instagram"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Enlace de Instagram", name: "url", widget: "string", required: true, pattern: ["^(#|https?://[^\\s<>\"'`\\\\]+)$", "Escribe la dirección completa, empezando por https://"] }
+                  - label: "Facebook"
+                    name: "facebook"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Enlace de Facebook", name: "url", widget: "string", required: true, pattern: ["^(#|https?://[^\\s<>\"'`\\\\]+)$", "Escribe la dirección completa, empezando por https://"] }
+                  - label: "TikTok"
+                    name: "tiktok"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Enlace de TikTok", name: "url", widget: "string", required: false, pattern: ["^(#|https?://[^\\s<>\"'`\\\\]+)$", "Escribe la dirección completa, empezando por https://"], hint: "Mientras esté vacío, el ícono de TikTok no se muestra en la web." }
+          - label: "Datos legales (pie de página)"
+            name: "legal"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Razón social", name: "razon_social", widget: "string", required: true, pattern: ["^[\\s\\S]{0,80}$", "Máximo 80 caracteres: con más, el diseño de la página se desordena"] }
+              - { label: "RUC", name: "ruc", widget: "string", required: true, pattern: ["^[0-9]{11}$", "El RUC tiene 11 números"] }
+      - name: "formulario"
+        label: "Formulario: avisos y opciones"
+        description: "Mensajes que ve quien llena el formulario y los nombres de las opciones. Los países y las cantidades en gramos no se cambian desde el panel."
+        file: "content/textos/formulario.json"
+        format: "json"
+        fields:
+          - label: "Avisos del formulario"
+            name: "mensajes"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Inicio del aviso de campos faltantes"
+                name: "completa"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Español"
+                    name: "es"
+                    widget: "string"
+                    required: true
+                    pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"]
+                    hint: "Va antes de la lista de campos faltantes. Ejemplo: «Completa:». Espacio limitado: hasta 40 caracteres."
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Nombre de cada campo en el aviso de campos faltantes"
+                name: "campos"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Campo «nombre»"
+                    name: "nombre"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «empresa»"
+                    name: "empresa"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «correo»"
+                    name: "correo"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «producto»"
+                    name: "producto"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «pais»"
+                    name: "pais"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «direccion»"
+                    name: "direccion"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Campo «eori»"
+                    name: "eori"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Resumen con una muestra"
+                name: "resumen_singular"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Español"
+                    name: "es"
+                    widget: "string"
+                    required: true
+                    pattern: ["^(?=[\\s\\S]*\\{n\\})(?=[\\s\\S]*\\{total\\})[\\s\\S]{0,80}$", "Máximo 80 caracteres y conserva {n} y {total}"]
+                    hint: "Conserva {n} y {total}: la web pone ahí la cantidad y el total."
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^(?=[\\s\\S]*\\{n\\})(?=[\\s\\S]*\\{total\\})[\\s\\S]{0,80}$", "Máximo 80 caracteres y conserva {n} y {total}"] }
+              - label: "Resumen con varias muestras"
+                name: "resumen_plural"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Español"
+                    name: "es"
+                    widget: "string"
+                    required: true
+                    pattern: ["^(?=[\\s\\S]*\\{n\\})(?=[\\s\\S]*\\{total\\})[\\s\\S]{0,80}$", "Máximo 80 caracteres y conserva {n} y {total}"]
+                    hint: "Conserva {n} y {total}: la web pone ahí la cantidad y el total."
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^(?=[\\s\\S]*\\{n\\})(?=[\\s\\S]*\\{total\\})[\\s\\S]{0,80}$", "Máximo 80 caracteres y conserva {n} y {total}"] }
+              - label: "Aviso de solicitud enviada"
+                name: "exito"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,160}$", "Máximo 160 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,160}$", "Máximo 160 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Aviso de error al enviar"
+                name: "error_envio"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^[\\s\\S]{0,160}$", "Máximo 160 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^[\\s\\S]{0,160}$", "Máximo 160 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Aviso de formulario sin conectar"
+                name: "sin_endpoint"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "text", required: true, pattern: ["^(?=[\\s\\S]*\\{email\\})[\\s\\S]{0,240}$", "Máximo 240 caracteres y conserva {email}"], hint: "Conserva {email}: la web pone ahí el correo comercial." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "text", required: false, pattern: ["^(?=[\\s\\S]*\\{email\\})[\\s\\S]{0,240}$", "Máximo 240 caracteres y conserva {email}"] }
+          - label: "Opciones de Incoterm"
+            label_singular: "Opción"
+            name: "incoterms"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.label.es}}"
+            min: 5
+            max: 5
+            fields:
+              - label: "Texto de la opción"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 20 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,20}$", "Máximo 20 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Campos según el país de destino"
+            name: "regiones"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Unión Europea y Reino Unido (EORI)"
+                name: "eori"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Nombre del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Ejemplo dentro del campo"
+                    name: "placeholder"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Ayuda bajo el campo"
+                    name: "ayuda"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Estados Unidos"
+                name: "us"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Nombre del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+                  - label: "Ayuda bajo el campo"
+                    name: "ayuda"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,100}$", "Máximo 100 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Otros países"
+                name: "otro"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Nombre del campo"
+                    name: "label"
+                    widget: "object"
+                    collapsed: false
+                    fields:
+                      - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 40 caracteres." }
+                      - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,40}$", "Máximo 40 caracteres: con más, el diseño de la página se desordena"] }
+          - label: "Productos que se pueden pedir en el formulario"
+            label_singular: "Producto"
+            name: "sample_options"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.label.es}}"
+            min: 8
+            max: 8
+            fields:
+              - label: "Nombre"
+                name: "label"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"], hint: "Espacio limitado: hasta 30 caracteres." }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,30}$", "Máximo 30 caracteres: con más, el diseño de la página se desordena"] }
+              - label: "Subtítulo"
+                name: "subtitle"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - { label: "Español", name: "es", widget: "string", required: true, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+                  - { label: "Inglés · vacío = se usa el español", name: "en", widget: "string", required: false, pattern: ["^[\\s\\S]{0,50}$", "Máximo 50 caracteres: con más, el diseño de la página se desordena"] }
+# <<< TEXTOS (fin del bloque generado)

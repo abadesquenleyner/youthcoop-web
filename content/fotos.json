@@ -1,0 +1,168 @@
+{
+  "hero": {
+    "imagen": "content/originales/hero.webp",
+    "alt": {
+      "es": "Joven productora sonriendo entre las plantas de un cafetal, con montañas cubiertas de bosque al fondo.",
+      "en": "Young woman farmer smiling among coffee plants, with forested mountains behind her."
+    },
+    "leyenda": {
+      "es": "Productora joven sonriendo en su cafetal, con montañas al fondo."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "nosotros": {
+    "imagen": "content/originales/nosotros.webp",
+    "alt": {
+      "es": "Equipo de diez personas posando juntas en una oficina, con polos y camisas con emblema y afiches de cultivo de café en la pared.",
+      "en": "Team of ten people posing together in an office, wearing shirts with an emblem, with coffee-growing posters on the wall."
+    },
+    "leyenda": {
+      "es": "Equipo de la cooperativa en la oficina",
+      "en": "The cooperative team at the office"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "proyecto_1": {
+    "imagen": "content/originales/proyecto-1.webp",
+    "alt": {
+      "es": "Cafetal bajo la sombra de árboles altos, con un sendero entre las plantas.",
+      "en": "Coffee plantation under tall shade trees, with a path between the plants."
+    },
+    "leyenda": {
+      "es": "Cafetal bajo la sombra de árboles altos, con un sendero entre las plantas."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "proyecto_2": {
+    "imagen": "content/originales/proyecto-2.webp",
+    "alt": {
+      "es": "Mazorcas de cacao maduras, de color vino, colgando de una rama.",
+      "en": "Ripe wine-red cocoa pods hanging from a branch."
+    },
+    "leyenda": {
+      "es": "Mazorcas de cacao maduras colgando del árbol."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "proyecto_3": {
+    "imagen": "content/originales/proyecto-3.webp",
+    "alt": {
+      "es": "Un hombre y una mujer rastrillan granos de café extendidos para secar bajo un techo translúcido.",
+      "en": "A man and a woman rake coffee beans spread out to dry under a translucent roof."
+    },
+    "leyenda": {
+      "es": "Dos personas rastrillan café extendido para secar bajo una cubierta."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "cacao_grano": {
+    "imagen": "content/originales/cacao-grano.webp",
+    "alt": {
+      "es": "Manos sosteniendo granos de cacao fermentados y secos sobre un saco lleno de más granos.",
+      "en": "Hands holding fermented, dried cocoa beans over a sack full of more beans."
+    },
+    "leyenda": {
+      "es": "Granos de cacao fermentados y secos en manos del productor.",
+      "en": "Fermented, dried cocoa beans in a farmer's hands."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "cacao_derivados": {
+    "imagen": "content/originales/cacao-derivados.webp",
+    "alt": {
+      "es": "Montón de granos de cacao secos, en tonos marrón oscuro.",
+      "en": "Pile of dried cocoa beans in dark brown tones."
+    },
+    "leyenda": {
+      "es": "Cacao seco en grano, listo para transformar.",
+      "en": "Dried cocoa beans, ready to be processed."
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_1": {
+    "imagen": "content/originales/galeria-1.webp",
+    "alt": {
+      "es": "Cesta de malla llena de cerezas de café maduras, en su mayoría rojas y algunas amarillas.",
+      "en": "Mesh basket full of ripe coffee cherries, mostly red with some yellow ones."
+    },
+    "leyenda": {
+      "es": "Cerezas de café maduras recién cosechadas",
+      "en": "Freshly picked ripe coffee cherries"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_2": {
+    "imagen": "content/originales/galeria-2.webp",
+    "alt": {
+      "es": "Hombre con gorra y camisa blanca oliendo una taza blanca de café.",
+      "en": "Man in a cap and white shirt smelling a white cup of coffee."
+    },
+    "leyenda": {
+      "es": "Cata de una taza de café",
+      "en": "Tasting a cup of coffee"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_3": {
+    "imagen": "content/originales/galeria-3.webp",
+    "alt": {
+      "es": "Hombre dejando caer granos de café pergamino de sus manos frente a una pila de sacos en un almacén.",
+      "en": "Man letting parchment coffee beans fall from his hands in front of a pile of sacks in a warehouse."
+    },
+    "leyenda": {
+      "es": "Revisión de café pergamino frente a sacos",
+      "en": "Checking parchment coffee in front of sacks"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_4": {
+    "imagen": "content/originales/galeria-4.webp",
+    "alt": {
+      "es": "Granos de cacao extendidos sobre una malla oscura para secarse, bajo una cubierta de plástico.",
+      "en": "Cocoa beans spread out on a dark mesh to dry, under a plastic cover."
+    },
+    "leyenda": {
+      "es": "Granos de cacao secándose bajo cubierta",
+      "en": "Cocoa beans drying under a cover"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_5": {
+    "imagen": "content/originales/galeria-5.webp",
+    "alt": {
+      "es": "Dos personas trabajando junto a una pila de sacos en un almacén; una sonríe y sostiene un recipiente.",
+      "en": "Two people working next to a pile of sacks in a warehouse; one smiles and holds a bowl."
+    },
+    "leyenda": {
+      "es": "Almacén de acopio",
+      "en": "Collection warehouse"
+    },
+    "focal_x": 50,
+    "focal_y": 50
+  },
+  "galeria_6": {
+    "video": "content/originales/galeria-6.mp4",
+    "poster": "content/originales/galeria-6-poster.webp",
+    "alt": {
+      "es": "Video: fachada de un edificio de tres pisos con un portón verde y un grupo de personas de pie frente a él.",
+      "en": "Video: facade of a three-story building with a green gate and a group of people standing in front of it."
+    },
+    "leyenda": {
+      "es": "Fachada de la sede con parte del equipo (video)",
+      "en": "Headquarters facade with part of the team (video)"
+    },
+    "focal_x": 58,
+    "focal_y": 50
+  }
+}

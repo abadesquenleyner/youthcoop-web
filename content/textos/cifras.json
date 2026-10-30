@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "valor": "+100 ha",
+      "etiqueta": {
+        "es": "de bosque restauradas",
+        "en": "of forest restored"
+      }
+    },
+    {
+      "valor": "3,000 ha",
+      "etiqueta": {
+        "es": "de bosque conservadas",
+        "en": "of forest conserved"
+      }
+    },
+    {
+      "valor": "100%",
+      "etiqueta": {
+        "es": "de los lotes analizados antes de embarcar",
+        "en": "of lots tested before shipment"
+      }
+    },
+    {
+      "valor": "[000]",
+      "etiqueta": {
+        "es": "familias productoras",
+        "en": "farming families"
+      }
+    }
+  ]
+}

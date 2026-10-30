@@ -1,0 +1,16 @@
+{
+  "etiqueta": {
+    "es": "Novedades",
+    "en": "News"
+  },
+  "titulo": {
+    "es": "Lo último desde el campo",
+    "en": "Latest from the field"
+  },
+  "boton": {
+    "label": {
+      "es": "Síguenos en LinkedIn",
+      "en": "Follow us on LinkedIn"
+    }
+  }
+}

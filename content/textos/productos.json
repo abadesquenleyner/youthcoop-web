@@ -1,0 +1,214 @@
+{
+  "lupuna": {
+    "name": "Lupuna",
+    "tipo": {
+      "es": "Micro-lotes",
+      "en": "Micro-lots"
+    },
+    "puntaje": "84+",
+    "arbol": {
+      "es": "El gigante del bosque amazónico.",
+      "en": "The giant of the Amazon forest."
+    },
+    "descripcion": {
+      "es": "Taza compleja, dulce y de gran claridad. Lotes singulares, trazables hasta el productor, en cantidades limitadas.",
+      "en": "Complex, sweet and exceptionally clear cup. Singular lots, traceable to the farmer, in limited quantities."
+    },
+    "escalas": [
+      {
+        "label": {
+          "es": "Acidez",
+          "en": "Acidity"
+        },
+        "valor": {
+          "es": "jugosa a brillante",
+          "en": "juicy to bright"
+        }
+      },
+      {
+        "label": {
+          "es": "Cuerpo",
+          "en": "Body"
+        },
+        "valor": {
+          "es": "sedoso a cremoso",
+          "en": "silky to creamy"
+        }
+      }
+    ],
+    "notas": {
+      "es": "Frutales y florales: durazno, toronja, flor de café, miel",
+      "en": "Fruity and floral: peach, grapefruit, coffee blossom, honey"
+    }
+  },
+  "capirona": {
+    "name": "Capirona",
+    "tipo": {
+      "es": "Línea selecta",
+      "en": "Select line"
+    },
+    "puntaje": "82.5 – 83.75",
+    "arbol": {
+      "es": "Árbol de tronco liso que renueva su corteza.",
+      "en": "A smooth-trunked tree that renews its bark."
+    },
+    "descripcion": {
+      "es": "Taza limpia y dulce, con acidez y cuerpo bien definidos. Un perfil claro, con más carácter que la línea clásica.",
+      "en": "Clean, sweet cup with well-defined acidity and body. A clear profile with more character than the classic line."
+    },
+    "escalas": [
+      {
+        "label": {
+          "es": "Acidez",
+          "en": "Acidity"
+        },
+        "valor": {
+          "es": "melosa a jugosa",
+          "en": "honeyed to juicy"
+        }
+      },
+      {
+        "label": {
+          "es": "Cuerpo",
+          "en": "Body"
+        },
+        "valor": {
+          "es": "terso a sedoso",
+          "en": "smooth to silky"
+        }
+      }
+    ],
+    "notas": {
+      "es": "Caramelo, chocolate y frutos secos, con toques frutales",
+      "en": "Caramel, chocolate and nuts, with fruity touches"
+    }
+  },
+  "pacay": {
+    "name": "Pacay",
+    "tipo": {
+      "es": "Línea clásica",
+      "en": "Classic line"
+    },
+    "puntaje": "80 – 82.25",
+    "arbol": {
+      "es": "El árbol que da sombra a nuestros cafetales.",
+      "en": "The tree that shades our coffee farms."
+    },
+    "descripcion": {
+      "es": "Taza limpia, amable y equilibrada, de acidez y cuerpo suaves. Consistente de lote a lote y pensada para volumen.",
+      "en": "Clean, friendly and balanced cup with soft acidity and body. Consistent lot to lot and built for volume."
+    },
+    "escalas": [
+      {
+        "label": {
+          "es": "Acidez",
+          "en": "Acidity"
+        },
+        "valor": {
+          "es": "leve a suave",
+          "en": "faint to soft"
+        }
+      },
+      {
+        "label": {
+          "es": "Cuerpo",
+          "en": "Body"
+        },
+        "valor": {
+          "es": "suave a terso",
+          "en": "soft to smooth"
+        }
+      }
+    ],
+    "notas": {
+      "es": "Chocolate, caramelo y frutos secos",
+      "en": "Chocolate, caramel and nuts"
+    }
+  },
+  "cocoa_beans": {
+    "titulo": {
+      "es": "Cacao en grano",
+      "en": "Cocoa beans"
+    },
+    "filas": [
+      {
+        "dt": {
+          "es": "Origen",
+          "en": "Origin"
+        },
+        "dd": {
+          "es": "Pangoa, Satipo (Junín)",
+          "en": "Pangoa, Satipo (Junín)"
+        }
+      },
+      {
+        "dt": {
+          "es": "Genética",
+          "en": "Genetics"
+        },
+        "dd": {
+          "es": "[pendiente]",
+          "en": "[pendiente]"
+        }
+      },
+      {
+        "dt": {
+          "es": "Control",
+          "en": "Control"
+        },
+        "dd": {
+          "es": "Multirresiduo y glifosato cada 5 t",
+          "en": "Multi-residue and glyphosate every 5 t"
+        }
+      }
+    ]
+  },
+  "cocoa_products": {
+    "titulo": {
+      "es": "Derivados de cacao",
+      "en": "Cocoa products"
+    },
+    "filas": [
+      {
+        "dt": {
+          "es": "Licor",
+          "en": "Liquor"
+        },
+        "dd": {
+          "es": "Masa de cacao",
+          "en": "Cocoa mass"
+        }
+      },
+      {
+        "dt": {
+          "es": "Manteca",
+          "en": "Butter"
+        },
+        "dd": {
+          "es": "Natural",
+          "en": "Natural"
+        }
+      },
+      {
+        "dt": {
+          "es": "Polvo",
+          "en": "Powder"
+        },
+        "dd": {
+          "es": "Natural",
+          "en": "Natural"
+        }
+      },
+      {
+        "dt": {
+          "es": "Nibs",
+          "en": "Nibs"
+        },
+        "dd": {
+          "es": "Tostados",
+          "en": "Roasted"
+        }
+      }
+    ]
+  }
+}

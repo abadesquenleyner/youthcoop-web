@@ -8,7 +8,12 @@
     "node": ">=20"
   },
   "scripts": {
+    "media": "node scripts/build-media.mjs",
+    "textos": "node scripts/build-textos.mjs",
+    "panel": "node scripts/generar-panel-textos.mjs",
+    "predev": "node scripts/build-media.mjs && node scripts/build-textos.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/build-media.mjs && node scripts/build-textos.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
@@ -23,6 +28,7 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3",
     "vite": "^5.4.21"
   }

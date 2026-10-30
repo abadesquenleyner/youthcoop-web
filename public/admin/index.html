@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Panel del sitio · YOUTH COOP</title>
+    <!-- Decap CMS lee esta configuración (ruta relativa: funciona en la raíz y en una subruta) -->
+    <link href="config.yml" type="text/yaml" rel="cms-config-url" />
+    <!-- Solo estética del editor: cada texto bilingüe (Español / Inglés) se muestra en dos columnas, una al lado de la otra, y sin la
+         barra de contraer que Decap pone a cada objeto. Si algún día Decap cambia su estructura interna, el panel sigue funcionando:
+         solo se verían uno debajo del otro. -->
+    <style>
+      /* par Español / Inglés: dos columnas */
+      div:has(> [class*="ControlContainer"] > [id^="es-field-"]):has(> [class*="ControlContainer"] > [id^="en-field-"]) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+        align-items: start;
+      }
+      div:has(> [class*="ControlContainer"] > [id^="es-field-"]):has(> [class*="ControlContainer"] > [id^="en-field-"]) > [class*="ControlContainer"] {
+        margin-top: 0 !important;
+      }
+      textarea[id^="es-field-"], textarea[id^="en-field-"] {
+        min-height: 11em;
+      }
+      /* y sin la franja gris de contraer/expandir de ese par */
+      div:has(> div:last-child > [class*="ControlContainer"] > [id^="es-field-"]) > [class*="TopBarContainer"] {
+        display: none;
+      }
+      @media (max-width: 760px) {
+        div:has(> [class*="ControlContainer"] > [id^="es-field-"]):has(> [class*="ControlContainer"] > [id^="en-field-"]) {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>Este panel necesita JavaScript activado.</noscript>
+    <!-- Versión fija (3.17.3, publicada el 26-oct-2026) y huella SRI: si el CDN cambiara el archivo, el navegador lo rechaza.
+         Para actualizar Decap: cambiar la versión y recalcular la huella (ver docs/PUESTA-EN-MARCHA.md, "Actualizar Decap"). -->
+    <script
+      src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"
+      integrity="sha384-RWRzuHfiZSWCt3nEvG7B0v3cMgM1C2UuJmgBSL92GQh4uXmNSkbcthql/mNBqvjr"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

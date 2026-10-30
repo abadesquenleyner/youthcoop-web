@@ -1,0 +1,144 @@
+{
+  "etiqueta": {
+    "es": "Nuestra oferta",
+    "en": "Our offer"
+  },
+  "titulo": {
+    "es": "Café catado saco por saco, en tres líneas",
+    "en": "Coffee cupped bag by bag, in three lines"
+  },
+  "bajada": {
+    "es": "Cada línea lleva el nombre de un árbol amazónico, en honor a Café + Árbol y al bosque que protegemos.",
+    "en": "Each line is named after an Amazonian tree, in honor of Café + Árbol and the forest we protect."
+  },
+  "ficha": [
+    {
+      "dt": {
+        "es": "Origen",
+        "en": "Origin"
+      },
+      "dd": {
+        "es": "Chanchamayo · Satipo, Junín",
+        "en": "Chanchamayo · Satipo, Junín"
+      }
+    },
+    {
+      "dt": {
+        "es": "Altitud",
+        "en": "Altitude"
+      },
+      "dd": {
+        "es": "[msnm / masl]",
+        "en": "[msnm / masl]"
+      }
+    },
+    {
+      "dt": {
+        "es": "Variedades",
+        "en": "Varieties"
+      },
+      "dd": {
+        "es": "[pendiente]",
+        "en": "[pendiente]"
+      }
+    },
+    {
+      "dt": {
+        "es": "Proceso",
+        "en": "Process"
+      },
+      "dd": {
+        "es": "Lavado",
+        "en": "Washed"
+      }
+    },
+    {
+      "dt": {
+        "es": "Cosecha",
+        "en": "Harvest"
+      },
+      "dd": {
+        "es": "[meses]",
+        "en": "[meses]"
+      }
+    }
+  ],
+  "lineas": {
+    "unidad_puntaje": {
+      "es": "puntos SCA",
+      "en": "SCA points"
+    },
+    "etiqueta_notas": {
+      "es": "Notas",
+      "en": "Notes"
+    }
+  },
+  "como_armamos": {
+    "titulo": {
+      "es": "Cómo armamos cada lote",
+      "en": "How we build each lot"
+    },
+    "pasos": [
+      {
+        "titulo": {
+          "es": "Entrega del productor",
+          "en": "Farmer delivery"
+        },
+        "texto": {
+          "es": "Cada productor entrega su café en nuestro almacén de origen, con su código y parcela registrados.",
+          "en": "Each farmer delivers coffee to our origin warehouse, with their code and plot on record."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Análisis físico y cata",
+          "en": "Physical analysis and cupping"
+        },
+        "texto": {
+          "es": "Cada saco pasa por análisis físico y cata sensorial con el protocolo SCA de 10 atributos, con descuento por tazas con defecto.",
+          "en": "Every bag gets a physical analysis and a sensory cupping under the 10-attribute SCA protocol, with deductions for defective cups."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Asignación a una línea",
+          "en": "Assignment to a line"
+        },
+        "texto": {
+          "es": "El puntaje y el perfil de taza (acidez, cuerpo, notas y final) definen a qué línea comercial pertenece cada entrega.",
+          "en": "Score and cup profile (acidity, body, notes and finish) decide which commercial line each delivery joins."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Lote final y recata",
+          "en": "Final lot and re-cupping"
+        },
+        "texto": {
+          "es": "Armamos los lotes por afinidad de perfil, no solo por puntaje, y volvemos a catar el lote final antes de ofrecerlo.",
+          "en": "We build lots by profile affinity, not just score, and cup the final lot again before offering it."
+        }
+      }
+    ],
+    "principio": {
+      "es": "Ningún saco entra a una línea sin pasar por cata.",
+      "en": "No bag joins a line without being cupped."
+    }
+  },
+  "cacao": {
+    "titulo": {
+      "es": "Cacao",
+      "en": "Cocoa"
+    },
+    "bajada": {
+      "es": "Fermentado, seco y analizado por sublotes de 5 toneladas en nuestro almacén de Lima.",
+      "en": "Fermented, dried and tested in 5-tonne sub-lots at our Lima warehouse."
+    }
+  },
+  "cta": {
+    "label": {
+      "es": "Solicitar muestras",
+      "en": "Request samples"
+    }
+  }
+}

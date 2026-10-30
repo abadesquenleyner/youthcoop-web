@@ -53,9 +53,10 @@ export function Foto({ foto, margin0, sizes = '(min-width: 1060px) 600px, 100vw'
   const style: CSSProperties | undefined = margin0 ? { margin: 0 } : undefined;
 
   if (m && m.kind === 'video') {
+    const etiqueta = altDe(m, lang) || plano(foto.caption, lang) || undefined;
     return (
       <figure className="foto con-foto" style={style}>
-        <video className="foto-img" src={m.url} poster={m.poster ?? undefined} controls playsInline preload="metadata" style={{ objectPosition: posicionFocal(m) }} />
+        <video className="foto-img" src={m.url} poster={m.poster ?? undefined} controls playsInline preload="metadata" aria-label={etiqueta} style={{ objectPosition: posicionFocal(m) }} />
       </figure>
     );
   }

@@ -1,0 +1,70 @@
+{
+  "etiqueta": {
+    "es": "Nuestro modelo",
+    "en": "Our model"
+  },
+  "titulo": {
+    "es": "Sin rentabilidad para el productor, no hay sostenibilidad",
+    "en": "Without farmer profitability, there is no sustainability"
+  },
+  "bajada": {
+    "es": "Gestionamos cada finca como un negocio. Primero revisamos con el productor si su finca gana o pierde dinero; con ese diagnóstico planificamos el año agrícola en cinco pilares.",
+    "en": "We manage every farm as a business. First we check with the farmer whether the farm is making or losing money; that diagnosis shapes the farming year around five pillars."
+  },
+  "pilares": [
+    {
+      "titulo": {
+        "es": "Manejo de tejidos",
+        "en": "Tissue management"
+      },
+      "texto": {
+        "es": "Podas de renovación en café y de mantenimiento en cacao, justo después de la cosecha.",
+        "en": "Renewal pruning in coffee and maintenance pruning in cocoa, right after harvest."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Manejo de sombra",
+        "en": "Shade management"
+      },
+      "texto": {
+        "es": "Árboles en equilibrio para productividad, clima y biodiversidad.",
+        "en": "Balanced tree cover for yield, microclimate and biodiversity."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Control de malezas",
+        "en": "Weed control"
+      },
+      "texto": {
+        "es": "Menos competencia por agua y nutrientes, cuidando el suelo.",
+        "en": "Less competition for water and nutrients, protecting the soil."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Nutrición",
+        "en": "Nutrition"
+      },
+      "texto": {
+        "es": "Abonamiento planificado según análisis de suelo, al inicio de las lluvias.",
+        "en": "Planned fertilization based on soil analysis, at the start of the rains."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Plagas y enfermedades",
+        "en": "Pests and diseases"
+      },
+      "texto": {
+        "es": "Monitoreo todo el año y control oportuno con prácticas orgánicas.",
+        "en": "Year-round monitoring and timely control with organic practices."
+      }
+    }
+  ],
+  "nota": {
+    "es": "El mismo método, en café y en cacao: más rendimiento por hectárea, bosque protegido y calidad sostenida.",
+    "en": "The same method for coffee and cocoa: higher yield per hectare, a protected forest and consistent quality."
+  }
+}

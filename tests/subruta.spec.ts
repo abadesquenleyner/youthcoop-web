@@ -1,5 +1,5 @@
-// El sitio final (7 fotos asignadas, pendientes ocultos) bajo una subruta tipo GitHub Pages (/youthcoop/) y en la raíz:
-// ningún recurso da 404, las 7 fotos cargan, todo sale de la misma subruta y no hay llamadas a /api.
+// El sitio final (13 huecos con medio: 12 fotos y 1 video, sin huecos vacíos) bajo una subruta tipo GitHub Pages (/youthcoop/) y en la raíz:
+// ningún recurso da 404, las fotos cargan, el video y su póster están, todo sale de la misma subruta y no hay llamadas a /api.
 import { test, expect, type Page } from '@playwright/test';
 import { BASE, URL_FINAL, URL_RAIZ, recorrerPagina } from './comun';
 
@@ -26,21 +26,21 @@ for (const caso of [
   { nombre: 'subruta /youthcoop/ (servidor estilo GitHub Pages)', url: URL_FINAL, origen: BASE, prefijo: '/youthcoop/' },
   { nombre: 'raíz con vite preview', url: URL_RAIZ, origen: new URL(URL_RAIZ).origin, prefijo: '/' },
 ]) {
-  test(`${caso.nombre}: 7 fotos, sin 404 y sin /api`, async ({ page }) => {
+  test(`${caso.nombre}: 12 fotos y 1 video, sin 404 y sin /api`, async ({ page }) => {
     const t = vigilar(page);
     await page.goto(caso.url, { waitUntil: 'networkidle' });
     await page.waitForSelector('footer .legal');
     await recorrerPagina(page);
     await page.waitForLoadState('networkidle');
 
-    // 1) las 7 fotos asignadas cargaron, cada una con su alt y srcset de 3 anchos
+    // 1) las 12 fotos asignadas cargaron, cada una con su alt y srcset de 3 anchos
     const fotos = await page.$$eval('img.foto-img', (imgs) =>
       imgs.map((i) => {
         const im = i as HTMLImageElement;
         return { src: im.currentSrc, alt: im.alt, ancho: im.naturalWidth, srcset: im.srcset.split(',').length, lazy: im.loading, completa: im.complete };
       }),
     );
-    expect(fotos, 'fotos reales en el DOM').toHaveLength(7);
+    expect(fotos, 'fotos reales en el DOM').toHaveLength(12);
     for (const f of fotos) {
       expect(f.completa && f.ancho > 0, `foto cargada: ${f.src}`).toBe(true);
       expect(f.src.startsWith(caso.origen + caso.prefijo + 'media/'), `foto bajo la subruta: ${f.src}`).toBe(true);
@@ -52,12 +52,32 @@ for (const caso of [
 
     // 2a) las 3 variantes (480/800/1200) de cada foto existen, aunque el navegador solo baje una
     const candidatas = await page.$$eval('img.foto-img', (imgs) => imgs.flatMap((i) => (i as HTMLImageElement).srcset.split(',').map((c) => new URL(c.trim().split(' ')[0], document.baseURI).href)));
-    expect(new Set(candidatas).size).toBe(21);
+    expect(new Set(candidatas).size).toBe(36);
     for (const u of candidatas) {
       const r = await page.request.get(u);
       expect(r.status(), u).toBe(200);
       expect(r.headers()['content-type'], u).toBe('image/webp');
     }
+
+    // 2b) el hueco 13 es un video con póster: ninguna foto vacía queda en el sitio
+    const videos = await page.$$eval('video.foto-img', (vs) =>
+      vs.map((v) => {
+        const vid = v as HTMLVideoElement;
+        return { src: vid.currentSrc || vid.src, poster: vid.poster, etiqueta: vid.getAttribute('aria-label') ?? '', controles: vid.controls };
+      }),
+    );
+    expect(videos, 'un video en el DOM').toHaveLength(1);
+    expect(videos[0].src.startsWith(caso.origen + caso.prefijo + 'media/'), `video bajo la subruta: ${videos[0].src}`).toBe(true);
+    expect(videos[0].poster.startsWith(caso.origen + caso.prefijo + 'media/'), `póster bajo la subruta: ${videos[0].poster}`).toBe(true);
+    expect(videos[0].etiqueta.length, 'etiqueta accesible del video').toBeGreaterThan(20);
+    expect(videos[0].controles, 'el video tiene controles').toBe(true);
+    const rv = await page.request.get(videos[0].src);
+    expect(rv.status()).toBe(200);
+    expect(rv.headers()['content-type']).toBe('video/mp4');
+    expect((await rv.body()).length, 'el video pesa menos de 10 MB').toBeLessThan(10 * 1024 * 1024);
+    const rp = await page.request.get(videos[0].poster);
+    expect(rp.status()).toBe(200);
+    expect(await page.$$('figure.foto:not(.con-foto)'), 'ningún hueco vacío').toHaveLength(0);
 
     // 2) los logos (cabecera oscuro/claro y pie) también cargaron
     const logos = await page.$$eval('header .marca img, footer img', (imgs) => imgs.map((i) => ({ src: (i as HTMLImageElement).currentSrc, ancho: (i as HTMLImageElement).naturalWidth })));
@@ -66,14 +86,16 @@ for (const caso of [
 
     // 3) ninguna respuesta propia con error y todas bajo el prefijo
     const propias = t.respuestas.filter((r) => PROPIAS(r.url, caso.origen));
-    expect(propias.length, "index + js + css + 7 fotos + 3 logos").toBeGreaterThanOrEqual(13);
+    expect(propias.length, "index + js + css + 12 fotos + video + póster + 3 logos").toBeGreaterThanOrEqual(13);
     const malas = propias.filter((r) => r.status >= 400);
     expect(malas, `recursos propios con error: ${JSON.stringify(malas)}`).toEqual([]);
     for (const r of propias) expect(new URL(r.url).pathname.startsWith(caso.prefijo), `fuera de la subruta: ${r.url}`).toBe(true);
     expect(propias.filter((r) => /\/api\//.test(r.url)), 'sin llamadas a /api').toEqual([]);
 
     // 4) nada propio falló en la red y la consola no tiene errores (las fuentes de Google se ignoran si no hay internet)
-    const fallidasPropias = t.fallidas.filter((f) => PROPIAS(f, caso.origen));
+    // (el navegador cancela a propósito la primera petición del <video preload="metadata"> cuando ya leyó la cabecera:
+    //  es un ERR_ABORTED normal del .mp4, no un fallo; su 200, tipo y peso se comprueban arriba)
+    const fallidasPropias = t.fallidas.filter((f) => PROPIAS(f, caso.origen) && !/\.mp4 · net::ERR_ABORTED$/.test(f));
     expect(fallidasPropias).toEqual([]);
     const errores = t.consola.filter((c) => !/fonts\.g|ERR_INTERNET|ERR_NAME_NOT_RESOLVED|ERR_CONNECTION|Failed to load resource/.test(c));
     expect(errores).toEqual([]);

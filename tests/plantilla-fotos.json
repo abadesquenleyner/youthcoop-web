@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "etiqueta": "FOTO",
+    "caption": "Productora joven sonriendo en su finca, con cerezos maduros en la mano. Luz natural de mañana.",
+    "medidas": "Vertical 1200 × 1500 px",
+    "pendiente": false
+  },
+  "nosotros": {
+    "etiqueta": "FOTO",
+    "caption": {
+      "es": "Los socios fundadores con sus padres en el cafetal familiar. Luz natural, ropa de campo.",
+      "en": "Founding partners with their parents on the family farm. Natural light, field clothes."
+    },
+    "medidas": "Horizontal 1600 × 1200 px",
+    "pendiente": true
+  },
+  "proyectos.0": {
+    "etiqueta": "FOTO",
+    "caption": "Cafetal bajo sombra de árboles nativos, o plantones listos para reforestar. Añadir logo de Café + Árbol.",
+    "medidas": "1600 × 1000 px",
+    "pendiente": false
+  },
+  "proyectos.1": {
+    "etiqueta": "FOTO",
+    "caption": "Mazorcas de cacao en el árbol dentro de un sistema agroforestal. Añadir logo de Cacao Bosque+.",
+    "medidas": "1600 × 1000 px",
+    "pendiente": false
+  },
+  "proyectos.2": {
+    "etiqueta": "FOTO",
+    "caption": "Productoras y jóvenes de la cooperativa durante la cosecha o el secado. Añadir logo de Tierra de Jóvenes y Mujeres.",
+    "medidas": "1600 × 1000 px",
+    "pendiente": false
+  },
+  "cocoa-beans": {
+    "etiqueta": "FOTO",
+    "caption": {
+      "es": "Granos de cacao fermentados y secos en manos del productor.",
+      "en": "Fermented, dried cocoa beans in a farmer's hands."
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": false
+  },
+  "cocoa-products": {
+    "etiqueta": "FOTO",
+    "caption": {
+      "es": "Bodegón de licor, manteca, polvo y nibs sobre fondo neutro.",
+      "en": "Still life of liquor, butter, powder and nibs on a neutral background."
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": true
+  },
+  "galeria.0": {
+    "etiqueta": "FOTO 1",
+    "caption": {
+      "es": "Cosecha selectiva de cerezos maduros",
+      "en": "Selective picking of ripe cherries"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": false
+  },
+  "galeria.1": {
+    "etiqueta": "FOTO 2",
+    "caption": {
+      "es": "Cata en el laboratorio de origen",
+      "en": "Cupping at our origin lab"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": true
+  },
+  "galeria.2": {
+    "etiqueta": "FOTO 3",
+    "caption": {
+      "es": "Calado de sacos para análisis de glifosato",
+      "en": "Bag probing for glyphosate testing"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": true
+  },
+  "galeria.3": {
+    "etiqueta": "FOTO 4",
+    "caption": {
+      "es": "Fermentación o secado de cacao",
+      "en": "Cocoa fermentation or drying"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": false
+  },
+  "galeria.4": {
+    "etiqueta": "FOTO 5",
+    "caption": {
+      "es": "Almacén de Lima con sacos apilados por sublote",
+      "en": "Lima warehouse with bags stacked by sub-lot"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": true
+  },
+  "galeria.5": {
+    "etiqueta": "FOTO 6",
+    "caption": {
+      "es": "Contenedor cargándose para exportación",
+      "en": "Container being loaded for export"
+    },
+    "medidas": "1200 × 900 px",
+    "pendiente": true
+  }
+}

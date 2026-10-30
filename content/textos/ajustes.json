@@ -1,0 +1,54 @@
+{
+  "seo": {
+    "es": {
+      "title": "YOUTH COOP v5 · Café y cacao peruano trazable | Peruvian traceable coffee & cocoa (Copy)",
+      "description": "Café verde, cacao en grano y derivados de cacao de organizaciones de pequeños productores del Perú. Orgánico UE, NOP, RTPO, COR, Fairtrade y cumplimiento EUDR."
+    },
+    "en": {
+      "title": "YOUTH COOP v5 · Café y cacao peruano trazable | Peruvian traceable coffee & cocoa (Copy)",
+      "description": ""
+    }
+  },
+  "contacto": {
+    "email_comercial": "gerencia@youthcoop.pe",
+    "email_logistica": "traffic@youthcoop.pe",
+    "whatsapp_numero": "51974289199",
+    "whatsapp_texto": "WhatsApp +51 974 289 199",
+    "whatsapp_pie": "+51 974 289 199",
+    "sitio_web": "youthcoop.pe",
+    "direcciones": [
+      {
+        "titulo": {
+          "es": "Sede y almacén · Lima",
+          "en": "Office & warehouse · Lima"
+        },
+        "texto": "Los Castillos Mz. C Lt. 11, Parque Industrial San Pedrito\nSantiago de Surco, Lima, Perú"
+      },
+      {
+        "titulo": {
+          "es": "Origen · Junín",
+          "en": "Origin · Junín"
+        },
+        "texto": "Av. Río Ene Mz. I Lt. 3, San Martín de Pangoa\nSatipo, Junín, Perú"
+      }
+    ],
+    "redes": {
+      "linkedin": {
+        "url": "https://www.linkedin.com/company/103115534/"
+      },
+      "instagram": {
+        "url": "https://www.instagram.com/youthcoop.pe/"
+      },
+      "facebook": {
+        "url": "https://web.facebook.com/youthcoop.pe"
+      },
+      "tiktok": {
+        "url": "#"
+      }
+    }
+  },
+  "legal": {
+    "razon_social": "Cooperación de Jóvenes S.A.C.",
+    "ruc": "20612248371"
+  }
+}

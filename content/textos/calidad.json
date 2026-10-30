@@ -1,0 +1,187 @@
+{
+  "etiqueta": {
+    "es": "Calidad y control de riesgo",
+    "en": "Quality and risk control"
+  },
+  "titulo": {
+    "es": "Nada se embarca sin resultados",
+    "en": "Nothing ships without results"
+  },
+  "bajada": {
+    "es": "Analizamos residuos de plaguicidas (multirresiduo y glifosato) según los límites máximos de residuos (LMR) de la Unión Europea, en laboratorio acreditado y ajustados a los lineamientos de cada cliente.",
+    "en": "We test for pesticide residues (multi-residue screening and glyphosate) against EU maximum residue levels (MRLs), at an accredited lab and in line with each buyer's guidelines."
+  },
+  "aria_tabs": "Producto",
+  "tabs": [
+    {
+      "label": {
+        "es": "Café",
+        "en": "Coffee"
+      }
+    },
+    {
+      "label": {
+        "es": "Cacao",
+        "en": "Cocoa"
+      }
+    }
+  ],
+  "cafe": {
+    "destacado": {
+      "titulo": {
+        "es": "Multirresiduo y glifosato, lote por lote",
+        "en": "Multi-residue and glyphosate, lot by lot"
+      },
+      "texto": {
+        "es": "Cada lote de exportación, de unas 20 toneladas, se analiza antes de embarcar.",
+        "en": "Every export lot, around 20 tonnes, is tested before shipment."
+      }
+    },
+    "pasos": [
+      {
+        "titulo": {
+          "es": "Cata en origen",
+          "en": "Cupping at origin"
+        },
+        "texto": {
+          "es": "Cada saco ya fue catado y asignado a su línea.",
+          "en": "Every bag has already been cupped and assigned to its line."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Beneficio seco",
+          "en": "Dry milling"
+        },
+        "texto": {
+          "es": "Pilado y selección en planta.",
+          "en": "Hulling and sorting at the mill."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Tres caladas por saco",
+          "en": "Three probes per bag"
+        },
+        "texto": {
+          "es": "Muestra representativa de todo el lote.",
+          "en": "A representative sample of the whole lot."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Análisis de residuos",
+          "en": "Residue testing"
+        },
+        "texto": {
+          "es": "Multirresiduo de plaguicidas y glifosato, en un laboratorio acreditado que elegimos con el cliente.",
+          "en": "Pesticide multi-residue and glyphosate testing at an accredited lab chosen with the buyer."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Embarque",
+          "en": "Shipment"
+        },
+        "texto": {
+          "es": "Solo con resultados conformes y documentación EUDR completa.",
+          "en": "Only with compliant results and complete EUDR documents."
+        }
+      }
+    ]
+  },
+  "cacao": {
+    "comparacion": {
+      "mercado": {
+        "titulo": {
+          "es": "Práctica habitual del mercado",
+          "en": "Common market practice"
+        },
+        "lote": {
+          "es": "1 análisis · 25 t",
+          "en": "1 test · 25 t"
+        },
+        "pie": {
+          "es": "Un solo resultado para todo el contenedor.",
+          "en": "A single result for the whole container."
+        }
+      },
+      "nuestro": {
+        "titulo": "YOUTH COOP",
+        "sublotes": [
+          {
+            "texto": "5 t"
+          },
+          {
+            "texto": "5 t"
+          },
+          {
+            "texto": "5 t"
+          },
+          {
+            "texto": "5 t"
+          },
+          {
+            "texto": "5 t"
+          }
+        ],
+        "pie": {
+          "es": "Cinco resultados independientes por contenedor. Si un sublote no cumple, se separa y el resto sigue su curso.",
+          "en": "Five independent results per container. If one sub-lot fails, it is set aside and the rest moves on."
+        }
+      }
+    },
+    "pasos": [
+      {
+        "titulo": {
+          "es": "Acopio trazable",
+          "en": "Traceable sourcing"
+        },
+        "texto": {
+          "es": "Asistencia técnica y financiamiento al productor, a través de su organización.",
+          "en": "Technical assistance and financing for each farmer, through their organization."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Almacén en Lima",
+          "en": "Lima warehouse"
+        },
+        "texto": {
+          "es": "Recepción, control de calidad y armado de sublotes de 5 t.",
+          "en": "Receipt, quality control and 5 t sub-lot assembly."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Análisis por sublote",
+          "en": "Sub-lot testing"
+        },
+        "texto": {
+          "es": "Multirresiduo de plaguicidas y glifosato para cada sublote, en laboratorio acreditado.",
+          "en": "Pesticide multi-residue and glyphosate testing on every sub-lot, at an accredited lab."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Protocolo con el cliente",
+          "en": "Buyer protocol"
+        },
+        "texto": {
+          "es": "Revisamos resultados con el cliente según sus lineamientos internos.",
+          "en": "Results are reviewed with the buyer against their internal guidelines."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Exportación",
+          "en": "Shipment"
+        },
+        "texto": {
+          "es": "Embarque solo con resultados aprobados y documentación EUDR completa.",
+          "en": "Shipment only with approved results and complete EUDR documentation."
+        }
+      }
+    ]
+  }
+}

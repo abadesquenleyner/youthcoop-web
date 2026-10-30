@@ -1,0 +1,58 @@
+{
+  "nav": [
+    {
+      "label": {
+        "es": "Nosotros",
+        "en": "About"
+      }
+    },
+    {
+      "label": {
+        "es": "Modelo",
+        "en": "Model"
+      }
+    },
+    {
+      "label": {
+        "es": "Proyectos",
+        "en": "Projects"
+      }
+    },
+    {
+      "label": {
+        "es": "Oferta",
+        "en": "Offer"
+      }
+    },
+    {
+      "label": {
+        "es": "Calidad",
+        "en": "Quality"
+      }
+    },
+    {
+      "label": {
+        "es": "Trazabilidad",
+        "en": "Traceability"
+      }
+    },
+    {
+      "label": {
+        "es": "Contacto",
+        "en": "Contact"
+      }
+    }
+  ],
+  "cta": {
+    "label": {
+      "es": "Solicitar muestras",
+      "en": "Request samples"
+    }
+  },
+  "aria": {
+    "inicio": "YOUTH COOP, inicio",
+    "nav": "Principal",
+    "idioma": "Idioma / Language",
+    "menu": "Menú"
+  }
+}

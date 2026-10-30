@@ -1,0 +1,100 @@
+{
+  "etiqueta": {
+    "es": "Trazabilidad y certificaciones",
+    "en": "Traceability and certifications"
+  },
+  "titulo": {
+    "es": "Datos desde la parcela, listos para EUDR",
+    "en": "Plot-level data, EUDR-ready"
+  },
+  "bajada": {
+    "es": "Nuestros técnicos registran en tablet cada visita a la finca. Esa información alimenta la trazabilidad, la certificación y el monitoreo.",
+    "en": "Our technicians log every farm visit on a tablet. That data feeds traceability, certification and monitoring."
+  },
+  "checks": [
+    {
+      "titulo": {
+        "es": "Tablets en las fincas",
+        "en": "Tablets on every farm visit"
+      },
+      "texto": {
+        "es": "Registro de visitas técnicas, prácticas y producción en tiempo real.",
+        "en": "Technical visits, practices and yields recorded in real time."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Cumplimiento EUDR",
+        "en": "EUDR compliance"
+      },
+      "texto": {
+        "es": "Geolocalización de cada parcela, verificación de libre deforestación y documentación de la tenencia legal del predio (título o constancia de posesión).",
+        "en": "Geolocation of every plot, deforestation-free verification and documented legal land tenure (title or proof of possession)."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Monitoreo permanente",
+        "en": "Ongoing monitoring"
+      },
+      "texto": {
+        "es": "Sistema Interno de Control con seguimiento continuo de cada parcela.",
+        "en": "An Internal Control System with continuous tracking of every plot."
+      }
+    },
+    {
+      "titulo": {
+        "es": "Trayectoria confiable",
+        "en": "Proven reliability"
+      },
+      "texto": {
+        "es": "Contratos y certificaciones cumplidos sin observaciones desde nuestro inicio.",
+        "en": "Contracts and certifications fulfilled without findings since day one."
+      }
+    }
+  ],
+  "certs": [
+    {
+      "nombre": "Orgánico UE",
+      "detalle": {
+        "es": "Unión Europea",
+        "en": "European Union"
+      }
+    },
+    {
+      "nombre": "NOP",
+      "detalle": {
+        "es": "USDA · Estados Unidos",
+        "en": "USDA · United States"
+      }
+    },
+    {
+      "nombre": "COR",
+      "detalle": {
+        "es": "Canadá",
+        "en": "Canada"
+      }
+    },
+    {
+      "nombre": "RTPO",
+      "detalle": {
+        "es": "Perú · SENASA",
+        "en": "Peru · SENASA"
+      }
+    },
+    {
+      "nombre": "Fairtrade",
+      "detalle": {
+        "es": "FLOCERT",
+        "en": "FLOCERT"
+      }
+    },
+    {
+      "nombre": "EUDR",
+      "detalle": {
+        "es": "Libre de deforestación",
+        "en": "Deforestation-free"
+      }
+    }
+  ]
+}

@@ -4,6 +4,8 @@ name: Publicar en GitHub Pages
 # Antes de usarlo: Settings > Pages > Build and deployment > Source: "GitHub Actions".
 # La URL del formulario (Google Apps Script) se lee del secreto o de la variable VITE_FORM_ENDPOINT del repositorio.
 
+# Se dispara con CADA push a main, sin filtro de rutas a propósito: así también se publica cuando el panel /admin
+# (Decap CMS) guarda content/fotos.json, content/textos/*.json o sube una foto a content/originales/ (cada guardado es un commit a main).
 on:
   push:
     branches: [main]
@@ -40,6 +42,17 @@ jobs:
           if [ -z "$ENDPOINT" ]; then
             echo "::warning title=Formulario sin conectar::VITE_FORM_ENDPOINT no esta configurado (Settings > Secrets and variables > Actions). El sitio se publica, pero el formulario mostrara un error al enviar."
           fi
+
+      # Genera las variantes 480/800/1200 de las 13 fotos desde content/originales (sharp) y actualiza site.json en este
+      # entorno (no se guarda en el repositorio). `npm run build` lo vuelve a ejecutar como prebuild; la segunda vez no hace nada.
+      - name: Procesar fotos (content/originales -> public/media/fotos)
+        run: npm run media
+
+      # Aplica los textos que edita el cliente (content/textos/*.json) sobre src/data/site.json, solo en los campos de texto permitidos
+      # (lista blanca en scripts/textos-esquema.mjs). Los avisos (texto vacío, lista con otro tamaño...) salen como advertencias y no detienen
+      # el despliegue; solo un archivo que no sea JSON válido lo detiene. `npm run build` lo vuelve a ejecutar como prebuild (sin cambios).
+      - name: Aplicar textos (content/textos -> src/data/site.json)
+        run: npm run textos
 
       - name: Compilar (tsc + vite build)
         env:

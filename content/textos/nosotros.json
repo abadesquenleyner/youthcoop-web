@@ -1,0 +1,96 @@
+{
+  "etiqueta": {
+    "es": "Nosotros",
+    "en": "About us"
+  },
+  "titulo": {
+    "es": "Productores y exportadores en origen",
+    "en": "Producers and exporters at origin"
+  },
+  "parrafos": [
+    {
+      "texto": {
+        "es": "Crecimos en los cafetales de Chanchamayo y Satipo, en la Selva Central del Perú. Hoy somos un equipo multidisciplinario, formado en gestión, comercio exterior y agronomía, que volvió para liderar el negocio familiar.",
+        "en": "We grew up on the coffee farms of Chanchamayo and Satipo, in Peru's Central Jungle. Today we are a multidisciplinary team, trained in management, international trade and agronomy, who came back to lead the family business."
+      }
+    },
+    {
+      "texto": {
+        "es": "Producimos y exportamos junto a nuestras familias y vecinos del campo. Ponemos el acopio, la trazabilidad y la gestión comercial, y trabajamos de cerca con importadores, tostadores y chocolateros para llevar nuestro café y cacao al mundo.",
+        "en": "We produce and export together with our families and neighboring farmers. We provide collection, traceability and commercial management, and work closely with importers, roasters and chocolate makers to bring our coffee and cocoa to the world."
+      }
+    }
+  ],
+  "hitos": [
+    {
+      "anio": {
+        "es": "1985 – 1995",
+        "en": "1985 – 1995"
+      },
+      "titulo": {
+        "es": "Volver al campo",
+        "en": "Back to the land"
+      },
+      "texto": {
+        "es": "Tras dejar sus fincas por el terrorismo, nuestras familias regresaron y reconstruyeron sus hogares con el café.",
+        "en": "After fleeing terrorism, our families returned and rebuilt their homes through coffee."
+      }
+    },
+    {
+      "anio": {
+        "es": "2000 – 2010",
+        "en": "2000 – 2010"
+      },
+      "titulo": {
+        "es": "El café nos formó",
+        "en": "Coffee educated us"
+      },
+      "texto": {
+        "es": "Las parcelas familiares pagaron nuestros estudios en gestión, comercio y agronomía.",
+        "en": "The family plots paid for our studies in management, trade and agronomy."
+      }
+    },
+    {
+      "anio": {
+        "es": "2012 – 2015",
+        "en": "2012 – 2015"
+      },
+      "titulo": {
+        "es": "La roya y el salto técnico",
+        "en": "Leaf rust and the technical leap"
+      },
+      "texto": {
+        "es": "La roya arrasó cerca del 70% de los cafetales de nuestra zona. Renovamos, tecnificamos y nos organizamos.",
+        "en": "Leaf rust wiped out nearly 70% of coffee farms in our area. We replanted, modernized and organized."
+      }
+    },
+    {
+      "anio": {
+        "es": "2017 – 2018",
+        "en": "2017 – 2018"
+      },
+      "titulo": {
+        "es": "Calidad en taza",
+        "en": "Cup quality"
+      },
+      "texto": {
+        "es": "Ferias, contacto directo con tostadores y los primeros lotes clasificados por perfil.",
+        "en": "Trade fairs, direct contact with roasters and our first lots graded by profile."
+      }
+    },
+    {
+      "anio": {
+        "es": "2023 – hoy",
+        "en": "2023 – today"
+      },
+      "titulo": {
+        "es": "Nace YOUTH COOP",
+        "en": "YOUTH COOP is born"
+      },
+      "texto": {
+        "es": "Exportación directa desde origen, con acopio propio y trazabilidad completa.",
+        "en": "Direct export from origin, with our own collection and full traceability."
+      }
+    }
+  ]
+}
